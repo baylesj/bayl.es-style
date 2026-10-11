@@ -16,7 +16,7 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.0.0/dist/eopsin.min.css"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.1.0/dist/eopsin.min.css"
 />
 
 <body data-site="home">
@@ -29,7 +29,7 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 You can also install it as a dependency, pinned to a tag, and bundle it in a build:
 
 ```sh
-npm install github:baylesj/bayl.es-style#v1.0.0
+npm install github:baylesj/bayl.es-style#v1.1.0
 ```
 
 ```js
@@ -81,6 +81,17 @@ Also available:
 - `.seg` mono toggle groups
 - role colors: `.public`, `.private`, `.num`, `.warn`, `.err`
 - type helpers: `.title`, `.lede`, `.soft`, `.muted`, `.mono`, `.stack`
+
+Each server site has a favicon in `icons/` (`home.svg`, `my.svg`, `id.svg`, `audible.svg`): an "e." monogram on
+a tile in the site's signature color. Link it at the same pinned tag:
+
+```html
+<link
+  rel="icon"
+  type="image/svg+xml"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.1.0/icons/home.svg"
+/>
+```
 
 Every token is a custom property on `:root`, so you can use them in site CSS:
 

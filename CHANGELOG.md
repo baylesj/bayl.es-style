@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0 (2026-10-11)
+
+- Favicons in `icons/`: an "e." monogram on a tile in each site's signature color (`home`, `my`, `id`,
+  `audible`). The glyphs are outlines from Schibsted Grotesk, so they don't depend on loaded fonts.
+
 ## 1.0.0 (2026-10-11)
 
 First release, extracted from unraid-config `stacks/shared/eopsin.css`. Changes since then:

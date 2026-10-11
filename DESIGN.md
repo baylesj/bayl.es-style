@@ -38,6 +38,11 @@ one family with a small context clue per site, and never like a stock template.
 Amber is too light for white text, so audible's buttons are ink on amber, and its prompt path uses a
 darker amber (`--amber-text`).
 
+## Favicons
+
+The server sites use an "e." monogram on a tile in the site's signature color (`icons/`), so their tabs
+can be told apart at a glance. jordan.bayl.es uses the Chasma Sound logo, white on black.
+
 ## Color roles
 
 | role    | light     | dark      | used for                                     |
