@@ -1,0 +1,346 @@
+/* Components: the shared pieces of a bayl.es page. Markup examples are in README.md. */
+
+@layer components {
+  /* Header: prompt line and wordmark, closed by a full-ink rule. */
+  .top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--ink);
+  }
+
+  .top > :first-child {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .prompt {
+    color: var(--comment);
+    font: 13px/1.4 var(--mono);
+  }
+
+  .prompt .u {
+    color: var(--green);
+  }
+
+  .prompt .p {
+    color: var(--sig-text);
+  }
+
+  .mark {
+    margin: 0;
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+  }
+
+  .mark::after {
+    content: ".";
+    color: var(--sig);
+  }
+
+  /* Section labels: lowercase mono, with an optional purple number. */
+  .label {
+    margin: 0 0 8px;
+    color: var(--comment);
+    font: 400 12px/1.4 var(--mono);
+  }
+
+  .label .n {
+    margin-right: 0.6em;
+    color: var(--purple);
+  }
+
+  /* Split: a label column beside the content; stacks on phones. */
+  .split {
+    display: grid;
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 8px 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
+  }
+
+  .split > .label {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  /* Rows on hairlines: icon, name and description, mono meta on the right. */
+  .rows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto;
+    column-gap: 14px;
+    align-items: center;
+    min-height: 44px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    color: inherit;
+    text-decoration: none;
+  }
+
+  a.row:hover .name {
+    color: var(--sig-text);
+  }
+
+  .row.off {
+    opacity: 0.45;
+    pointer-events: none;
+  }
+
+  .row img,
+  .row .tile {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+  }
+
+  .row .tile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    background: var(--sig);
+    color: var(--on-sig);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .row .txt {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    align-items: baseline;
+    min-width: 0;
+  }
+
+  .row .name {
+    font-weight: 500;
+  }
+
+  .row .desc {
+    color: var(--comment);
+    font-size: 14px;
+  }
+
+  .row .meta {
+    color: var(--comment);
+    font: 12px var(--mono);
+    text-align: right;
+  }
+
+  /* Key/value rows: mono key, plain value. */
+  .kv {
+    display: grid;
+    grid-template-columns: 140px minmax(0, 1fr);
+    gap: 4px 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+    font-size: 15px;
+  }
+
+  .kv > :first-child {
+    color: var(--comment);
+    font: 12px/1.9 var(--mono);
+  }
+
+  /* Status dots */
+  .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 8px;
+    border-radius: 50%;
+    background: var(--comment);
+    vertical-align: 1px;
+  }
+
+  .dot.ok {
+    background: var(--green);
+  }
+
+  .dot.warn {
+    background: var(--amber);
+  }
+
+  .dot.err {
+    background: var(--orange);
+  }
+
+  /* Panel: for the one thing that stands apart (a form, a first step), tinted with the signature. */
+  .panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px;
+    border-radius: 10px;
+    background: color-mix(in srgb, var(--sig) 9%, var(--ground));
+  }
+
+  .panel .label {
+    margin: 0;
+    color: var(--sig-text);
+  }
+
+  .panel.alert {
+    background: color-mix(in srgb, var(--orange) 10%, var(--ground));
+  }
+
+  /* Numbered steps with mono counters */
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin: 0;
+    padding: 0;
+    color: var(--soft);
+    font-size: 15px;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .steps li {
+    position: relative;
+    padding-left: 22px;
+    counter-increment: step;
+  }
+
+  .steps li::before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    color: var(--sig-text);
+    font-family: var(--mono);
+  }
+
+  /* Forms and buttons. Buttons are rectangles with 8px corners, never pills. */
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 0;
+  }
+
+  label {
+    display: block;
+    margin: 0 0 6px;
+    color: var(--sig-text);
+    font: 12px/1.4 var(--mono);
+  }
+
+  input,
+  select {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid color-mix(in srgb, var(--sig) 30%, var(--line));
+    border-radius: 8px;
+    background: var(--field);
+    color: var(--ink);
+    font: inherit;
+  }
+
+  input:focus-visible,
+  select:focus-visible {
+    outline-offset: 1px;
+  }
+
+  .help {
+    margin-top: 6px;
+    color: var(--comment);
+    font-size: 14px;
+  }
+
+  .btn,
+  button {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    min-height: 44px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--sig);
+    color: var(--on-sig);
+    font: inherit;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .btn:hover,
+  button:hover {
+    color: var(--on-sig);
+    filter: brightness(1.06);
+  }
+
+  .btn.quiet,
+  button.quiet {
+    border: 1px solid var(--line);
+    background: none;
+    color: var(--comment);
+    font-weight: 500;
+  }
+
+  .btn.quiet:hover,
+  button.quiet:hover {
+    color: var(--ink);
+    filter: none;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+
+  /* Segmented mono toggle (home's network switch) */
+  .seg {
+    display: flex;
+    gap: 6px;
+    font: 13px var(--mono);
+  }
+
+  .seg button {
+    min-height: 36px;
+    padding: 0 14px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: none;
+    color: var(--comment);
+    font: inherit;
+  }
+
+  .seg button:hover {
+    color: var(--ink);
+    filter: none;
+  }
+
+  .seg button.on {
+    border-color: var(--green);
+    background: color-mix(in srgb, var(--green) 10%, var(--ground));
+    color: var(--green);
+  }
+
+  @media (width <= 480px) {
+    .mark {
+      font-size: 44px;
+    }
+
+    .kv,
+    .split {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}

@@ -1,0 +1,75 @@
+/*
+ * Tokens: color roles, type families and per-site signatures.
+ *
+ * Colors use light-dark(), so they follow the visitor's system theme. A page can force a theme
+ * with <html data-theme="light|dark">.
+ */
+
+@layer tokens {
+  :root {
+    color-scheme: light dark;
+
+    /* Neutrals */
+    --ink: light-dark(#14282b, #d9e9e8);
+    --comment: light-dark(#6f8c8f, #6d9497);
+    --soft: light-dark(#4e6b6e, #9dbab9);
+    --line: light-dark(#e4ebec, #16353a);
+    --ground: light-dark(#fbfcfc, #0a1f22);
+    --field: light-dark(#fff, #0e282c);
+
+    /* Roles, named for what they mean (like syntax highlighting) */
+    --pink: light-dark(#e0457b, #f07ea6); /* jordan.bayl.es signature */
+    --teal: light-dark(#0087a0, #3dc5d6); /* links, focus, private routes */
+    --green: light-dark(#00a36c, #55e0a6); /* public, OK, selected */
+    --purple: light-dark(#5b4be0, #9184f5); /* counts, section numbers */
+    --amber: light-dark(#d99a00, #e8c07a); /* needs attention */
+    --orange: light-dark(#e86a2c, #f2925c); /* down, failed, destructive */
+    --amber-text: light-dark(#a87600, #e8c07a); /* amber at text contrast */
+    --on-sig: light-dark(#fff, #0a1f22); /* text on a signature-colored fill */
+
+    /* Type. Each page loads the fonts; see README. */
+    --sans: "Schibsted Grotesk", -apple-system, system-ui, sans-serif;
+    --mono: "Fira Code", ui-monospace, monospace;
+    --serif: "EB Garamond", garamond, georgia, serif; /* jordan.bayl.es name only */
+
+    /* Signature defaults; [data-site] below sets the real ones. */
+    --sig: var(--teal);
+    --sig2: var(--green);
+    --sig-text: var(--sig);
+  }
+
+  :root[data-theme="light"] {
+    color-scheme: light;
+  }
+
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+  }
+
+  /* One hue per site, fading into a neighbor. */
+  [data-site="jordan"] {
+    --sig: var(--pink);
+    --sig2: var(--purple);
+    --sig-text: var(--pink);
+  }
+
+  [data-site="home"] {
+    --sig: var(--teal);
+    --sig2: var(--green);
+    --sig-text: var(--teal);
+  }
+
+  [data-site="my"],
+  [data-site="id"] {
+    --sig: var(--purple);
+    --sig2: var(--teal);
+    --sig-text: var(--purple);
+  }
+
+  [data-site="audible"] {
+    --sig: var(--amber);
+    --sig2: var(--orange);
+    --sig-text: var(--amber-text);
+    --on-sig: #14282b; /* amber is too light for white text */
+  }
+}

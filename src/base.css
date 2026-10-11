@@ -1,0 +1,149 @@
+/* Base: element defaults and small type helpers. */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font: 17px/1.5 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* The signature strip across the top of every page. */
+  body::before {
+    content: "";
+    display: block;
+    height: 4px;
+    background: linear-gradient(90deg, var(--sig), var(--sig2));
+  }
+
+  main {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 40px 16px 56px;
+  }
+
+  main.wide {
+    max-width: 1080px;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: var(--teal);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  a:hover {
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--sig);
+    outline-offset: 2px;
+  }
+
+  strong,
+  b {
+    font-weight: 600;
+  }
+
+  code,
+  kbd,
+  .mono {
+    font-family: var(--mono);
+  }
+
+  code {
+    font-size: 0.85em;
+  }
+
+  footer {
+    color: var(--comment);
+    font: 12px/1.6 var(--mono);
+  }
+
+  footer a {
+    color: var(--comment);
+  }
+
+  footer a:hover {
+    color: var(--ink);
+  }
+
+  .title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  .lede {
+    font-size: 20px;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  .soft {
+    color: var(--soft);
+    font-size: 15px;
+  }
+
+  .muted {
+    color: var(--comment);
+  }
+
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  /* Role colors for machine facts */
+  .public {
+    color: var(--green);
+  }
+
+  .private {
+    color: var(--teal);
+  }
+
+  .num {
+    color: var(--purple);
+  }
+
+  .warn {
+    color: var(--amber-text);
+  }
+
+  .err {
+    color: var(--orange);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+    }
+  }
+}
