@@ -120,7 +120,7 @@ Edit files in `src/`. `dist/` is built by Lightning CSS (bundled, with fallbacks
 
 1. Update `CHANGELOG.md` and `version` in `package.json`.
 2. Run `npm run check`.
-3. Commit, then tag: `git tag v1.1.0 && git push --follow-tags`.
+3. Commit, then tag: `git tag v1.1.0 && git push && git push origin v1.1.0`.
 4. Bump the tag in each site:
    - jordan.bayl.es: `package.json`
    - unraid-config: `stacks/shared/style-version`
