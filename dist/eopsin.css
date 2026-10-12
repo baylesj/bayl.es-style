@@ -4,18 +4,21 @@
     --lightningcss-dark: ;
     color-scheme: light dark;
     --ink: var(--lightningcss-light, #14282b) var(--lightningcss-dark, #d9e9e8);
-    --comment: var(--lightningcss-light, #6f8c8f) var(--lightningcss-dark, #6d9497);
+    --comment: var(--lightningcss-light, #576e71) var(--lightningcss-dark, #74999c);
     --soft: var(--lightningcss-light, #4e6b6e) var(--lightningcss-dark, #9dbab9);
     --line: var(--lightningcss-light, #e4ebec) var(--lightningcss-dark, #16353a);
     --ground: var(--lightningcss-light, #fbfcfc) var(--lightningcss-dark, #0a1f22);
     --field: var(--lightningcss-light, #fff) var(--lightningcss-dark, #0e282c);
     --pink: var(--lightningcss-light, #e0457b) var(--lightningcss-dark, #f07ea6);
-    --teal: var(--lightningcss-light, #0087a0) var(--lightningcss-dark, #3dc5d6);
-    --green: var(--lightningcss-light, #00a36c) var(--lightningcss-dark, #55e0a6);
+    --teal: var(--lightningcss-light, #00748a) var(--lightningcss-dark, #3dc5d6);
+    --green: var(--lightningcss-light, #007b52) var(--lightningcss-dark, #55e0a6);
     --purple: var(--lightningcss-light, #5b4be0) var(--lightningcss-dark, #9184f5);
     --amber: var(--lightningcss-light, #d99a00) var(--lightningcss-dark, #e8c07a);
-    --orange: var(--lightningcss-light, #e86a2c) var(--lightningcss-dark, #f2925c);
-    --amber-text: var(--lightningcss-light, #a87600) var(--lightningcss-dark, #e8c07a);
+    --orange: var(--lightningcss-light, #b64914) var(--lightningcss-dark, #f2925c);
+    --amber-text: var(--lightningcss-light, #916600) var(--lightningcss-dark, #e8c07a);
+    --teal-bright: var(--lightningcss-light, #0087a0) var(--lightningcss-dark, #3dc5d6);
+    --green-bright: var(--lightningcss-light, #00a36c) var(--lightningcss-dark, #55e0a6);
+    --orange-bright: var(--lightningcss-light, #e86a2c) var(--lightningcss-dark, #f2925c);
     --on-sig: var(--lightningcss-light, #fff) var(--lightningcss-dark, #0a1f22);
     --sans: "Schibsted Grotesk", -apple-system, system-ui, sans-serif;
     --mono: "Fira Code", ui-monospace, monospace;
@@ -23,6 +26,8 @@
     --sig: var(--teal);
     --sig2: var(--green);
     --sig-text: var(--sig);
+    --sig-fill: var(--teal-bright);
+    --sig2-fill: var(--green-bright);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -48,24 +53,32 @@
     --sig: var(--pink);
     --sig2: var(--purple);
     --sig-text: var(--pink);
+    --sig-fill: var(--pink);
+    --sig2-fill: var(--purple);
   }
 
   [data-site="home"] {
     --sig: var(--teal);
     --sig2: var(--green);
     --sig-text: var(--teal);
+    --sig-fill: var(--teal-bright);
+    --sig2-fill: var(--green-bright);
   }
 
   [data-site="my"], [data-site="id"] {
     --sig: var(--purple);
     --sig2: var(--teal);
     --sig-text: var(--purple);
+    --sig-fill: var(--purple);
+    --sig2-fill: var(--teal-bright);
   }
 
   [data-site="audible"] {
     --sig: var(--amber);
     --sig2: var(--orange);
     --sig-text: var(--amber-text);
+    --sig-fill: var(--amber);
+    --sig2-fill: var(--orange-bright);
     --on-sig: #14282b;
   }
 }
@@ -91,7 +104,7 @@
 
   body:before {
     content: "";
-    background: linear-gradient(90deg, var(--sig), var(--sig2));
+    background: linear-gradient(90deg, var(--sig-fill), var(--sig2-fill));
     height: 4px;
     display: block;
   }
@@ -173,34 +186,10 @@
     font-size: 15px;
   }
 
-  .muted {
-    color: var(--comment);
-  }
-
   .stack {
     flex-direction: column;
     gap: 10px;
     display: flex;
-  }
-
-  .public {
-    color: var(--green);
-  }
-
-  .private {
-    color: var(--teal);
-  }
-
-  .num {
-    color: var(--purple);
-  }
-
-  .warn {
-    color: var(--amber-text);
-  }
-
-  .err {
-    color: var(--orange);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -301,8 +290,16 @@
   }
 
   .row.off {
-    opacity: .45;
     pointer-events: none;
+  }
+
+  .row.off .name, .row.off .desc {
+    color: var(--comment);
+  }
+
+  .row.off img {
+    opacity: .5;
+    filter: grayscale();
   }
 
   .row img, .row .tile {
@@ -370,7 +367,7 @@
   }
 
   .dot.ok {
-    background: var(--green);
+    background: var(--green-bright);
   }
 
   .dot.warn {
@@ -378,11 +375,11 @@
   }
 
   .dot.err {
-    background: var(--orange);
+    background: var(--orange-bright);
   }
 
   .panel {
-    background: color-mix(in srgb, var(--sig) 9%, var(--ground));
+    background: color-mix(in srgb, var(--sig-fill) 9%, var(--ground));
     border-radius: 10px;
     flex-direction: column;
     gap: 14px;
@@ -396,7 +393,7 @@
   }
 
   .panel.alert {
-    background: color-mix(in srgb, var(--orange) 10%, var(--ground));
+    background: color-mix(in srgb, var(--orange-bright) 10%, var(--ground));
   }
 
   .steps {
@@ -440,7 +437,7 @@
   }
 
   input, select {
-    border: 1px solid color-mix(in srgb, var(--sig) 30%, var(--line));
+    border: 1px solid var(--comment);
     background: var(--field);
     width: 100%;
     min-height: 44px;
@@ -527,7 +524,7 @@
 
   .seg button.on {
     border-color: var(--green);
-    background: color-mix(in srgb, var(--green) 10%, var(--ground));
+    background: color-mix(in srgb, var(--green-bright) 10%, var(--ground));
     color: var(--green);
   }
 
@@ -539,5 +536,31 @@
     .kv, .split {
       grid-template-columns: minmax(0, 1fr);
     }
+  }
+}
+
+@layer utilities {
+  .muted {
+    color: var(--comment);
+  }
+
+  .public {
+    color: var(--green);
+  }
+
+  .private {
+    color: var(--teal);
+  }
+
+  .num {
+    color: var(--purple);
+  }
+
+  .warn {
+    color: var(--amber-text);
+  }
+
+  .err {
+    color: var(--orange);
   }
 }

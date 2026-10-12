@@ -1,0 +1,29 @@
+/* Utilities: role colors for machine facts. Last layer, so they win inside any component
+   (e.g. <span class="meta public"> in a row). */
+
+@layer utilities {
+  .muted {
+    color: var(--comment);
+  }
+
+  /* Role colors for machine facts */
+  .public {
+    color: var(--green);
+  }
+
+  .private {
+    color: var(--teal);
+  }
+
+  .num {
+    color: var(--purple);
+  }
+
+  .warn {
+    color: var(--amber-text);
+  }
+
+  .err {
+    color: var(--orange);
+  }
+}

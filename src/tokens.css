@@ -1,6 +1,9 @@
 /*
  * Tokens: color roles, type families and per-site signatures.
  *
+ * Text colors meet WCAG AA (4.5:1) in both themes, on the page and on tinted panels. The *-bright
+ * variants are for fills that only need 3:1 (the signature strip, status dots, panel tints).
+ *
  * Colors use light-dark(), so they follow the visitor's system theme. A page can force a theme
  * with <html data-theme="light|dark">.
  */
@@ -11,7 +14,7 @@
 
     /* Neutrals */
     --ink: light-dark(#14282b, #d9e9e8);
-    --comment: light-dark(#6f8c8f, #6d9497);
+    --comment: light-dark(#576e71, #74999c);
     --soft: light-dark(#4e6b6e, #9dbab9);
     --line: light-dark(#e4ebec, #16353a);
     --ground: light-dark(#fbfcfc, #0a1f22);
@@ -19,12 +22,17 @@
 
     /* Roles, named for what they mean (like syntax highlighting) */
     --pink: light-dark(#e0457b, #f07ea6); /* jordan.bayl.es signature */
-    --teal: light-dark(#0087a0, #3dc5d6); /* links, focus, private routes */
-    --green: light-dark(#00a36c, #55e0a6); /* public, OK, selected */
+    --teal: light-dark(#00748a, #3dc5d6); /* links, focus, private routes */
+    --green: light-dark(#007b52, #55e0a6); /* public, OK, selected */
     --purple: light-dark(#5b4be0, #9184f5); /* counts, section numbers */
     --amber: light-dark(#d99a00, #e8c07a); /* needs attention */
-    --orange: light-dark(#e86a2c, #f2925c); /* down, failed, destructive */
-    --amber-text: light-dark(#a87600, #e8c07a); /* amber at text contrast */
+    --orange: light-dark(#b64914, #f2925c); /* down, failed, destructive */
+    --amber-text: light-dark(#916600, #e8c07a); /* amber at text contrast */
+
+    /* Fill-only variants (3:1 is enough for non-text) */
+    --teal-bright: light-dark(#0087a0, #3dc5d6);
+    --green-bright: light-dark(#00a36c, #55e0a6);
+    --orange-bright: light-dark(#e86a2c, #f2925c);
     --on-sig: light-dark(#fff, #0a1f22); /* text on a signature-colored fill */
 
     /* Type. Each page loads the fonts; see README. */
@@ -32,10 +40,13 @@
     --mono: "Fira Code", ui-monospace, monospace;
     --serif: "EB Garamond", garamond, georgia, serif; /* jordan.bayl.es name only */
 
-    /* Signature defaults; [data-site] below sets the real ones. */
+    /* Signature defaults; [data-site] below sets the real ones. --sig is safe behind white text and
+       as text; --sig-fill/--sig2-fill are the brighter strip and tint colors. */
     --sig: var(--teal);
     --sig2: var(--green);
     --sig-text: var(--sig);
+    --sig-fill: var(--teal-bright);
+    --sig2-fill: var(--green-bright);
   }
 
   :root[data-theme="light"] {
@@ -51,12 +62,16 @@
     --sig: var(--pink);
     --sig2: var(--purple);
     --sig-text: var(--pink);
+    --sig-fill: var(--pink);
+    --sig2-fill: var(--purple);
   }
 
   [data-site="home"] {
     --sig: var(--teal);
     --sig2: var(--green);
     --sig-text: var(--teal);
+    --sig-fill: var(--teal-bright);
+    --sig2-fill: var(--green-bright);
   }
 
   [data-site="my"],
@@ -64,12 +79,16 @@
     --sig: var(--purple);
     --sig2: var(--teal);
     --sig-text: var(--purple);
+    --sig-fill: var(--purple);
+    --sig2-fill: var(--teal-bright);
   }
 
   [data-site="audible"] {
     --sig: var(--amber);
     --sig2: var(--orange);
     --sig-text: var(--amber-text);
+    --sig-fill: var(--amber);
+    --sig2-fill: var(--orange-bright);
     --on-sig: #14282b; /* amber is too light for white text */
   }
 }

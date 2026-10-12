@@ -2,12 +2,13 @@
  * eopsin: the shared look of the *.bayl.es sites.
  * https://github.com/baylesj/bayl.es-style. Rules and reasons are in DESIGN.md.
  *
- * Everything is in cascade layers, so a site's own unlayered CSS always wins without specificity
+ * Everything is in cascade layers (tokens, base, components, utilities), so a site's own unlayered CSS always wins without specificity
  * fights. Set <body data-site="..."> to pick the site's signature color.
  */
 
-@layer tokens, base, components;
+@layer tokens, base, components, utilities;
 
 @import url("./tokens.css");
 @import url("./base.css");
 @import url("./components.css");
+@import url("./utilities.css");

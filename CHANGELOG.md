@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.2.0 (2026-10-11)
+
+Accessibility: every text color now meets WCAG AA (4.5:1) in both themes, on the page and on tinted
+panels.
+
+- Light mode text colors are darker: comment `#576e71`, teal `#00748a`, green `#007b52`, orange
+  `#b64914`, amber text `#916600`. Dark mode comment is `#74999c`.
+- New `--teal-bright`, `--green-bright`, `--orange-bright` and `--sig-fill`/`--sig2-fill` for fills that
+  only need 3:1: the signature strip, status dots and panel tints keep their brighter colors.
+- Form fields have a `--comment` border, which meets the 3:1 non-text minimum.
+- `.row.off` greys the text and icon instead of fading the whole row to 45% (that was about 2.7:1).
+- Fix: role colors (`.public`, `.private`, `.num`, `.warn`, `.err`, `.muted`) moved to a final
+  `utilities` layer, so they now take effect inside components (before, `.row .meta` overrode them).
+
 ## 1.1.0 (2026-10-11)
 
 - Favicons in `icons/`: an "e." monogram on a tile in each site's signature color (`home`, `my`, `id`,

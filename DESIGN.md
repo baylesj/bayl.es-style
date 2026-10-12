@@ -48,15 +48,15 @@ can be told apart at a glance. jordan.bayl.es uses the Chasma Sound logo, white 
 | role    | light     | dark      | used for                                     |
 | ------- | --------- | --------- | -------------------------------------------- |
 | ink     | `#14282B` | `#D9E9E8` | text, the header rule                        |
-| comment | `#6F8C8F` | `#6D9497` | secondary text, labels                       |
+| comment | `#576E71` | `#74999C` | secondary text, labels                       |
 | line    | `#E4EBEC` | `#16353A` | hairlines between rows                       |
 | ground  | `#FBFCFC` | `#0A1F22` | page background                              |
 | pink    | `#E0457B` | `#F07EA6` | jordan.bayl.es signature                     |
-| teal    | `#0087A0` | `#3DC5D6` | links, focus, private (LAN/tailnet) routes   |
-| green   | `#00A36C` | `#55E0A6` | public, OK, selected, the user in the prompt |
+| teal    | `#00748A` | `#3DC5D6` | links, focus, private (LAN/tailnet) routes   |
+| green   | `#007B52` | `#55E0A6` | public, OK, selected, the user in the prompt |
 | purple  | `#5B4BE0` | `#9184F5` | counts, section numbers                      |
 | amber   | `#D99A00` | `#E8C07A` | needs attention, pending                     |
-| orange  | `#E86A2C` | `#F2925C` | down, failed, destructive                    |
+| orange  | `#B64914` | `#F2925C` | down, failed, destructive                    |
 
 ## Type
 
@@ -72,6 +72,12 @@ were dropped because they read as default.
 | body                 | sans 400, 17px                                                                         |
 | section label        | mono 12px, lowercase, purple number first (`01 shortcuts`)                             |
 | meta, labels, footer | mono 12–13px                                                                           |
+
+## Contrast
+
+Every text color meets WCAG AA (4.5:1) on the page and on tinted panels, in both themes. Non-text
+marks (form field borders, focus rings, status dots) meet 3:1. The brighter `*-bright` colors are for
+fills only, never for text. Unavailable items stay readable: grey text, not a faded row.
 
 ## Never
 

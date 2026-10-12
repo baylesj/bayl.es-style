@@ -24,7 +24,7 @@
     content: "";
     display: block;
     height: 4px;
-    background: linear-gradient(90deg, var(--sig), var(--sig2));
+    background: linear-gradient(90deg, var(--sig-fill), var(--sig2-fill));
   }
 
   main {
@@ -107,35 +107,10 @@
     font-size: 15px;
   }
 
-  .muted {
-    color: var(--comment);
-  }
-
   .stack {
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
-
-  /* Role colors for machine facts */
-  .public {
-    color: var(--green);
-  }
-
-  .private {
-    color: var(--teal);
-  }
-
-  .num {
-    color: var(--purple);
-  }
-
-  .warn {
-    color: var(--amber-text);
-  }
-
-  .err {
-    color: var(--orange);
   }
 
   @media (prefers-reduced-motion: reduce) {

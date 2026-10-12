@@ -16,7 +16,7 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.1.0/dist/eopsin.min.css"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.2.0/dist/eopsin.min.css"
 />
 
 <body data-site="home">
@@ -29,14 +29,14 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 You can also install it as a dependency, pinned to a tag, and bundle it in a build:
 
 ```sh
-npm install github:baylesj/bayl.es-style#v1.1.0
+npm install github:baylesj/bayl.es-style#v1.2.0
 ```
 
 ```js
 import "bayl.es-style"; // dist/eopsin.css
 ```
 
-All rules are in the cascade layers `tokens`, `base` and `components`. A site's own unlayered CSS
+All rules are in the cascade layers `tokens`, `base`, `components` and `utilities`. A site's own unlayered CSS
 therefore always wins without specificity fights, so site-specific styles need no `!important`.
 
 ## Pieces
@@ -89,7 +89,7 @@ a tile in the site's signature color. Link it at the same pinned tag:
 <link
   rel="icon"
   type="image/svg+xml"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.1.0/icons/home.svg"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.2.0/icons/home.svg"
 />
 ```
 
