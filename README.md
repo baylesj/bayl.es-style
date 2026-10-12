@@ -106,6 +106,11 @@ Every token is a custom property on `:root`, so you can use them in site CSS:
 - signature: `--sig`, `--sig2`, `--sig-text`
 - fonts: `--sans`, `--mono`, `--serif`
 
+## Home Assistant
+
+`home-assistant/` has a matching HA theme (**bayl.es**, light and dark) generated from the same tokens,
+plus a font loader. See [home-assistant/README.md](home-assistant/README.md).
+
 ## Develop
 
 ```sh
@@ -129,7 +134,7 @@ Edit files in `src/`. `dist/` is built by Lightning CSS (bundled, with fallbacks
    they match).
 2. `npm run build`, then commit (`dist/` included).
 3. `npm run check`, which fails if `dist/` doesn't match the commit.
-4. Tag and push: `git tag v1.3.0 && git push && git push origin v1.3.0`.
+4. Tag and push: `git tag v1.4.0 && git push && git push origin v1.4.0`.
 5. Bump the tag in each site:
    - jordan.bayl.es: `package.json`
    - unraid-config: `stacks/shared/style-version`

@@ -78,6 +78,13 @@ were dropped because they read as default.
 | section label        | mono 12px, lowercase, purple number first (`01 shortcuts`)                             |
 | meta, labels, footer | mono 12–13px                                                                           |
 
+## Home Assistant
+
+HA gets the same palette as a selectable theme (**bayl.es**), with home.bayl.es's teal signature and
+green for "on". HA is built from cards, so cards sit on a slightly deeper page tone, with no borders or
+shadows. Fonts are self-hosted in HA. The theme is generated from the tokens, so change colors in
+`src/tokens.css`, never in the YAML.
+
 ## Footer
 
 Every site ends with the same footer: a row of mono links above a hairline. The site's own links come

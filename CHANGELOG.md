@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.4.0 (2026-10-11)
+
+- Home Assistant theme **bayl.es** (`home-assistant/bayles.yaml`), light and dark, generated from
+  `src/tokens.css` by `scripts/ha-theme.mjs` during `npm run build`. The build fails if any text color
+  is under 4.5:1 on the theme's page or cards. A font loader (`bayles-fonts.js`) self-hosts Schibsted
+  Grotesk and Fira Code in HA. Install steps: `home-assistant/README.md`.
+
 ## 1.3.0 (2026-10-11)
 
 - Shared footer: `footer` is a row above a hairline, with the site's own links first and a link to the
