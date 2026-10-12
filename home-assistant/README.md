@@ -15,3 +15,9 @@ home.bayl.es's signature: teal, with green for "on".
 4. Call `frontend.reload_themes`, then pick **bayl.es** under Profile → Theme.
 
 It's opt-in: the default theme doesn't change.
+
+## Keeping it in sync
+
+On eopsin, `unraid-config/scripts/ha/theme-sync.sh` installs this theme at the version pinned in
+`stacks/shared/style-version`, the same pin the server apps use. Bump the pin, run the script, and HA
+matches the sites.

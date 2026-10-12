@@ -144,4 +144,5 @@ Edit files in `src/`. `dist/` is built by Lightning CSS (bundled, with fallbacks
 4. Tag and push: `git tag v1.5.0 && git push && git push origin v1.5.0`.
 5. Bump the tag in each site:
    - jordan.bayl.es: `package.json`
-   - unraid-config: `stacks/shared/style-version`
+   - unraid-config: `stacks/shared/style-version`, then `bash scripts/ha/theme-sync.sh` on the server to update the
+     Home Assistant theme
