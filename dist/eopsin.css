@@ -371,7 +371,7 @@
   }
 
   .dot.warn {
-    background: var(--amber);
+    background: var(--amber-text);
   }
 
   .dot.err {

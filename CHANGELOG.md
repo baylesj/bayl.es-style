@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.1 (2026-10-11)
+
+- `.dot.warn` uses `--amber-text`: plain amber is about 2.4:1 on the page, under the 3:1 minimum for
+  marks. Found by the live ratios in the new style guide.
+- Style guide page (`docs/index.html`), published to GitHub Pages.
+
 ## 1.2.0 (2026-10-11)
 
 Accessibility: every text color now meets WCAG AA (4.5:1) in both themes, on the page and on tinted

@@ -1,6 +1,7 @@
 # bayl.es design
 
-How the `*.bayl.es` pages should look. This covers jordan.bayl.es, plus home, my and audible from the
+How the `*.bayl.es` pages should look. The [style guide](https://baylesj.github.io/bayl.es-style/) shows
+all of this live. This covers jordan.bayl.es, plus home, my and audible from the
 `unraid-config` repo, and the Pocket ID branding at id.bayl.es. The CSS lives in `src/`, and how to use
 it is in README.md.
 
@@ -75,9 +76,26 @@ were dropped because they read as default.
 
 ## Contrast
 
-Every text color meets WCAG AA (4.5:1) on the page and on tinted panels, in both themes. Non-text
-marks (form field borders, focus rings, status dots) meet 3:1. The brighter `*-bright` colors are for
-fills only, never for text. Unavailable items stay readable: grey text, not a faded row.
+Accessibility is a requirement, not a polish step. Every pairing meets WCAG AA in both themes:
+
+- **Text: 4.5:1 or better**, on the page _and_ on every tinted panel it can appear on (a panel tint
+  is darker than the page, so passing on the page isn't enough). Sizes here are mostly 12–17px, so
+  the large-text exemption (3:1) almost never applies.
+- **Non-text: 3:1 or better** for anything you need to see to use the page: form field borders, focus
+  rings, status dots, the active toggle.
+- **Two strengths per hue.** The role colors (`--teal`, `--green`, `--orange`, `--amber-text`, ...) are
+  text-safe. The `*-bright` variants and `--sig-fill`/`--sig2-fill` only clear 3:1, so use them for
+  fills (the signature strip, dots, panel tints) and never for text.
+- **Unavailable means grey, not faded.** Don't drop opacity on text to show a disabled state (45%
+  opacity made names about 2.7:1). Use `--comment` text plus a label that says why ("home only").
+- **White on a signature fill** must pass too. That's why audible's buttons are ink on amber.
+
+When you add or change a color, check it against the page background and the darkest panel tint it
+can sit on, in both themes. The live style guide (`docs/index.html`) shows the measured ratio under
+every swatch for the current theme and site.
+
+History: on 2026-10-11 an audit found light-mode text from 3.1:1 to 4.1:1 (the grey, green, teal,
+orange and amber). v1.2.0 darkened them to about 5:1 while keeping each hue.
 
 ## Never
 

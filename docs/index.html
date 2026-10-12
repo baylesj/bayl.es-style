@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>bayl.es style</title>
+    <meta
+      name="description"
+      content="The style guide for the *.bayl.es sites, built with the stylesheet it describes."
+    />
+    <link rel="icon" type="image/svg+xml" href="../icons/home.svg" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Schibsted+Grotesk:wght@400..700&family=Fira+Code:wght@400;500&display=swap"
+    />
+    <link rel="stylesheet" href="../dist/eopsin.css" />
+    <style>
+      /* Guide-only layout. Everything else on this page comes from the stylesheet it documents. */
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 20px;
+        align-items: center;
+      }
+
+      .controls .label {
+        margin: 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 18px 14px;
+      }
+
+      .swatch {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        font-size: 14px;
+      }
+
+      .chip {
+        height: 52px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .swatch .mono {
+        color: var(--comment);
+        font-size: 12px;
+      }
+
+      .ratio {
+        font: 12px var(--mono);
+      }
+
+      .ratio.pass {
+        color: var(--green);
+      }
+
+      .ratio.fail {
+        color: var(--orange);
+      }
+
+      .specimen {
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 4px 16px;
+        align-items: baseline;
+        padding: 12px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .specimen > :first-child {
+        color: var(--comment);
+        font: 12px var(--mono);
+      }
+
+      .demo {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        border: 1px dashed var(--line);
+        border-radius: 10px;
+      }
+
+      .icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        align-items: flex-end;
+      }
+
+      .icons figure {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        align-items: center;
+        margin: 0;
+      }
+
+      .icons figcaption {
+        color: var(--comment);
+        font: 12px var(--mono);
+      }
+
+      .never {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 18px;
+        margin: 0;
+        padding: 0;
+        color: var(--soft);
+        list-style: none;
+      }
+
+      .never li::before {
+        content: "× ";
+        color: var(--orange);
+        font-family: var(--mono);
+      }
+
+      pre {
+        overflow-x: auto;
+        margin: 0;
+        padding: 14px 16px;
+        border-radius: 8px;
+        background: color-mix(in srgb, var(--ink) 5%, var(--ground));
+        font: 13px/1.6 var(--mono);
+      }
+
+      @media (width <= 560px) {
+        .specimen {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body data-site="home">
+    <main class="wide">
+      <header class="top">
+        <div>
+          <span class="prompt"
+            ><span class="u">jordan</span>@eopsin:<span class="p">~/style</span></span
+          >
+          <h1 class="mark">bayl.es style</h1>
+        </div>
+        <div class="controls">
+          <div class="seg" role="group" aria-label="Site signature" id="site">
+            <button type="button" data-v="jordan">jordan</button>
+            <button type="button" data-v="home">home</button>
+            <button type="button" data-v="my">my</button>
+            <button type="button" data-v="audible">audible</button>
+          </div>
+          <div class="seg" role="group" aria-label="Theme" id="theme">
+            <button type="button" data-v="light">light</button>
+            <button type="button" data-v="dark">dark</button>
+          </div>
+        </div>
+      </header>
+
+      <p class="lede">
+        A code editor's color theme, translated to the web. Color works like syntax highlighting,
+        words are set in a grotesk, and machine facts in your editor's mono. It's one family, with a
+        small context clue per site. This page is built with the stylesheet it describes; switch the
+        site and theme above to see each signature.
+      </p>
+
+      <section class="split">
+        <h2 class="label"><span class="n">01</span>principles</h2>
+        <div class="rows" id="principles"></div>
+      </section>
+
+      <section class="split">
+        <h2 class="label"><span class="n">02</span>signatures</h2>
+        <div class="stack">
+          <p class="soft">
+            One hue per site, fading into a neighbor. It shows up on the strip at the top, the dot
+            after the wordmark, the prompt path, panels and the primary button.
+          </p>
+          <div class="rows" id="sites"></div>
+        </div>
+      </section>
+
+      <section class="split">
+        <h2 class="label"><span class="n">03</span>color roles</h2>
+        <div class="stack">
+          <p class="soft">
+            Each hue is a role, the same on every site. The ratio under each swatch is measured live
+            against the page in the current theme. Text colors need 4.5:1; fill-only colors need
+            3:1.
+          </p>
+          <div class="grid" id="colors"></div>
+        </div>
+      </section>
+
+      <section class="split">
+        <h2 class="label"><span class="n">04</span>type</h2>
+        <div>
+          <div class="specimen">
+            <span>wordmark 700/56</span><span class="mark" style="font-size: 44px">eopsin</span>
+          </div>
+          <div class="specimen">
+            <span>name, jordan only</span
+            ><span style="font: 500 40px/1 var(--serif)"
+              >Jordan Bayles<span style="color: var(--pink)">.</span></span
+            >
+          </div>
+          <div class="specimen">
+            <span>title 600/24</span><span class="title">Set up your passkey</span>
+          </div>
+          <div class="specimen">
+            <span>lede 400/20</span><span class="lede">One sign-in for Jordan's server.</span>
+          </div>
+          <div class="specimen">
+            <span>body 400/17</span><span>Words people read are Schibsted Grotesk.</span>
+          </div>
+          <div class="specimen">
+            <span>meta, mono 12–13</span
+            ><span class="mono" style="font-size: 13px"
+              ><span class="public">jellyfin.bayl.es</span> · <span class="num">14</span> services ·
+              <span class="private">lan</span> · fi -&gt; != ===</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="split">
+        <h2 class="label"><span class="n">05</span>components</h2>
+        <div class="stack" style="gap: 24px">
+          <div class="demo">
+            <header class="top">
+              <div>
+                <span class="prompt"
+                  ><span class="u">guest</span>@eopsin:<span class="p">~/accounts</span></span
+                >
+                <span class="mark">eopsin</span>
+              </div>
+            </header>
+            <span class="muted mono" style="font-size: 12px">.top · .prompt · .mark</span>
+          </div>
+
+          <div class="demo">
+            <div>
+              <h3 class="label"><span class="n">01</span>shortcuts</h3>
+              <div class="rows">
+                <a class="row" href="#components">
+                  <span class="tile">J</span>
+                  <span class="txt"
+                    ><span class="name">Jellyfin</span><span class="desc">Movies and TV</span></span
+                  >
+                  <span class="meta public">jellyfin.bayl.es</span>
+                </a>
+                <a class="row" href="#components">
+                  <span class="tile">H</span>
+                  <span class="txt"
+                    ><span class="name">Home Assistant</span
+                    ><span class="desc">Smart home</span></span
+                  >
+                  <span class="meta private">lan</span>
+                </a>
+                <a class="row off" href="#components">
+                  <span class="tile">K</span>
+                  <span class="txt"
+                    ><span class="name">Kiwix</span
+                    ><span class="desc">Offline Wikipedia</span></span
+                  >
+                  <span class="meta">home only</span>
+                </a>
+              </div>
+            </div>
+            <span class="muted mono" style="font-size: 12px"
+              >.label · .rows · .row (.off when unavailable) · .meta.public / .private</span
+            >
+          </div>
+
+          <div class="demo">
+            <div class="rows">
+              <div class="kv">
+                <span>last checked</span
+                ><span>Oct 11 · <span class="mono num">212</span> books</span>
+              </div>
+              <div class="kv">
+                <span>status</span><span><span class="dot ok"></span>Syncing normally</span>
+              </div>
+              <div class="kv">
+                <span>attention</span
+                ><span><span class="dot warn"></span>First sync is running</span>
+              </div>
+              <div class="kv">
+                <span>can't download</span><span><span class="dot err"></span>3 titles</span>
+              </div>
+            </div>
+            <span class="muted mono" style="font-size: 12px">.kv · .dot.ok / .warn / .err</span>
+          </div>
+
+          <div class="demo">
+            <form class="panel" onsubmit="event.preventDefault()">
+              <h3 class="label">new here?</h3>
+              <ol class="steps">
+                <li>Sign in once with your Jellyfin username and password</li>
+                <li>Create your passkey. About a minute in all.</li>
+              </ol>
+              <div>
+                <label for="demo-user">jellyfin username</label>
+                <input id="demo-user" autocomplete="off" value="drake" />
+                <p class="help">Hints sit under the field in grey.</p>
+              </div>
+              <div class="actions">
+                <button type="submit">Continue →</button>
+                <button type="button" class="quiet">Cancel</button>
+              </div>
+            </form>
+            <div class="panel alert">
+              <h3 class="label" style="color: var(--orange)">approve this tv?</h3>
+              <p>Only continue if the code is on your own screen right now.</p>
+            </div>
+            <span class="muted mono" style="font-size: 12px"
+              >.panel · .panel.alert · .steps · label + input · .help · button / .btn.quiet ·
+              .actions</span
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="split">
+        <h2 class="label"><span class="n">06</span>contrast</h2>
+        <div class="stack">
+          <p>
+            Every text color meets WCAG AA (<span class="mono num">4.5</span>:1) on the page and on
+            every tinted panel, in both themes; non-text marks (field borders, focus rings, dots)
+            meet <span class="mono num">3</span>:1.
+          </p>
+          <p class="soft">
+            Each hue comes in two strengths: the role color is safe for text, and
+            <code>*-bright</code> / <code>--sig-fill</code> are for fills only. Unavailable items
+            turn grey, never faded. When adding a color, check it on the page and on the darkest
+            panel tint it can sit on. The ratios in section 03 are live.
+          </p>
+        </div>
+      </section>
+
+      <section class="split">
+        <h2 class="label"><span class="n">07</span>favicons</h2>
+        <div class="stack">
+          <div class="icons">
+            <figure>
+              <img src="../icons/home.svg" width="48" height="48" alt="" />
+              <figcaption>home</figcaption>
+            </figure>
+            <figure>
+              <img src="../icons/my.svg" width="48" height="48" alt="" />
+              <figcaption>my</figcaption>
+            </figure>
+            <figure>
+              <img src="../icons/id.svg" width="48" height="48" alt="" />
+              <figcaption>id</figcaption>
+            </figure>
+            <figure>
+              <img src="../icons/audible.svg" width="48" height="48" alt="" />
+              <figcaption>audible</figcaption>
+            </figure>
+          </div>
+          <p class="soft">
+            Server sites: an "e." monogram on a tile in the site's signature color. jordan.bayl.es:
+            the Chasma Sound logo, white on black (in that repo).
+          </p>
+        </div>
+      </section>
+
+      <section class="split">
+        <h2 class="label"><span class="n">08</span>never</h2>
+        <ul class="never">
+          <li>cream or beige grounds</li>
+          <li>serif type, except the name on jordan.bayl.es</li>
+          <li>bordered white cards as the default container</li>
+          <li>drop shadows</li>
+          <li>gradients other than the signature strip</li>
+          <li>pill buttons</li>
+          <li>uppercase letter-spaced labels</li>
+          <li>emoji</li>
+          <li>color used only to decorate</li>
+          <li>faded text for disabled states</li>
+          <li>Inter, Roboto, Arial, Geist</li>
+        </ul>
+      </section>
+
+      <section class="split">
+        <h2 class="label"><span class="n">09</span>use it</h2>
+        <div class="stack">
+          <pre id="snippet"></pre>
+          <p class="soft">
+            Pin a tag; a site only changes when you bump it. Rules and reasoning in
+            <a href="https://github.com/baylesj/bayl.es-style/blob/main/DESIGN.md">DESIGN.md</a>;
+            usage and release steps in the
+            <a href="https://github.com/baylesj/bayl.es-style#readme">README</a>.
+          </p>
+        </div>
+      </section>
+
+      <footer>
+        bayl.es-style <span id="version"></span> ·
+        <a href="https://github.com/baylesj/bayl.es-style">github.com/baylesj/bayl.es-style</a>
+      </footer>
+    </main>
+
+    <script type="module">
+      const VERSION = "v1.2.1"; // keep in step with package.json; CI checks it
+
+      const principles = [
+        [
+          "Color means something",
+          "Each hue is a role, the same on every site. If a color carries no meaning, it is ink or grey.",
+        ],
+        [
+          "Rules, not boxes",
+          "Group with hairlines and space. A panel is for the one thing that stands apart.",
+        ],
+        [
+          "Words in the sans, machine facts in mono",
+          "Hostnames, counts, states, labels and the prompt are Fira Code. No mono paragraphs.",
+        ],
+        [
+          "Every site has a signature",
+          "One hue per site on the strip, the wordmark dot, the prompt path, panels and the primary button.",
+        ],
+        [
+          "The prompt line says where you are",
+          "user@eopsin:~/place, with the real signed-in user. The breadcrumb and who-am-I in one.",
+        ],
+        [
+          "Dark is its own theme",
+          "Deep teal-black with brighter role colors, like an editor theme. Not light mode inverted.",
+        ],
+        [
+          "Accessible by default",
+          "Text 4.5:1, marks 3:1, in both themes and on tinted panels. Grey, never faded.",
+        ],
+        [
+          "Apps bring their own color",
+          "Real app icons stay untinted. Without one, a letter tile takes the signature hue.",
+        ],
+      ];
+
+      const sites = [
+        ["jordan", "jordan.bayl.es", "pink → purple", "the name in EB Garamond, no prompt line"],
+        ["home", "home.bayl.es", "teal → green", "jordan@eopsin:~"],
+        ["my", "my.bayl.es", "purple → teal", "guest@eopsin:~/accounts"],
+        ["id", "id.bayl.es", "purple", "Pocket ID accent, logo and favicon"],
+        [
+          "audible",
+          "audible.bayl.es",
+          "amber → orange",
+          "drake@eopsin:~/audible · ink on amber buttons",
+        ],
+      ];
+
+      // [token, role, use, minimum ratio]
+      const colors = [
+        ["--ink", "ink", "text, the header rule", 4.5],
+        ["--comment", "comment", "secondary text, labels", 4.5],
+        ["--soft", "soft", "secondary prose", 4.5],
+        ["--teal", "teal", "links, private routes", 4.5],
+        ["--green", "green", "public, OK, selected", 4.5],
+        ["--purple", "purple", "counts, section numbers", 4.5],
+        ["--amber-text", "amber text", "needs attention", 4.5],
+        ["--orange", "orange", "down, failed", 4.5],
+        ["--pink", "pink", "jordan signature (fill)", 3],
+        ["--amber", "amber", "audible strip and button fill (ink text on it)", 0],
+        ["--teal-bright", "teal bright", "fills only", 3],
+        ["--green-bright", "green bright", "fills only", 3],
+        ["--orange-bright", "orange bright", "fills only", 3],
+        ["--line", "line", "hairlines (decorative)", 0],
+      ];
+
+      const el = (tag, props = {}, ...kids) => {
+        const node = Object.assign(document.createElement(tag), props);
+        node.append(...kids);
+        return node;
+      };
+
+      document
+        .getElementById("principles")
+        .append(
+          ...principles.map(([t, d]) =>
+            el(
+              "div",
+              { className: "row", style: "grid-template-columns: minmax(0, 1fr)" },
+              el(
+                "span",
+                { className: "txt" },
+                el("span", { className: "name" }, t),
+                el("span", { className: "desc" }, d),
+              ),
+            ),
+          ),
+        );
+
+      document
+        .getElementById("sites")
+        .append(
+          ...sites.map(([key, host, hue, note]) =>
+            el(
+              "div",
+              { className: "row" },
+              key === "jordan"
+                ? el("span", { className: "tile", style: "background: var(--pink)" }, "j")
+                : el("img", { src: `../icons/${key}.svg`, alt: "" }),
+              el(
+                "span",
+                { className: "txt" },
+                el("span", { className: "name" }, host),
+                el("span", { className: "desc" }, note),
+              ),
+              el("span", { className: "meta" }, hue),
+            ),
+          ),
+        );
+
+      // Resolve a token to rgb() in the current theme/site, then compute WCAG contrast.
+      const probe = el("span", { hidden: true });
+      document.body.append(probe);
+      const rgb = (value) => {
+        probe.style.color = value;
+        return getComputedStyle(probe)
+          .color.match(/[\d.]+/g)
+          .slice(0, 3)
+          .map(Number);
+      };
+      const hex = ([r, g, b]) =>
+        "#" + [r, g, b].map((v) => Math.round(v).toString(16).padStart(2, "0")).join("");
+      const luminance = (c) =>
+        c
+          .map((v) => v / 255)
+          .map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
+          .reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
+      const contrast = (a, b) => {
+        const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+        return (hi + 0.05) / (lo + 0.05);
+      };
+
+      const grid = document.getElementById("colors");
+      function renderColors() {
+        const ground = rgb("var(--ground)");
+        grid.replaceChildren(
+          ...colors.map(([token, role, use, min]) => {
+            const c = rgb(`var(${token})`);
+            const r = contrast(c, ground);
+            const ok = r >= min;
+            return el(
+              "div",
+              { className: "swatch" },
+              el("div", { className: "chip", style: `background: var(${token})` }),
+              el("strong", {}, role),
+              el("span", { className: "mono" }, `${token} ${hex(c)}`),
+              el("span", { className: "soft", style: "font-size: 13px" }, use),
+              min
+                ? el(
+                    "span",
+                    { className: `ratio ${ok ? "pass" : "fail"}` },
+                    `${r.toFixed(2)}:1 ${ok ? "≥" : "<"} ${min}`,
+                  )
+                : el("span", { className: "ratio" }, "—"),
+            );
+          }),
+        );
+      }
+
+      // Site and theme switches (remembered per visitor).
+      const store = {
+        get: (k) => {
+          try {
+            return localStorage.getItem(k);
+          } catch {
+            return null;
+          }
+        },
+        set: (k, v) => {
+          try {
+            localStorage.setItem(k, v);
+          } catch {
+            /* private mode */
+          }
+        },
+      };
+      function setSite(v) {
+        document.body.dataset.site = v;
+        document.querySelector("link[rel=icon]").href =
+          `../icons/${v === "jordan" ? "home" : v}.svg`;
+        document
+          .querySelectorAll("#site button")
+          .forEach((b) => b.classList.toggle("on", b.dataset.v === v));
+        store.set("site", v);
+        renderColors();
+      }
+      function setTheme(v) {
+        document.documentElement.dataset.theme = v;
+        document
+          .querySelectorAll("#theme button")
+          .forEach((b) => b.classList.toggle("on", b.dataset.v === v));
+        store.set("theme", v);
+        renderColors();
+      }
+      document
+        .querySelectorAll("#site button")
+        .forEach((b) => (b.onclick = () => setSite(b.dataset.v)));
+      document
+        .querySelectorAll("#theme button")
+        .forEach((b) => (b.onclick = () => setTheme(b.dataset.v)));
+
+      const systemDark = matchMedia("(prefers-color-scheme: dark)").matches;
+      setTheme(store.get("theme") || (systemDark ? "dark" : "light"));
+      setSite(store.get("site") || "home");
+
+      document.getElementById("version").textContent = VERSION;
+      document.getElementById("snippet").textContent = [
+        `<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@${VERSION}/dist/eopsin.min.css">`,
+        `<link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@${VERSION}/icons/home.svg">`,
+        `<body data-site="home">  <!-- jordan | home | my | id | audible -->`,
+      ].join("\n");
+    </script>
+  </body>
+</html>
