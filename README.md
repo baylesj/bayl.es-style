@@ -17,7 +17,7 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.3.0/dist/eopsin.min.css"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.5.0/dist/eopsin.min.css"
 />
 
 <body data-site="home">
@@ -30,11 +30,11 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 You can also install it as a dependency, pinned to a tag, and bundle it in a build:
 
 ```sh
-npm install github:baylesj/bayl.es-style#v1.3.0
+npm install github:baylesj/bayl.es-style#v1.5.0
 ```
 
 ```js
-import "bayl.es-style"; // dist/eopsin.css
+import "bayl.es-style"; // dist/eopsin.min.css
 ```
 
 All rules are in the cascade layers `tokens`, `base`, `components` and `utilities`. A site's own unlayered CSS
@@ -96,7 +96,7 @@ a tile in the site's signature color. Link it at the same pinned tag:
 <link
   rel="icon"
   type="image/svg+xml"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.3.0/icons/home.svg"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.5.0/icons/home.svg"
 />
 ```
 
@@ -119,6 +119,13 @@ npm run format   # Prettier + Stylelint --fix
 npm run check    # lint, build, and fail if dist/ is out of date
 ```
 
+There are two built files:
+
+- **`dist/eopsin.css`**, the readable one. Colors stay as `light-dark(light, dark)`, and the file opens
+  with a table of every color token and its role. Read this one; it needs a 2024+ browser.
+- **`dist/eopsin.min.css`**, the one sites load. It's minified, with fallbacks so older browsers still
+  get the colors.
+
 Edit files in `src/`. `dist/` is built by Lightning CSS (bundled, with fallbacks for the browsers in
 `browserslist`) and committed, because jsDelivr serves files straight from git tags.
 
@@ -134,7 +141,7 @@ Edit files in `src/`. `dist/` is built by Lightning CSS (bundled, with fallbacks
    they match).
 2. `npm run build`, then commit (`dist/` included).
 3. `npm run check`, which fails if `dist/` doesn't match the commit.
-4. Tag and push: `git tag v1.4.0 && git push && git push origin v1.4.0`.
+4. Tag and push: `git tag v1.5.0 && git push && git push origin v1.5.0`.
 5. Bump the tag in each site:
    - jordan.bayl.es: `package.json`
    - unraid-config: `stacks/shared/style-version`

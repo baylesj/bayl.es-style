@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.0 (2026-10-11)
+
+- `dist/eopsin.css` is now the **readable build**: colors stay as `light-dark(light, dark)`, and the
+  file opens with an index of every color token and its role. It needs a 2024+ browser.
+- `dist/eopsin.min.css` is what sites load: minified, with fallbacks for older browsers. The package's
+  default export (`import "bayl.es-style"`) now points at it.
+
 ## 1.4.0 (2026-10-11)
 
 - Home Assistant theme **bayl.es** (`home-assistant/bayles.yaml`), light and dark, generated from

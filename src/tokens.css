@@ -13,12 +13,12 @@
     color-scheme: light dark;
 
     /* Neutrals */
-    --ink: light-dark(#14282b, #d9e9e8);
-    --comment: light-dark(#576e71, #74999c);
-    --soft: light-dark(#4e6b6e, #9dbab9);
-    --line: light-dark(#e4ebec, #16353a);
-    --ground: light-dark(#fbfcfc, #0a1f22);
-    --field: light-dark(#fff, #0e282c);
+    --ink: light-dark(#14282b, #d9e9e8); /* text, the header rule */
+    --comment: light-dark(#576e71, #74999c); /* secondary text, labels */
+    --soft: light-dark(#4e6b6e, #9dbab9); /* secondary prose */
+    --line: light-dark(#e4ebec, #16353a); /* hairlines between rows */
+    --ground: light-dark(#fbfcfc, #0a1f22); /* page background */
+    --field: light-dark(#fff, #0e282c); /* form fields */
 
     /* Roles, named for what they mean (like syntax highlighting) */
     --pink: light-dark(#e0457b, #f07ea6); /* jordan.bayl.es signature */
@@ -30,9 +30,9 @@
     --amber-text: light-dark(#916600, #e8c07a); /* amber at text contrast */
 
     /* Fill-only variants (3:1 is enough for non-text) */
-    --teal-bright: light-dark(#0087a0, #3dc5d6);
-    --green-bright: light-dark(#00a36c, #55e0a6);
-    --orange-bright: light-dark(#e86a2c, #f2925c);
+    --teal-bright: light-dark(#0087a0, #3dc5d6); /* fills only */
+    --green-bright: light-dark(#00a36c, #55e0a6); /* fills only */
+    --orange-bright: light-dark(#e86a2c, #f2925c); /* fills only */
     --on-sig: light-dark(#fff, #0a1f22); /* text on a signature-colored fill */
 
     /* Type. Each page loads the fonts; see README. */

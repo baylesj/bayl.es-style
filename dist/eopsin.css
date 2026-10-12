@@ -1,25 +1,53 @@
+/*
+ * bayl.es-style 1.5.0: the shared look of the *.bayl.es sites.
+ * https://style.bayl.es · https://github.com/baylesj/bayl.es-style
+ *
+ * This is the readable build: colors are written as light-dark(light, dark), which needs a 2024+
+ * browser. Sites should load eopsin.min.css, which adds fallbacks for older browsers.
+ *
+ * Color tokens (light, dark):
+ *   --ink            #14282b  #d9e9e8  text, the header rule
+ *   --comment        #576e71  #74999c  secondary text, labels
+ *   --soft           #4e6b6e  #9dbab9  secondary prose
+ *   --line           #e4ebec  #16353a  hairlines between rows
+ *   --ground         #fbfcfc  #0a1f22  page background
+ *   --field          #fff     #0e282c  form fields
+ *   --pink           #e0457b  #f07ea6  jordan.bayl.es signature
+ *   --teal           #00748a  #3dc5d6  links, focus, private routes
+ *   --green          #007b52  #55e0a6  public, OK, selected
+ *   --purple         #5b4be0  #9184f5  counts, section numbers
+ *   --amber          #d99a00  #e8c07a  needs attention
+ *   --orange         #b64914  #f2925c  down, failed, destructive
+ *   --amber-text     #916600  #e8c07a  amber at text contrast
+ *   --teal-bright    #0087a0  #3dc5d6  fills only
+ *   --green-bright   #00a36c  #55e0a6  fills only
+ *   --orange-bright  #e86a2c  #f2925c  fills only
+ *   --on-sig         #fff     #0a1f22  text on a signature-colored fill
+ *
+ * Signature per site: <body data-site="jordan|home|my|id|audible"> sets --sig, --sig2, --sig-text,
+ * --sig-fill and --sig2-fill. Layers: tokens, base, components, utilities.
+ */
+
 @layer tokens {
   :root {
-    --lightningcss-light: initial;
-    --lightningcss-dark: ;
     color-scheme: light dark;
-    --ink: var(--lightningcss-light, #14282b) var(--lightningcss-dark, #d9e9e8);
-    --comment: var(--lightningcss-light, #576e71) var(--lightningcss-dark, #74999c);
-    --soft: var(--lightningcss-light, #4e6b6e) var(--lightningcss-dark, #9dbab9);
-    --line: var(--lightningcss-light, #e4ebec) var(--lightningcss-dark, #16353a);
-    --ground: var(--lightningcss-light, #fbfcfc) var(--lightningcss-dark, #0a1f22);
-    --field: var(--lightningcss-light, #fff) var(--lightningcss-dark, #0e282c);
-    --pink: var(--lightningcss-light, #e0457b) var(--lightningcss-dark, #f07ea6);
-    --teal: var(--lightningcss-light, #00748a) var(--lightningcss-dark, #3dc5d6);
-    --green: var(--lightningcss-light, #007b52) var(--lightningcss-dark, #55e0a6);
-    --purple: var(--lightningcss-light, #5b4be0) var(--lightningcss-dark, #9184f5);
-    --amber: var(--lightningcss-light, #d99a00) var(--lightningcss-dark, #e8c07a);
-    --orange: var(--lightningcss-light, #b64914) var(--lightningcss-dark, #f2925c);
-    --amber-text: var(--lightningcss-light, #916600) var(--lightningcss-dark, #e8c07a);
-    --teal-bright: var(--lightningcss-light, #0087a0) var(--lightningcss-dark, #3dc5d6);
-    --green-bright: var(--lightningcss-light, #00a36c) var(--lightningcss-dark, #55e0a6);
-    --orange-bright: var(--lightningcss-light, #e86a2c) var(--lightningcss-dark, #f2925c);
-    --on-sig: var(--lightningcss-light, #fff) var(--lightningcss-dark, #0a1f22);
+    --ink: light-dark(#14282b, #d9e9e8);
+    --comment: light-dark(#576e71, #74999c);
+    --soft: light-dark(#4e6b6e, #9dbab9);
+    --line: light-dark(#e4ebec, #16353a);
+    --ground: light-dark(#fbfcfc, #0a1f22);
+    --field: light-dark(#fff, #0e282c);
+    --pink: light-dark(#e0457b, #f07ea6);
+    --teal: light-dark(#00748a, #3dc5d6);
+    --green: light-dark(#007b52, #55e0a6);
+    --purple: light-dark(#5b4be0, #9184f5);
+    --amber: light-dark(#d99a00, #e8c07a);
+    --orange: light-dark(#b64914, #f2925c);
+    --amber-text: light-dark(#916600, #e8c07a);
+    --teal-bright: light-dark(#0087a0, #3dc5d6);
+    --green-bright: light-dark(#00a36c, #55e0a6);
+    --orange-bright: light-dark(#e86a2c, #f2925c);
+    --on-sig: light-dark(#fff, #0a1f22);
     --sans: "Schibsted Grotesk", -apple-system, system-ui, sans-serif;
     --mono: "Fira Code", ui-monospace, monospace;
     --serif: "EB Garamond", garamond, georgia, serif;
@@ -30,22 +58,11 @@
     --sig2-fill: var(--green-bright);
   }
 
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --lightningcss-light: ;
-      --lightningcss-dark: initial;
-    }
-  }
-
   :root[data-theme="light"] {
-    --lightningcss-light: initial;
-    --lightningcss-dark: ;
     color-scheme: light;
   }
 
   :root[data-theme="dark"] {
-    --lightningcss-light: ;
-    --lightningcss-dark: initial;
     color-scheme: dark;
   }
 
@@ -89,7 +106,6 @@
   }
 
   html {
-    -webkit-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-size-adjust: 100%;
   }
@@ -453,11 +469,7 @@
     padding: 0 12px;
   }
 
-  input:focus-visible {
-    outline-offset: 1px;
-  }
-
-  select:focus-visible {
+  input:focus-visible, select:focus-visible {
     outline-offset: 1px;
   }
 
