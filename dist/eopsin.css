@@ -1,5 +1,5 @@
 /*
- * bayl.es-style 1.5.1: the shared look of the *.bayl.es sites.
+ * bayl.es-style 1.6.0: the shared look of the *.bayl.es sites.
  * https://style.bayl.es · https://github.com/baylesj/bayl.es-style
  *
  * This is the readable build: colors are written as light-dark(light, dark), which needs a 2024+
@@ -212,6 +212,46 @@
     flex-direction: column;
     gap: 10px;
     display: flex;
+  }
+
+  table {
+    border: 1px solid var(--line);
+    border-collapse: separate;
+    border-spacing: 0;
+    font-variant-numeric: tabular-nums;
+    border-radius: 10px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  th, td {
+    border-bottom: 1px solid var(--line);
+    text-align: start;
+    vertical-align: baseline;
+    padding: 8px 12px;
+  }
+
+  th {
+    background: color-mix(in srgb, var(--sig-fill) 9%, var(--ground));
+    color: var(--comment);
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  tr:last-child > td {
+    border-bottom: 0;
+  }
+
+  :is(th, td):first-child {
+    width: 100%;
+  }
+
+  :is(th, td):not(:first-child) {
+    white-space: nowrap;
+  }
+
+  :is(th, td):is([align="right"], .num) {
+    text-align: end;
   }
 
   @media (prefers-reduced-motion: reduce) {

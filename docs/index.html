@@ -333,6 +333,43 @@
               .actions</span
             >
           </div>
+
+          <div class="demo">
+            <table>
+              <thead>
+                <tr>
+                  <th>Panel</th>
+                  <th align="right">Power</th>
+                  <th align="right">Volts</th>
+                  <th align="right">Amps</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>…1486 · 1</td>
+                  <td align="right">243 W</td>
+                  <td align="right">31.9 V</td>
+                  <td align="right">7.62 A</td>
+                </tr>
+                <tr>
+                  <td>…2235 · 2</td>
+                  <td align="right">39 W</td>
+                  <td align="right">35.7 V</td>
+                  <td align="right">1.09 A</td>
+                </tr>
+                <tr>
+                  <td>…4546 · 1</td>
+                  <td align="right">137 W</td>
+                  <td align="right">32.1 V</td>
+                  <td align="right">4.26 A</td>
+                </tr>
+              </tbody>
+            </table>
+            <span class="muted mono" style="font-size: 12px"
+              >table: plain markup, no class. First column takes the width; align="right" (or --: in
+              Markdown) for numbers. Home Assistant markdown cards match.</span
+            >
+          </div>
         </div>
       </section>
 
@@ -421,7 +458,7 @@
     </main>
 
     <script type="module">
-      const VERSION = "v1.5.1"; // keep in step with package.json; CI checks it
+      const VERSION = "v1.6.0"; // keep in step with package.json; CI checks it
 
       const principles = [
         [

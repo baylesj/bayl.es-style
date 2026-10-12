@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.6.0 (2026-10-12)
+
+- Tables: plain `<table>` markup gets a rounded hairline frame, a header tinted with the site's signature,
+  hairlines between rows and tabular numbers. The first column takes the spare width and the others hug
+  their values; `align="right"` (`--:` in Markdown) right-aligns a column. Shown in the style guide.
+- Home Assistant: `bayles-fonts.js` also applies the table style to markdown cards (HA themes can't set
+  table radius, header fill or column widths, so it adds a stylesheet to each `ha-markdown`).
+
 ## 1.5.1 (2026-10-11)
 
 - Home Assistant theme: themes the newer `ha-input` fields (2026.x), which ignored `input-fill-color` and
