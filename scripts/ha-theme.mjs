@@ -57,6 +57,15 @@ function mode(m) {
     "ha-card-box-shadow": "none",
     "dialog-background-color": card,
     "input-fill-color": m === "light" ? mix(t("ink"), card, 0.04) : mix(t("ink"), card, 0.06),
+    // Newer HA inputs (ha-input, 2026.x) read these instead of input-fill-color, and fall back to grey.
+    "ha-color-form-background":
+      m === "light" ? mix(t("ink"), card, 0.04) : mix(t("ink"), card, 0.06),
+    "ha-color-form-background-hover":
+      m === "light" ? mix(t("ink"), card, 0.07) : mix(t("ink"), card, 0.1),
+    "ha-color-form-background-disabled": card,
+    "ha-color-border-neutral-quiet": t("line"),
+    "ha-color-border-neutral-normal": mix(t("comment"), card, 0.5),
+    "ha-color-border-neutral-loud": t("comment"),
     "divider-color": t("line"),
     // Text
     "primary-text-color": t("ink"),

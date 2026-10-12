@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.5.1 (2026-10-11)
+
+- Home Assistant theme: themes the newer `ha-input` fields (2026.x), which ignored `input-fill-color` and
+  fell back to grey, plus the neutral border colors they use.
+
 ## 1.5.0 (2026-10-11)
 
 - `dist/eopsin.css` is now the **readable build**: colors stay as `light-dark(light, dark)`, and the
