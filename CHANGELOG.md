@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0 (2026-10-11)
+
+- Shared footer: `footer` is a row above a hairline, with the site's own links first and a link to the
+  style guide (https://style.bayl.es) last, on the right.
+- The style guide is published at https://style.bayl.es.
+
 ## 1.2.1 (2026-10-11)
 
 - `.dot.warn` uses `--amber-text`: plain amber is about 2.4:1 on the page, under the 3:1 minimum for

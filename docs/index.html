@@ -298,6 +298,16 @@
           </div>
 
           <div class="demo">
+            <footer>
+              <span><a href="#components">start</a> · <a href="#components">your apps</a></span>
+              <a href="https://style.bayl.es">style.bayl.es</a>
+            </footer>
+            <span class="muted mono" style="font-size: 12px"
+              >footer: the site's own links first, style.bayl.es last, on every site</span
+            >
+          </div>
+
+          <div class="demo">
             <form class="panel" onsubmit="event.preventDefault()">
               <h3 class="label">new here?</h3>
               <ol class="steps">
@@ -402,13 +412,16 @@
       </section>
 
       <footer>
-        bayl.es-style <span id="version"></span> ·
-        <a href="https://github.com/baylesj/bayl.es-style">github.com/baylesj/bayl.es-style</a>
+        <span
+          >bayl.es-style <span id="version"></span> ·
+          <a href="https://github.com/baylesj/bayl.es-style">github</a></span
+        >
+        <a href="https://style.bayl.es">style.bayl.es</a>
       </footer>
     </main>
 
     <script type="module">
-      const VERSION = "v1.2.1"; // keep in step with package.json; CI checks it
+      const VERSION = "v1.3.0"; // keep in step with package.json; CI checks it
 
       const principles = [
         [

@@ -1,6 +1,6 @@
 # bayl.es design
 
-How the `*.bayl.es` pages should look. The [style guide](https://baylesj.github.io/bayl.es-style/) shows
+How the `*.bayl.es` pages should look. The [style guide](https://style.bayl.es) shows
 all of this live. This covers jordan.bayl.es, plus home, my and audible from the
 `unraid-config` repo, and the Pocket ID branding at id.bayl.es. The CSS lives in `src/`, and how to use
 it is in README.md.
@@ -73,6 +73,12 @@ were dropped because they read as default.
 | body                 | sans 400, 17px                                                                         |
 | section label        | mono 12px, lowercase, purple number first (`01 shortcuts`)                             |
 | meta, labels, footer | mono 12–13px                                                                           |
+
+## Footer
+
+Every site ends with the same footer: a row of mono links above a hairline. The site's own links come
+first, and the last item is always `style.bayl.es`, which links to the style guide. It works as a
+colophon and as the way back to these rules.
 
 ## Contrast
 

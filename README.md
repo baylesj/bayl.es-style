@@ -1,7 +1,7 @@
 # bayl.es-style
 
 The shared look of the `*.bayl.es` sites: color tokens, base styles and components, in one stylesheet.
-The **[style guide](https://baylesj.github.io/bayl.es-style/)** shows the rules and every component live, and
+The **[style guide](https://style.bayl.es)** shows the rules and every component live, and
 [DESIGN.md](DESIGN.md) explains the rules and the reasoning behind them. This file covers how to use
 the stylesheet.
 
@@ -17,7 +17,7 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.2.1/dist/eopsin.min.css"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.3.0/dist/eopsin.min.css"
 />
 
 <body data-site="home">
@@ -30,7 +30,7 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 You can also install it as a dependency, pinned to a tag, and bundle it in a build:
 
 ```sh
-npm install github:baylesj/bayl.es-style#v1.2.1
+npm install github:baylesj/bayl.es-style#v1.3.0
 ```
 
 ```js
@@ -65,6 +65,12 @@ therefore always wins without specificity fights, so site-specific styles need n
   </a>
 </div>
 
+<!-- Shared footer: this site's links first, the style guide last -->
+<footer>
+  <span><a href="/">start</a> · <a href="https://home.bayl.es">your apps</a></span>
+  <a href="https://style.bayl.es">style.bayl.es</a>
+</footer>
+
 <!-- Label column beside content -->
 <section class="split">
   <h2 class="label"><span class="n">01</span>code</h2>
@@ -90,7 +96,7 @@ a tile in the site's signature color. Link it at the same pinned tag:
 <link
   rel="icon"
   type="image/svg+xml"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.2.1/icons/home.svg"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.3.0/icons/home.svg"
 />
 ```
 
@@ -123,7 +129,7 @@ Edit files in `src/`. `dist/` is built by Lightning CSS (bundled, with fallbacks
    they match).
 2. `npm run build`, then commit (`dist/` included).
 3. `npm run check`, which fails if `dist/` doesn't match the commit.
-4. Tag and push: `git tag v1.2.1 && git push && git push origin v1.2.1`.
+4. Tag and push: `git tag v1.3.0 && git push && git push origin v1.3.0`.
 5. Bump the tag in each site:
    - jordan.bayl.es: `package.json`
    - unraid-config: `stacks/shared/style-version`

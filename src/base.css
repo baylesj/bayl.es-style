@@ -74,7 +74,15 @@
     font-size: 0.85em;
   }
 
+  /* The shared footer: the site's own links first, the style guide link last (it sits on the right).
+     <footer><span>…</span><a href="https://style.bayl.es">style.bayl.es</a></footer> */
   footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 16px;
+    justify-content: space-between;
+    padding-top: 16px;
+    border-top: 1px solid var(--line);
     color: var(--comment);
     font: 12px/1.6 var(--mono);
   }
