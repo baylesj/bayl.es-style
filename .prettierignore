@@ -1,3 +1,4 @@
 dist/
 package-lock.json
 home-assistant/bayles.yaml
+immich/bayles.css

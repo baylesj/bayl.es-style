@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.7.0 (2026-10-13)
+
+- Immich theme: `immich/bayles.css`, custom CSS for Immich v3 generated from the tokens by
+  `scripts/immich-theme.mjs` (teal primary scale, teal-tinted neutrals, page/text/panel bases for both
+  modes, Schibsted Grotesk from jsDelivr). See `immich/README.md`.
+
 ## 1.6.0 (2026-10-12)
 
 - Tables: plain `<table>` markup gets a rounded hairline frame, a header tinted with the site's signature,
