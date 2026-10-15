@@ -46,7 +46,8 @@ darker amber (`--amber-text`).
 ## Favicons
 
 The server sites use an "e." monogram on a tile in the site's signature color (`icons/`), so their tabs
-can be told apart at a glance. jordan.bayl.es uses the Chasma Sound logo, white on black.
+can be told apart at a glance. jordan.bayl.es uses the Chasma Sound logo, white on black. Home Assistant
+(`icons/ha.svg`) is the exception: its tile is Home Assistant's own blue, `#18BCF2`, so it still reads as HA.
 
 ## Color roles
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.9.0 (2026-10-15)
+
+- Home Assistant icon: `icons/ha.svg`, the "e." tile in Home Assistant's blue (`#18BCF2`), with PNGs in
+  `home-assistant/icons/` (192 and 512 rounded, 180 square for iOS). `bayles-fonts.js` swaps HA's tab favicon
+  and apple-touch-icon for them. `scripts/icon-png.py` renders the tiles to PNG with no dependencies.
+
 ## 1.8.1 (2026-10-15)
 
 - OpenSpeedTest theme: the idle gauge is a neutral track; the signature gradient only appears as a test fills it.

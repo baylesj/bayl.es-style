@@ -1,5 +1,6 @@
 // Loads the bayl.es fonts (Schibsted Grotesk, Fira Code) in Home Assistant, self-hosted from
-// /config/www/bayles/fonts, and gives markdown cards the bayl.es table style (src/base.css).
+// /config/www/bayles/fonts, gives markdown cards the bayl.es table style (src/base.css), and swaps HA's
+// favicon and home-screen icon for the eopsin "e." tile in Home Assistant blue (/config/www/bayles/icons).
 // Register as a dashboard resource (module): /local/bayles/bayles-fonts.js
 const FACES = `
 @font-face { font-family: "Schibsted Grotesk"; font-style: normal; font-weight: 400 700; font-display: swap;
@@ -57,3 +58,25 @@ customElements.whenDefined("ha-markdown").then(() => {
   };
   walk(document);
 });
+
+// The eopsin icon in place of HA's: the tab favicon and the iOS home-screen icon
+// (Safari reads apple-touch-icon when you add the page to the home screen, so it sees the swapped link).
+const ICONS = {
+  'link[rel="icon"]': "/local/bayles/icons/eopsin.svg",
+  'link[rel="apple-touch-icon"]': "/local/bayles/icons/eopsin-apple-180.png",
+};
+for (const [selector, href] of Object.entries(ICONS)) {
+  const links = document.head.querySelectorAll(selector);
+  for (const link of links) {
+    link.href = href;
+    link.removeAttribute("sizes");
+    if (selector.includes('"icon"'))
+      link.type = href.endsWith(".svg") ? "image/svg+xml" : "image/png";
+  }
+  if (!links.length) {
+    const link = document.createElement("link");
+    link.rel = selector.match(/rel="([^"]+)"/)[1];
+    link.href = href;
+    document.head.append(link);
+  }
+}
