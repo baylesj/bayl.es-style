@@ -103,8 +103,9 @@ body::before {
 .main-Gaugebg {
   stroke: var(--ost-line);
 }
+/* Idle, the gauge is a quiet track; the signature color only appears as a test fills it. */
 .deskStart {
-  stroke: url(#gradient);
+  stroke: var(--ost-line);
 }
 .main-GaugeWhite {
   stroke: var(--ost-ground);

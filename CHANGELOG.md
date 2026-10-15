@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.8.1 (2026-10-15)
+
+- OpenSpeedTest theme: the idle gauge is a neutral track; the signature gradient only appears as a test fills it.
+
 ## 1.8.0 (2026-10-15)
 
 - OpenSpeedTest theme: `openspeedtest/bayles.css`, generated from the tokens by `scripts/openspeedtest-theme.mjs`.

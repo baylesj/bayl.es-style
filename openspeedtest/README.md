@@ -14,7 +14,7 @@ Load it after the app's own CSS, and optionally add the header it styles, right 
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.8.0/openspeedtest/bayles.css"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.8.1/openspeedtest/bayles.css"
 />
 <header class="bayles-top">
   <span class="prompt"><span class="u">you</span>@eopsin:<span class="p">~/fast</span></span>
@@ -22,5 +22,5 @@ Load it after the app's own CSS, and optionally add the header it styles, right 
 </header>
 ```
 
-On eopsin, Nginx Proxy Manager injects both into fast.bayl.es with `sub_filter` (`unraid-config/proxy/hosts.toml`),
-so the container stays stock. Bump the version there when releasing.
+On eopsin, `unraid-config/stacks/speedtest/index.html` is the stock page with these two added, mounted over the
+container's own, so every route (fast.bayl.es, LAN, Tailscale) is themed. Bump the version there when releasing.
