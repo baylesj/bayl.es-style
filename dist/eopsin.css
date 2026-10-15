@@ -1,5 +1,5 @@
 /*
- * bayl.es-style 1.10.0: the shared look of the *.bayl.es sites.
+ * bayl.es-style 1.11.0: the shared look of the *.bayl.es sites.
  * https://style.bayl.es · https://github.com/baylesj/bayl.es-style
  *
  * This is the readable build: colors are written as light-dark(light, dark), which needs a 2024+
@@ -72,6 +72,14 @@
     --sig-text: var(--pink);
     --sig-fill: var(--pink);
     --sig2-fill: var(--purple);
+  }
+
+  [data-site="zero"] {
+    --sig: var(--green);
+    --sig2: var(--teal);
+    --sig-text: var(--green);
+    --sig-fill: var(--green-bright);
+    --sig2-fill: var(--teal-bright);
   }
 
   [data-site="home"] {

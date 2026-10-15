@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.11.0 (2026-10-15)
+
+- New site, zero.bayl.es: `[data-site="zero"]` is green → teal (it was defined in zero's own page until now),
+  and `icons/zero.svg` is the "e." tile in zero's green (`#00A36C`), for its card on home.bayl.es.
+
 ## 1.10.0 (2026-10-15)
 
 - New site, orbit.bayl.es: `[data-site="orbit"]` shares jordan.bayl.es's pink → purple signature, and

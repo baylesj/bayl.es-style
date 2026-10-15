@@ -67,6 +67,14 @@
     --sig2-fill: var(--purple);
   }
 
+  [data-site="zero"] {
+    --sig: var(--green);
+    --sig2: var(--teal);
+    --sig-text: var(--green);
+    --sig-fill: var(--green-bright);
+    --sig2-fill: var(--teal-bright);
+  }
+
   [data-site="home"] {
     --sig: var(--teal);
     --sig2: var(--green);
