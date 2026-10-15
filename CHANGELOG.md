@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.8.0 (2026-10-15)
+
+- OpenSpeedTest theme: `openspeedtest/bayles.css`, generated from the tokens by `scripts/openspeedtest-theme.mjs`.
+  The gauge, graphs and start button take the home signature (teal into green), panels and text the page
+  colors in light and dark, numbers Schibsted Grotesk, units Fira Code; it hides OpenSpeedTest's in-gauge logo
+  and theme toggle, and styles a `.bayles-top` prompt/wordmark header. See `openspeedtest/README.md`.
+
 ## 1.7.0 (2026-10-13)
 
 - Immich theme: `immich/bayles.css`, custom CSS for Immich v3 generated from the tokens by

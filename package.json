@@ -1,6 +1,6 @@
 {
   "name": "bayl.es-style",
-  "version": "1.7.0",
+  "version": "1.8.0",
   "description": "The shared look of the *.bayl.es sites: color tokens, base styles and components.",
   "license": "MIT",
   "author": "Jordan Bayles",
@@ -27,10 +27,10 @@
     "not dead"
   ],
   "scripts": {
-    "build": "lightningcss --bundle --targets \"chrome 123, firefox 120, safari 17.5\" src/eopsin.css -o dist/eopsin.css && node scripts/header.mjs && lightningcss --bundle --minify --browserslist src/eopsin.css -o dist/eopsin.min.css && node scripts/ha-theme.mjs && node scripts/immich-theme.mjs",
+    "build": "lightningcss --bundle --targets \"chrome 123, firefox 120, safari 17.5\" src/eopsin.css -o dist/eopsin.css && node scripts/header.mjs && lightningcss --bundle --minify --browserslist src/eopsin.css -o dist/eopsin.min.css && node scripts/ha-theme.mjs && node scripts/immich-theme.mjs && node scripts/openspeedtest-theme.mjs",
     "lint": "stylelint \"src/**/*.css\" && prettier --check .",
     "format": "prettier --write . && stylelint --fix \"src/**/*.css\"",
-    "check": "npm run lint && npm run check:version && npm run build && git add -N dist home-assistant immich && git diff --exit-code -- dist home-assistant immich",
+    "check": "npm run lint && npm run check:version && npm run build && git add -N dist home-assistant immich openspeedtest && git diff --exit-code -- dist home-assistant immich openspeedtest",
     "check:version": "node -e \"const v='v'+require('./package.json').version, s=require('fs').readFileSync('docs/index.html','utf8'); if(!s.includes('const VERSION = \\\"'+v+'\\\"')){console.error('docs/index.html VERSION is not '+v);process.exit(1)}\""
   },
   "devDependencies": {
