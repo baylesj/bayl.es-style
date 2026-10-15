@@ -120,6 +120,18 @@ body::before {
   color: var(--ost-sig);
 }
 
+/* The app sizes itself to the whole window (100vw x 100vh), which is billboard-sized on a desktop. Cap it like
+   the sites' wide pages and center it; the SVG scales down proportionally, so phones look the same. */
+.openSpeedtestApp {
+  width: min(100vw, 1000px);
+  margin: 0 auto;
+}
+.Mobile,
+.Desktop {
+  width: 100%;
+  height: 100%;
+}
+
 /* Gauge, graphs and icons: the signature gradient. */
 #gradient stop:first-child,
 #RadialGradient1 stop:first-child {
