@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.9.1 (2026-10-15)
+
+- OpenSpeedTest theme: the app is capped at 1000px wide and centered instead of filling the whole window.
+
 ## 1.9.0 (2026-10-15)
 
 - Home Assistant icon: `icons/ha.svg`, the "e." tile in Home Assistant's blue (`#18BCF2`), with PNGs in

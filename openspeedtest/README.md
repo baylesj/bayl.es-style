@@ -14,7 +14,7 @@ Load it after the app's own CSS, and optionally add the header it styles, right 
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.8.1/openspeedtest/bayles.css"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.9.1/openspeedtest/bayles.css"
 />
 <header class="bayles-top">
   <span class="prompt"><span class="u">you</span>@eopsin:<span class="p">~/fast</span></span>
