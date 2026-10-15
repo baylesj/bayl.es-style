@@ -35,10 +35,15 @@ one family with a small context clue per site, and never like a stock template.
 | my.bayl.es      | purple → teal                   | `guest@eopsin:~/accounts`                        |
 | id.bayl.es      | purple (Pocket ID accent color) | n/a, third-party                                 |
 | audible.bayl.es | amber → orange                  | `drake@eopsin:~/audible`                         |
+| orbit.bayl.es   | pink → purple (jordan's)        | `jordan@eopsin:~/orbit`                          |
 
 id.bayl.es is Pocket ID, which only lets us set the name, logo, accent color, background image and
 favicon. Its serif heading and pill button are built in, and accepted as the exception. Keep text out of
 the background image: Pocket ID crops it to fit, so text gets cut off.
+
+orbit shares jordan.bayl.es's pink → purple: both are about Jordan's own people and the Chasma Sound
+space theme. Their tabs still differ, because jordan.bayl.es's favicon is the Chasma logo and orbit's is
+the pink "e." tile.
 
 Amber is too light for white text, so audible's buttons are ink on amber, and its prompt path uses a
 darker amber (`--amber-text`).

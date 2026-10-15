@@ -58,7 +58,8 @@
   }
 
   /* One hue per site, fading into a neighbor. */
-  [data-site="jordan"] {
+  [data-site="jordan"],
+  [data-site="orbit"] {
     --sig: var(--pink);
     --sig2: var(--purple);
     --sig-text: var(--pink);

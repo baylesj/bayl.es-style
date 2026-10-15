@@ -21,7 +21,7 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 />
 
 <body data-site="home">
-  <!-- jordan | home | my | id | audible -->
+  <!-- jordan | home | my | id | audible | orbit -->
 </body>
 ```
 
@@ -89,7 +89,7 @@ Also available:
 - role colors: `.public`, `.private`, `.num`, `.warn`, `.err`
 - type helpers: `.title`, `.lede`, `.soft`, `.muted`, `.mono`, `.stack`
 
-Each server site has a favicon in `icons/` (`home.svg`, `my.svg`, `id.svg`, `audible.svg`, and `ha.svg` for Home
+Each server site has a favicon in `icons/` (`home.svg`, `my.svg`, `id.svg`, `audible.svg`, `orbit.svg`, and `ha.svg` for Home
 Assistant): an "e." monogram on a tile in the site's signature color. `scripts/icon-png.py` renders one to PNG. Link it at the same pinned tag:
 
 ```html

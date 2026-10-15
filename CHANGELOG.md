@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.10.0 (2026-10-15)
+
+- New site, orbit.bayl.es: `[data-site="orbit"]` shares jordan.bayl.es's pink → purple signature, and
+  `icons/orbit.svg` is the "e." tile in pink. DESIGN.md explains the shared hue.
+
 ## 1.9.1 (2026-10-15)
 
 - OpenSpeedTest theme: the app is capped at 1000px wide and centered instead of filling the whole window.
