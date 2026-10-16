@@ -86,6 +86,7 @@ Also available:
 - `.steps` numbered lists
 - form fields, `.btn` and `.btn.quiet` buttons, `.actions` button rows
 - `.seg` mono toggle groups
+- `.theme-toggle`, the light/dark switch (with `js/theme.js`, below)
 - role colors: `.public`, `.private`, `.num`, `.warn`, `.err`
 - type helpers: `.title`, `.lede`, `.soft`, `.muted`, `.mono`, `.stack`
 
@@ -99,6 +100,21 @@ Assistant): an "e." monogram on a tile in the site's signature color. `scripts/i
   href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.5.0/icons/home.svg"
 />
 ```
+
+### Theme switch
+
+Every site can offer an auto/light/dark switch. Load the script in `<head>` (so a chosen theme is applied
+before the page draws) and put an empty button where it belongs, usually the header:
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.12.0/js/theme.js"></script>
+...
+<button class="theme-toggle" type="button"></button>
+```
+
+The script fills in the icon (half circle, sun, moon) and cycles auto → light → dark. On `*.bayl.es` the choice
+is a cookie on `bayl.es`, so picking dark on one site makes them all dark; elsewhere it's this site's
+`localStorage`. Without JavaScript the button stays hidden and the system theme applies.
 
 Every token is a custom property on `:root`, so you can use them in site CSS:
 

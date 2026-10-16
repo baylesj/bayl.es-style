@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.12.0 (2026-10-16)
+
+- Theme switch for every site: `js/theme.js` and `.theme-toggle`. An empty `<button class="theme-toggle">`
+  becomes an auto/light/dark switch (half circle, sun, moon); the choice is shared across `*.bayl.es` in a
+  cookie and applied before the page draws. First used on orbit.bayl.es.
+
 ## 1.11.0 (2026-10-15)
 
 - New site, zero.bayl.es: `[data-site="zero"]` is green → teal (it was defined in zero's own page until now),

@@ -1,5 +1,5 @@
 /*
- * bayl.es-style 1.11.0: the shared look of the *.bayl.es sites.
+ * bayl.es-style 1.12.0: the shared look of the *.bayl.es sites.
  * https://style.bayl.es · https://github.com/baylesj/bayl.es-style
  *
  * This is the readable build: colors are written as light-dark(light, dark), which needs a 2024+
@@ -565,6 +565,34 @@
     align-items: center;
     gap: 8px;
     display: flex;
+  }
+
+  .theme-toggle {
+    min-width: 36px;
+    min-height: 36px;
+    color: var(--comment);
+    background: none;
+    border: 0;
+    border-radius: 6px;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    padding: 0 8px;
+    display: inline-flex;
+  }
+
+  .theme-toggle:hover {
+    color: var(--ink);
+    filter: none;
+  }
+
+  .theme-toggle:empty {
+    display: none;
+  }
+
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
   }
 
   .seg {

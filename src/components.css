@@ -315,6 +315,35 @@
     align-items: center;
   }
 
+  /* Theme switch (js/theme.js fills in the icon): a quiet icon button, hidden until the script runs */
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    min-width: 36px;
+    min-height: 36px;
+    padding: 0 8px;
+    border: 0;
+    border-radius: 6px;
+    background: none;
+    color: var(--comment);
+  }
+
+  .theme-toggle:hover {
+    color: var(--ink);
+    filter: none;
+  }
+
+  .theme-toggle:empty {
+    display: none;
+  }
+
+  .theme-toggle svg {
+    width: 18px;
+    height: 18px;
+  }
+
   /* Segmented mono toggle (home's network switch) */
   .seg {
     display: flex;

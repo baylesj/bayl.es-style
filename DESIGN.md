@@ -23,6 +23,8 @@ one family with a small context clue per site, and never like a stock template.
   the real signed-in user (`guest` before sign-in). It's the who-am-I and the breadcrumb in one line.
 - **Dark is its own theme.** Deep teal-black with brighter role colors, the way an editor theme does
   it, not light mode inverted to grey.
+- **The visitor picks the theme.** Sites follow the system until someone chooses, with the theme switch
+  (`js/theme.js`) in each header; a choice made on one bayl.es site holds on all of them.
 - **Apps bring their own color.** Real app icons stay untinted. Without an icon, a letter tile takes
   the signature hue.
 
