@@ -1,6 +1,6 @@
 {
   "name": "bayl.es-style",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "The shared look of the *.bayl.es sites: color tokens, base styles and components.",
   "license": "MIT",
   "author": "Jordan Bayles",
@@ -12,7 +12,8 @@
     "./eopsin.css": "./dist/eopsin.css",
     "./eopsin.min.css": "./dist/eopsin.min.css",
     "./src/*": "./src/*",
-    "./icons/*": "./icons/*"
+    "./icons/*": "./icons/*",
+    "./js/*": "./js/*"
   },
   "files": [
     "dist",

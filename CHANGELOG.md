@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.12.1 (2026-10-16)
+
+- `js/theme.js` is exported from the package (`bayl.es-style/js/theme.js`), so sites that bundle the style
+  (jordan.bayl.es) can inline it instead of loading it from the CDN.
+
 ## 1.12.0 (2026-10-16)
 
 - Theme switch for every site: `js/theme.js` and `.theme-toggle`. An empty `<button class="theme-toggle">`

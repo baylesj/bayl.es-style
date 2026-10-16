@@ -112,6 +112,9 @@ before the page draws) and put an empty button where it belongs, usually the hea
 <button class="theme-toggle" type="button"></button>
 ```
 
+Sites that install the package can inline it instead (`import theme from "bayl.es-style/js/theme.js?raw"` in
+Astro or Vite), so nothing loads from the CDN.
+
 The script fills in the icon (half circle, sun, moon) and cycles auto → light → dark. On `*.bayl.es` the choice
 is a cookie on `bayl.es`, so picking dark on one site makes them all dark; elsewhere it's this site's
 `localStorage`. Without JavaScript the button stays hidden and the system theme applies.
