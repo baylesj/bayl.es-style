@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.12.2 (2026-10-16)
+
+- `js/theme.js` works when inlined: its header comment had a usage example with a closing script tag, which
+  ended an inline script early. Loading it by `src` was unaffected.
+
 ## 1.12.1 (2026-10-16)
 
 - `js/theme.js` is exported from the package (`bayl.es-style/js/theme.js`), so sites that bundle the style

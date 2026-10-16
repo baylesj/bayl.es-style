@@ -1,12 +1,12 @@
 /*
  * The bayl.es theme switch: auto (follows the system), light, dark, in turn.
  *
- * Load it in <head>, so a chosen theme is applied before the page is drawn:
+ * Load it in the page's head (a script tag pointing at js/theme.js on the CDN, or inlined: see the README), so
+ * a chosen theme is applied before the page is drawn, and put an empty button with class "theme-toggle"
+ * where it belongs (usually the header). This script fills in the icons and wires it up; without JavaScript
+ * the button stays hidden.
  *
- *   <script src="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.12.0/js/theme.js"></script>
- *
- * and put an empty <button class="theme-toggle" type="button"></button> where it belongs (usually the
- * header). The script fills in the icons and wires it up; without JavaScript the button stays hidden.
+ * This comment must never contain a closing script tag: sites inline this file into a script element.
  *
  * On *.bayl.es the choice is a cookie on bayl.es, so it follows you from site to site; anywhere else
  * (localhost, a Tailscale name) it's kept in this site's localStorage. "auto" forgets it.
