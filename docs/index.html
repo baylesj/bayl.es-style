@@ -12,44 +12,151 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500&family=Schibsted+Grotesk:wght@400..700&family=Fira+Code:wght@400;500&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&family=Atkinson+Hyperlegible+Mono:wght@400;500&family=Geologica:wght,SHRP@200,100&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Sunflower:wght@700&text=%EC%97%85%EC%8B%A0&display=swap"
     />
     <link rel="stylesheet" href="../dist/eopsin.min.css" />
+    <script src="../js/galaxy.js" defer></script>
     <style>
       /* Guide-only layout. Everything else on this page comes from the stylesheet it documents. */
-      .controls {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px 20px;
-        align-items: center;
+      main {
+        gap: 44px;
+        max-width: 808px;
+        padding: 28px 24px 48px;
       }
 
-      .controls .label {
-        margin: 0;
-      }
-
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 18px 14px;
-      }
-
-      .swatch {
+      section {
         display: flex;
         flex-direction: column;
-        gap: 4px;
+        gap: 12px;
+      }
+
+      section > .label {
+        margin: 0;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--line);
+        font-size: 13px;
+      }
+
+      h3 {
+        margin: 8px 0 0;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .note {
+        color: var(--comment);
+        font: 12px/1.6 var(--mono);
+      }
+
+      .row.plain {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .row .tile.ghost {
+        border: 1px dashed var(--comment);
+        background: none;
+        color: var(--comment);
+      }
+
+      .row > img {
+        border-radius: 5px;
+      }
+
+      .keyblock {
+        display: grid;
+        grid-template-columns: 150px minmax(0, 1fr);
+        gap: 6px 12px;
+        padding: 12px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .keyblock > :first-child {
+        white-space: pre-line;
+        color: var(--comment);
+        font: 12px/1.7 var(--mono);
+      }
+
+      .keyblock .what {
+        font-size: 15px;
+      }
+
+      .keyblock .why {
+        color: var(--comment);
         font-size: 14px;
       }
 
-      .chip {
-        height: 52px;
-        border: 1px solid var(--line);
-        border-radius: 8px;
+      .keyblock.this > :first-child {
+        color: var(--sig-text);
       }
 
-      .swatch .mono {
+      .eg {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .eg .eglabel {
         color: var(--comment);
-        font-size: 12px;
+        font: 12px var(--mono);
+      }
+
+      .erow {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 4px 16px;
+        align-items: center;
+        min-height: 44px;
+        padding: 9px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .erow .who {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px 10px;
+        align-items: baseline;
+        min-width: 0;
+      }
+
+      .erow .who .name {
+        font-weight: 500;
+      }
+
+      .erow .who .desc {
+        color: var(--comment);
+        font: 12px var(--mono);
+      }
+
+      .ctable td,
+      .ctable th {
+        padding: 7px 8px 7px 0;
+        vertical-align: middle;
+      }
+
+      .ctable :is(th, td):first-child {
+        width: auto;
+      }
+
+      .ctable .r {
+        text-align: right;
+        white-space: nowrap;
+      }
+
+      .chip {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border: 1px solid var(--line);
+        vertical-align: -2px;
+      }
+
+      .tok {
+        color: var(--comment);
+        font: 12px var(--mono);
       }
 
       .ratio {
@@ -64,16 +171,24 @@
         color: var(--orange);
       }
 
-      .specimen {
+      .ratio.na {
+        color: var(--comment);
+      }
+
+      .tablewrap {
+        overflow-x: auto;
+      }
+
+      .spec {
         display: grid;
         grid-template-columns: 150px minmax(0, 1fr);
-        gap: 4px 16px;
+        gap: 4px 12px;
         align-items: baseline;
-        padding: 12px 0;
+        padding: 10px 0;
         border-top: 1px solid var(--line);
       }
 
-      .specimen > :first-child {
+      .spec > :first-child {
         color: var(--comment);
         font: 12px var(--mono);
       }
@@ -81,16 +196,23 @@
       .demo {
         display: flex;
         flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-        border: 1px dashed var(--line);
-        border-radius: 10px;
+        gap: 10px;
+        padding: 14px 0 4px;
+        border-top: 1px dashed var(--line);
+      }
+
+      .fieldwrap {
+        display: block;
+      }
+
+      .fieldwrap input:focus-visible {
+        outline: none;
       }
 
       .icons {
         display: flex;
         flex-wrap: wrap;
-        gap: 20px;
+        gap: 18px;
         align-items: flex-end;
       }
 
@@ -102,6 +224,10 @@
         margin: 0;
       }
 
+      .icons img {
+        border-radius: 7px;
+      }
+
       .icons figcaption {
         color: var(--comment);
         font: 12px var(--mono);
@@ -109,11 +235,12 @@
 
       .never {
         display: flex;
-        flex-wrap: wrap;
-        gap: 6px 18px;
+        flex-direction: column;
+        gap: 2px;
         margin: 0;
         padding: 0;
         color: var(--soft);
+        font-size: 15px;
         list-style: none;
       }
 
@@ -126,215 +253,272 @@
       pre {
         overflow-x: auto;
         margin: 0;
-        padding: 14px 16px;
-        border-radius: 8px;
-        background: color-mix(in srgb, var(--ink) 5%, var(--ground));
+        padding: 12px 14px;
+        border-left: 2px solid var(--line);
         font: 13px/1.6 var(--mono);
       }
 
-      @media (width <= 560px) {
-        .specimen {
+      @media (width <= 600px) {
+        .keyblock,
+        .spec {
           grid-template-columns: minmax(0, 1fr);
+        }
+
+        main {
+          padding-right: 16px;
+          padding-left: 16px;
+        }
+
+        .row .meta,
+        .ctable .use {
+          display: none;
         }
       }
     </style>
   </head>
   <body data-site="home">
-    <main class="wide">
-      <header class="top">
-        <div>
-          <span class="prompt"
-            ><span class="u">jordan</span>@eopsin:<span class="p">~/style</span></span
-          >
+    <header class="scope">
+      <canvas aria-hidden="true"></canvas>
+      <div class="wrap">
+        <div class="head" id="head">
+          <span class="prompt" id="prompt"></span>
           <h1 class="mark">bayl.es style</h1>
-        </div>
-        <div class="controls">
-          <div class="seg" role="group" aria-label="Site signature" id="site">
-            <button type="button" data-v="jordan">jordan</button>
-            <button type="button" data-v="home">home</button>
-            <button type="button" data-v="my">my</button>
-            <button type="button" data-v="audible">audible</button>
+          <div class="controls">
+            <div class="seg" role="group" aria-label="Site" id="site">
+              <span class="k">site</span>
+              <button type="button" class="bk" data-v="jordan">jordan</button>
+              <button type="button" class="bk" data-v="home">home</button>
+              <button type="button" class="bk" data-v="my">my</button>
+              <button type="button" class="bk" data-v="audible">audible</button>
+              <button type="button" class="bk" data-v="orbit">orbit</button>
+              <button type="button" class="bk" data-v="zero">zero</button>
+            </div>
+            <div class="seg" role="group" aria-label="Theme" id="theme">
+              <span class="k">theme</span>
+              <button type="button" class="bk" data-v="light">light</button>
+              <button type="button" class="bk" data-v="dark">dark</button>
+            </div>
           </div>
-          <div class="seg" role="group" aria-label="Theme" id="theme">
-            <button type="button" data-v="light">light</button>
-            <button type="button" data-v="dark">dark</button>
-          </div>
         </div>
-      </header>
+      </div>
+      <span class="caption"></span>
+    </header>
 
-      <p class="lede">
-        A code editor's color theme, translated to the web. Color works like syntax highlighting,
-        words are set in a grotesk, and machine facts in your editor's mono. It's one family, with a
-        small context clue per site. This page is built with the stylesheet it describes; switch the
-        site and theme above to see each signature.
+    <main>
+      <p class="soft">
+        How the *.bayl.es pages look. The colors and type are the ones the sites already use; this
+        page is set in them. Every site opens on the same galaxy, seen almost edge-on, with its own
+        waypoint lit. Where a site has something to measure, its key says what.
       </p>
 
-      <section class="split">
+      <section>
         <h2 class="label"><span class="n">01</span>principles</h2>
         <div class="rows" id="principles"></div>
       </section>
 
-      <section class="split">
+      <section>
         <h2 class="label"><span class="n">02</span>signatures</h2>
-        <div class="stack">
-          <p class="soft">
-            One hue per site, fading into a neighbor. It shows up on the strip at the top, the dot
-            after the wordmark, the prompt path, panels and the primary button.
-          </p>
-          <div class="rows" id="sites"></div>
+        <p class="soft">
+          Every site shares one galaxy: a plane seen almost edge-on and running off the page, six
+          range rings, a faint radial grid, and the same stars from one fixed seed. Each site is a
+          waypoint on a stalk to the plane; the one you are on is lit in its star color and
+          bracketed, the rest stay dim. The site's full hue marks the prompt path, labels, panels,
+          the selection bracket and the primary button.
+        </p>
+        <div class="rows" id="sites"></div>
+      </section>
+
+      <section>
+        <h2 class="label"><span class="n">03</span>keys</h2>
+        <p class="soft">
+          Steps measure what a site is for, never the server. Where the measure has a direction, the
+          key diverges: green on the side that's fine, amber on the side that wants a look, comment
+          grey in the middle. Green is already the OK role and amber the needs-attention role, so
+          neither changes meaning. Orange stays for down and failed and never appears on a key. A
+          step is a filled or outlined square, and always has its word.
+        </p>
+        <div id="keys"></div>
+      </section>
+
+      <section>
+        <h2 class="label"><span class="n">04</span>what each site is for</h2>
+        <p class="soft">One example per site, built from the keys above. The data is made up.</p>
+        <div id="examples"></div>
+      </section>
+
+      <section>
+        <h2 class="label"><span class="n">05</span>colors</h2>
+        <p class="soft">
+          The current tokens, unchanged. Each ratio is measured live in this theme and site, against
+          the page and against the panel tint; the lower one decides. Text needs 4.5:1, marks 3:1,
+          and the galaxy's rings and stars are decoration with no text on them.
+        </p>
+        <div class="tablewrap">
+          <table class="ctable">
+            <thead>
+              <tr>
+                <th></th>
+                <th>role</th>
+                <th class="use">use</th>
+                <th class="r">page</th>
+                <th class="r">panel</th>
+                <th class="r">need</th>
+              </tr>
+            </thead>
+            <tbody id="colors"></tbody>
+          </table>
         </div>
       </section>
 
-      <section class="split">
-        <h2 class="label"><span class="n">03</span>color roles</h2>
-        <div class="stack">
-          <p class="soft">
-            Each hue is a role, the same on every site. The ratio under each swatch is measured live
-            against the page in the current theme. Text colors need 4.5:1; fill-only colors need
-            3:1.
-          </p>
-          <div class="grid" id="colors"></div>
-        </div>
-      </section>
-
-      <section class="split">
-        <h2 class="label"><span class="n">04</span>type</h2>
+      <section>
+        <h2 class="label"><span class="n">06</span>type</h2>
+        <p class="soft">
+          Atkinson Hyperlegible Next for words and its mono for machine facts: one family, both kept
+          at reading sizes. Atkinson was drawn so letters that look alike stay apart (Il1, O0),
+          which matters when most text is small. No display sizes and no tight tracking: the largest
+          thing on a page is a 22px wordmark, and it ends without a period.
+        </p>
         <div>
-          <div class="specimen">
-            <span>wordmark 700/56</span><span class="mark" style="font-size: 44px">eopsin</span>
-          </div>
-          <div class="specimen">
+          <div class="spec"><span>wordmark 600/22</span><span class="mark">eopsin</span></div>
+          <div class="spec">
             <span>name, jordan only</span
-            ><span style="font: 500 40px/1 var(--serif)"
-              >Jordan Bayles<span style="color: var(--pink)">.</span></span
+            ><span
+              style="
+                font: 200 30px/1.1 var(--name);
+                letter-spacing: 0.12em;
+                font-variation-settings: &quot;SHRP&quot; 100;
+              "
+              >Jordan Bayles</span
             >
           </div>
-          <div class="specimen">
-            <span>title 600/24</span><span class="title">Set up your passkey</span>
+          <div class="spec">
+            <span>heading 600/15</span><span style="font-weight: 600">Set up your passkey</span>
           </div>
-          <div class="specimen">
-            <span>lede 400/20</span><span class="lede">One sign-in for Jordan's server.</span>
+          <div class="spec">
+            <span>body 400/16</span><span>One sign-in for Jordan's server.</span>
           </div>
-          <div class="specimen">
-            <span>body 400/17</span><span>Words people read are Schibsted Grotesk.</span>
+          <div class="spec">
+            <span>secondary 400/15</span
+            ><span class="soft">Hints and descriptions are soft or comment grey.</span>
           </div>
-          <div class="specimen">
-            <span>meta, mono 12–13</span
+          <div class="spec">
+            <span>her name, Sunflower 700</span
+            ><span
+              >eopsin, after <span class="eop" lang="ko" style="font-size: 20px">업신</span></span
+            >
+          </div>
+          <div class="spec">
+            <span>machine 400/12–13</span
             ><span class="mono" style="font-size: 13px"
-              ><span class="public">jellyfin.bayl.es</span> · <span class="num">14</span> services ·
-              <span class="private">lan</span> · fi -&gt; != ===</span
+              ><span class="public">jellyfin.bayl.es</span> · <span class="private">lan</span> ·
+              <span class="num">3</span> titles · Il1 O0</span
             >
           </div>
         </div>
       </section>
 
-      <section class="split">
-        <h2 class="label"><span class="n">05</span>components</h2>
-        <div class="stack" style="gap: 24px">
-          <div class="demo">
-            <header class="top">
-              <div>
-                <span class="prompt"
-                  ><span class="u">guest</span>@eopsin:<span class="p">~/accounts</span></span
-                >
-                <span class="mark">eopsin</span>
-              </div>
-            </header>
-            <span class="muted mono" style="font-size: 12px">.top · .prompt · .mark</span>
-          </div>
+      <section>
+        <h2 class="label"><span class="n">07</span>components</h2>
 
-          <div class="demo">
+        <div class="demo">
+          <div class="head">
+            <span class="prompt"
+              ><span class="u">guest</span>@<abbr
+                class="eopsin"
+                title="The server is named for 업신 (Eopsin), the Korean household goddess of storage and wealth"
+                >eopsin</abbr
+              >:<span class="p">~/accounts</span></span
+            >
+            <span class="mark">eopsin</span>
+          </div>
+          <span class="note"
+            >header: prompt line · small wordmark · the galaxy sits behind, to the right, and stays
+            off the words</span
+          >
+        </div>
+
+        <div class="demo">
+          <div class="rows">
+            <a class="row bk" href="#examples">
+              <span class="tile">J</span>
+              <span class="txt"
+                ><span class="name">Jellyfin</span><span class="desc">Movies and TV</span></span
+              >
+              <span class="meta public">jellyfin.bayl.es</span>
+            </a>
+            <a class="row bk" href="#examples">
+              <img src="../icons/ha.svg" width="28" height="28" alt="" />
+              <span class="txt"
+                ><span class="name">Home Assistant</span><span class="desc">Smart home</span></span
+              >
+              <span class="meta private">lan</span>
+            </a>
+            <a class="row off" href="#examples">
+              <span class="tile ghost">K</span>
+              <span class="txt"
+                ><span class="name">Kiwix</span><span class="desc">Offline Wikipedia</span></span
+              >
+              <span class="meta">home only</span>
+            </a>
+          </div>
+          <span class="note"
+            >rows: letter tile in the site hue, or the app's own icon untinted (HA keeps its blue) ·
+            hover or focus a row and its corners bracket, like a selected contact · .off is grey and
+            says why</span
+          >
+        </div>
+
+        <div class="demo">
+          <div>
+            <div class="kv">
+              <span>last checked</span><span>Oct 11 · <span class="mono num">212</span> books</span>
+            </div>
+            <div class="kv">
+              <span>status</span><span><span class="dot ok"></span>up</span>
+            </div>
+            <div class="kv">
+              <span>attention</span><span><span class="dot warn"></span>first sync is running</span>
+            </div>
+            <div class="kv">
+              <span>can't download</span><span><span class="dot err"></span>3 titles</span>
+            </div>
+          </div>
+          <span class="note"
+            >service state is small and separate from the keys: a dot and a word</span
+          >
+        </div>
+
+        <div class="demo">
+          <form class="panel" onsubmit="event.preventDefault()">
+            <p class="label">new here?</p>
+            <ol class="steps">
+              <li>Sign in once with your Jellyfin username and password</li>
+              <li>Create your passkey. About a minute in all.</li>
+            </ol>
             <div>
-              <h3 class="label"><span class="n">01</span>shortcuts</h3>
-              <div class="rows">
-                <a class="row" href="#components">
-                  <span class="tile">J</span>
-                  <span class="txt"
-                    ><span class="name">Jellyfin</span><span class="desc">Movies and TV</span></span
-                  >
-                  <span class="meta public">jellyfin.bayl.es</span>
-                </a>
-                <a class="row" href="#components">
-                  <span class="tile">H</span>
-                  <span class="txt"
-                    ><span class="name">Home Assistant</span
-                    ><span class="desc">Smart home</span></span
-                  >
-                  <span class="meta private">lan</span>
-                </a>
-                <a class="row off" href="#components">
-                  <span class="tile">K</span>
-                  <span class="txt"
-                    ><span class="name">Kiwix</span
-                    ><span class="desc">Offline Wikipedia</span></span
-                  >
-                  <span class="meta">home only</span>
-                </a>
-              </div>
+              <label for="demo-user">jellyfin username</label>
+              <span class="fieldwrap bk tight"
+                ><input id="demo-user" autocomplete="off" value="drake"
+              /></span>
+              <p class="help">Hints sit under the field in grey.</p>
             </div>
-            <span class="muted mono" style="font-size: 12px"
-              >.label · .rows · .row (.off when unavailable) · .meta.public / .private</span
-            >
-          </div>
-
-          <div class="demo">
-            <div class="rows">
-              <div class="kv">
-                <span>last checked</span
-                ><span>Oct 11 · <span class="mono num">212</span> books</span>
-              </div>
-              <div class="kv">
-                <span>status</span><span><span class="dot ok"></span>Syncing normally</span>
-              </div>
-              <div class="kv">
-                <span>attention</span
-                ><span><span class="dot warn"></span>First sync is running</span>
-              </div>
-              <div class="kv">
-                <span>can't download</span><span><span class="dot err"></span>3 titles</span>
-              </div>
+            <div class="actions">
+              <button type="submit" class="go bk tight">Continue →</button>
+              <button type="button" class="quiet bk tight">Cancel</button>
             </div>
-            <span class="muted mono" style="font-size: 12px">.kv · .dot.ok / .warn / .err</span>
+          </form>
+          <div class="panel alert">
+            <p class="label">approve this tv?</p>
+            <p>Only continue if the code is on your own screen right now.</p>
           </div>
+          <span class="note"
+            >panel: the one tinted thing on a page, 4px corners · buttons: 36px, 3px corners, weight
+            500 · focus is a 2px bracket in the site's text hue (tab through to see it)</span
+          >
+        </div>
 
-          <div class="demo">
-            <footer>
-              <span><a href="#components">start</a> · <a href="#components">your apps</a></span>
-              <a href="https://style.bayl.es">style.bayl.es</a>
-            </footer>
-            <span class="muted mono" style="font-size: 12px"
-              >footer: the site's own links first, style.bayl.es last, on every site</span
-            >
-          </div>
-
-          <div class="demo">
-            <form class="panel" onsubmit="event.preventDefault()">
-              <h3 class="label">new here?</h3>
-              <ol class="steps">
-                <li>Sign in once with your Jellyfin username and password</li>
-                <li>Create your passkey. About a minute in all.</li>
-              </ol>
-              <div>
-                <label for="demo-user">jellyfin username</label>
-                <input id="demo-user" autocomplete="off" value="drake" />
-                <p class="help">Hints sit under the field in grey.</p>
-              </div>
-              <div class="actions">
-                <button type="submit">Continue →</button>
-                <button type="button" class="quiet">Cancel</button>
-              </div>
-            </form>
-            <div class="panel alert">
-              <h3 class="label" style="color: var(--orange)">approve this tv?</h3>
-              <p>Only continue if the code is on your own screen right now.</p>
-            </div>
-            <span class="muted mono" style="font-size: 12px"
-              >.panel · .panel.alert · .steps · label + input · .help · button / .btn.quiet ·
-              .actions</span
-            >
-          </div>
-
-          <div class="demo">
+        <div class="demo">
+          <div class="tablewrap">
             <table>
               <thead>
                 <tr>
@@ -365,185 +549,449 @@
                 </tr>
               </tbody>
             </table>
-            <span class="muted mono" style="font-size: 12px"
-              >table: plain markup, no class. First column takes the width; align="right" (or --: in
-              Markdown) for numbers. Home Assistant markdown cards match.</span
+          </div>
+          <span class="note">table: hairline rows, no frame, numbers right-aligned</span>
+        </div>
+
+        <div class="demo">
+          <footer class="site">
+            <span><a href="#examples">start</a> · <a href="#examples">your apps</a></span>
+            <span
+              title="The server is named for 업신 (Eopsin), the Korean household goddess of storage and wealth"
+              >served by eopsin, after <span class="eop" lang="ko">업신</span></span
             >
-          </div>
+            <a href="https://style.bayl.es">style.bayl.es</a>
+          </footer>
+          <span class="note"
+            >footer: the site's own links first, then the credit to the goddess the server is named
+            for, style.bayl.es last</span
+          >
         </div>
       </section>
 
-      <section class="split">
-        <h2 class="label"><span class="n">06</span>contrast</h2>
-        <div class="stack">
-          <p>
-            Every text color meets WCAG AA (<span class="mono num">4.5</span>:1) on the page and on
-            every tinted panel, in both themes; non-text marks (field borders, focus rings, dots)
-            meet <span class="mono num">3</span>:1.
-          </p>
-          <p class="soft">
-            Each hue comes in two strengths: the role color is safe for text, and
-            <code>*-bright</code> / <code>--sig-fill</code> are for fills only. Unavailable items
-            turn grey, never faded. When adding a color, check it on the page and on the darkest
-            panel tint it can sit on. The ratios in section 03 are live.
-          </p>
-        </div>
+      <section>
+        <h2 class="label"><span class="n">08</span>contrast</h2>
+        <p>
+          Every text color meets <span class="mono num">4.5</span>:1 on the page and on the panel
+          tint, in both themes, on every site; marks meet <span class="mono num">3</span>:1. That
+          includes button labels on each site's fill, measured here:
+        </p>
+        <div class="rows" id="buttons"></div>
+        <p class="soft">
+          jordan and orbit use <code>--pink-text</code> for text and the button, since white on
+          plain pink is 3.8:1. Unavailable means grey and a reason, never faded text.
+        </p>
       </section>
 
-      <section class="split">
-        <h2 class="label"><span class="n">07</span>favicons</h2>
-        <div class="stack">
-          <div class="icons">
-            <figure>
-              <img src="../icons/home.svg" width="48" height="48" alt="" />
-              <figcaption>home</figcaption>
-            </figure>
-            <figure>
-              <img src="../icons/my.svg" width="48" height="48" alt="" />
-              <figcaption>my</figcaption>
-            </figure>
-            <figure>
-              <img src="../icons/id.svg" width="48" height="48" alt="" />
-              <figcaption>id</figcaption>
-            </figure>
-            <figure>
-              <img src="../icons/audible.svg" width="48" height="48" alt="" />
-              <figcaption>audible</figcaption>
-            </figure>
-          </div>
-          <p class="soft">
-            Server sites: an "e." monogram on a tile in the site's signature color. jordan.bayl.es:
-            the Chasma Sound logo, white on black (in that repo).
-          </p>
-        </div>
+      <section>
+        <h2 class="label"><span class="n">09</span>favicons</h2>
+        <div class="icons" id="icons"></div>
+        <p>
+          Seven stars. Each favicon is the Big Dipper on a night tile with the site's own star lit
+          in its star color and the tile edged in its hue, and the header's waypoints are the same
+          seven stars. The server, eopsin, is named for
+          <span class="eop" lang="ko">업신</span> (Eopsin), the Korean household goddess of storage
+          and wealth, usually imagined as a rat snake.<sup><a href="#n1">1</a></sup> On Jeju the
+          wealth goddess is Chilseongsin, almost exactly the same as the mainland Eopsin,<sup
+            ><a href="#n1">1</a></sup
+          >
+          and chilseong (七星) means seven stars: the Big Dipper. There are seven bayl.es sites.
+        </p>
+        <p class="soft">
+          Dubhe is home, Merak my, Phecda id, Megrez audible, Alioth orbit, Mizar zero and Alkaid
+          jordan. Home Assistant keeps HA's own blue and carries the server's mark instead of a
+          star: 업 in Sunflower, in ink.
+        </p>
+        <p class="soft">
+          An eighth site takes Alcor, the faint companion beside Mizar in the Dipper's handle, long
+          used as a test of eyesight.<sup><a href="#n2">2</a></sup> In Chinese astronomy Alcor is
+          輔, the Assistant.<sup><a href="#n3">3</a></sup> Taoist tradition counts the Dipper as
+          nine: the seven stars and two not visible to the naked eye,<sup><a href="#n4">4</a></sup>
+          so a ninth site takes the other unseen one. Past nine, a site is a field star in the
+          galaxy, not part of the Dipper.
+        </p>
+        <ol class="notes">
+          <li id="n1">
+            "Eopsin," Wikipedia, last modified October 11, 2026,
+            <a href="https://en.wikipedia.org/wiki/Eopsin">https://en.wikipedia.org/wiki/Eopsin</a>.
+          </li>
+          <li id="n2">
+            "Mizar and Alcor," Wikipedia, last modified June 18, 2026,
+            <a href="https://en.wikipedia.org/wiki/Mizar_and_Alcor"
+              >https://en.wikipedia.org/wiki/Mizar_and_Alcor</a
+            >.
+          </li>
+          <li id="n3">
+            "List of Chinese Star Names," Wikipedia, accessed November 17, 2026,
+            <a href="https://en.wikipedia.org/wiki/List_of_Chinese_star_names"
+              >https://en.wikipedia.org/wiki/List_of_Chinese_star_names</a
+            >.
+          </li>
+          <li id="n4">
+            "Doumu," Wikipedia, last modified November 10, 2026,
+            <a href="https://en.wikipedia.org/wiki/Doumu">https://en.wikipedia.org/wiki/Doumu</a>.
+          </li>
+        </ol>
       </section>
 
-      <section class="split">
-        <h2 class="label"><span class="n">08</span>never</h2>
+      <section>
+        <h2 class="label"><span class="n">10</span>influences</h2>
+        <p>
+          The header is after the Sensors Manager in Homeworld (Relic Entertainment, 1999), the view
+          of the entire game map with every visible ship.<sup><a href="#n5">5</a></sup> From it come
+          the plane seen almost edge-on, its range rings, contacts on stalks to the plane and the
+          corner brackets around what is selected.
+        </p>
+        <p>
+          Light mode is after the Guidestone, the stone map in the same game that marks the way
+          home:<sup><a href="#n5">5</a></sup> a blue-grey slate with the galaxy etched on it in pale
+          lines. The slate is mixed from the palette, comment grey with a little of the purple role,
+          so it adds no new hue.
+        </p>
+        <p class="soft">
+          The lit stars are each site's hue mixed mostly with starlight, so they read as stars
+          rather than as brand colors. Nothing here is taken from the game: no art, no logos, no
+          fonts. The name eopsin and the seven stars are under favicons.
+        </p>
+        <ol class="notes" start="5">
+          <li id="n5">
+            "Homeworld (video game)," Wikipedia, accessed November 17, 2026,
+            <a href="https://en.wikipedia.org/wiki/Homeworld_(video_game)"
+              >https://en.wikipedia.org/wiki/Homeworld_(video_game)</a
+            >.
+          </li>
+        </ol>
+      </section>
+
+      <section>
+        <h2 class="label"><span class="n">11</span>never</h2>
         <ul class="never">
-          <li>cream or beige grounds</li>
-          <li>serif type, except the name on jordan.bayl.es</li>
-          <li>bordered white cards as the default container</li>
-          <li>drop shadows</li>
-          <li>gradients other than the signature strip</li>
-          <li>pill buttons</li>
-          <li>uppercase letter-spaced labels</li>
-          <li>emoji</li>
-          <li>color used only to decorate</li>
-          <li>faded text for disabled states</li>
-          <li>Inter, Roboto, Arial, Geist</li>
+          <li>a hero: no display-size wordmark, no paragraph selling the system</li>
+          <li>card grids, pill buttons, glossy or shadowed controls</li>
+          <li>blends in the keys; steps are hard</li>
+          <li>a key that measures the server on a site that serves people</li>
+          <li>a color without its word</li>
+          <li>orange on a key; it means down or failed</li>
+          <li>words over the plane or the stars; the readout sits on its own patch of ground</li>
+          <li>a contact without its word; color and height are never the only sign</li>
+          <li>motion in the galaxy; it holds still, like a paused map</li>
+          <li>new hues; derive from the tokens</li>
+          <li>
+            a period after the wordmark, the name or the "e"; a colored dot reads as a brand mark
+          </li>
+          <li>cream or beige grounds, emoji, Inter, Roboto, Arial, Geist</li>
         </ul>
       </section>
 
-      <section class="split">
-        <h2 class="label"><span class="n">09</span>use it</h2>
-        <div class="stack">
-          <pre id="snippet"></pre>
-          <p class="soft">
-            Pin a tag; a site only changes when you bump it. Rules and reasoning in
-            <a href="https://github.com/baylesj/bayl.es-style/blob/main/DESIGN.md">DESIGN.md</a>;
-            usage and release steps in the
-            <a href="https://github.com/baylesj/bayl.es-style#readme">README</a>.
-          </p>
-        </div>
+      <section>
+        <h2 class="label"><span class="n">12</span>use it</h2>
+        <pre id="snippet"></pre>
+        <p class="soft">
+          The galaxy is a small script that draws into a canvas behind the header; every site runs
+          the same one, so the field is identical and only the lit waypoint moves. Pages without it
+          keep the plain header.
+        </p>
       </section>
 
-      <footer>
+      <footer class="site">
         <span
           >bayl.es-style <span id="version"></span> ·
           <a href="https://github.com/baylesj/bayl.es-style">github</a></span
+        >
+        <span
+          title="The server is named for 업신 (Eopsin), the Korean household goddess of storage and wealth"
+          >served by eopsin, after <span class="eop" lang="ko">업신</span></span
         >
         <a href="https://style.bayl.es">style.bayl.es</a>
       </footer>
     </main>
 
-    <script type="module">
-      const VERSION = "v1.12.2"; // keep in step with package.json; CI checks it
+    <canvas id="probe" width="1" height="1" hidden></canvas>
+
+    <script>
+      const el = (tag, props = {}, ...kids) => {
+        const n = Object.assign(document.createElement(tag), props);
+        n.append(...kids);
+        return n;
+      };
+
+      const sites = {
+        jordan: {
+          host: "jordan.bayl.es",
+          hue: "pink → purple",
+          prompt: null,
+          does: "Jordan's own page; the name in Geologica, thin and spaced",
+          key: null,
+        },
+        home: {
+          host: "home.bayl.es",
+          hue: "teal → green",
+          prompt: ["jordan", "~"],
+          does: "the directory of services you can reach",
+          key: null,
+        },
+        my: {
+          host: "my.bayl.es",
+          hue: "purple → teal",
+          prompt: ["guest", "~/accounts"],
+          does: "accounts",
+          key: null,
+        },
+        id: {
+          host: "id.bayl.es",
+          hue: "purple",
+          prompt: null,
+          does: "Pocket ID: only name, logo, accent, background and favicon are ours",
+          key: null,
+        },
+        audible: {
+          host: "audible.bayl.es",
+          hue: "amber → orange",
+          prompt: ["drake", "~/audible"],
+          does: "links Audible accounts for backup",
+          key: "audible",
+        },
+        orbit: {
+          host: "orbit.bayl.es",
+          hue: "pink → purple",
+          prompt: ["jordan", "~/orbit"],
+          does: "keep up with friends and family",
+          key: "orbit",
+        },
+        zero: {
+          host: "zero.bayl.es",
+          hue: "green → teal",
+          prompt: ["jordan", "~/zero"],
+          does: "tracks spending changes",
+          key: "zero",
+        },
+      };
+
+      // [mark, hue, word]; marks: full, line, mid
+      const keys = {
+        orbit: {
+          what: "time since you were last in touch, against the person's ring",
+          why: "Rings ask for a check-in: inner every 2 weeks, near monthly, outer every 3 months, far twice a year. Ahead of the ring is green, behind it is amber.",
+          dir: "diverging",
+          steps: [
+            ["full", "green", "just talked"],
+            ["line", "green", "ahead"],
+            ["mid", "", "at the ring"],
+            ["line", "amber", "past due"],
+            ["full", "amber", "drifting"],
+          ],
+        },
+        zero: {
+          what: "how far a spending bucket moved from its usual",
+          why: "Under usual is green, over usual is amber, both in two steps. An arrow beside the word repeats the direction.",
+          dir: "diverging",
+          steps: [
+            ["full", "green", "well under ↓"],
+            ["line", "green", "under ↓"],
+            ["mid", "", "usual"],
+            ["line", "amber", "over ↑"],
+            ["full", "amber", "well over ↑"],
+          ],
+        },
+        audible: {
+          what: "time since a linked account's last backup",
+          why: "Time only runs one way, so there's no middle: it starts green and ends amber.",
+          dir: "one way",
+          steps: [
+            ["full", "green", "today"],
+            ["line", "green", "this week"],
+            ["line", "amber", "this month"],
+            ["full", "amber", "older"],
+          ],
+        },
+      };
 
       const principles = [
+        [
+          "An instrument, not a storefront",
+          "Small wordmark, plain controls, one column. The page reads like a README for a server.",
+        ],
         [
           "Color means something",
           "Each hue is a role, the same on every site. If a color carries no meaning, it is ink or grey.",
         ],
         [
-          "Rules, not boxes",
-          "Group with hairlines and space. A panel is for the one thing that stands apart.",
+          "Muted, like starlight",
+          "Every hue is dusty: chroma cut in OKLCH, contrast kept. Nothing shouts; the brightest thing on a page is a star.",
         ],
         [
-          "Words in the sans, machine facts in mono",
-          "Hostnames, counts, states, labels and the prompt are Fira Code. No mono paragraphs.",
+          "One galaxy, a waypoint per site",
+          "After the Sensors Manager in Homeworld (see influences): one star field seen almost edge-on, the same on every site. The seven waypoints are the Big Dipper, and the site you are on is lit. Cropped by the page and kept off the words.",
         ],
         [
-          "Every site has a signature",
-          "One hue per site on the strip, the wordmark dot, the prompt path, panels and the primary button.",
+          "Keys measure what a site is for",
+          "orbit measures being in touch, zero spending, audible backups. home, my, id and jordan have nothing to measure and get no key.",
         ],
         [
-          "The prompt line says where you are",
-          "user@eopsin:~/place, with the real signed-in user. The breadcrumb and who-am-I in one.",
+          "Direction gets two hues",
+          "Green on the fine side, amber on the side that wants a look, grey in the middle.",
+        ],
+        [
+          "Selection is a bracket",
+          "Hover, selected and focus draw four thin corners, the way a selected contact looks on the map. Nothing else from the game comes into the controls.",
+        ],
+        [
+          "Words in Atkinson, machine facts in its mono",
+          "Hostnames, counts, states, labels, readouts and the prompt are Atkinson Hyperlegible Mono. No mono paragraphs.",
         ],
         [
           "Dark is its own theme",
-          "Deep teal-black with brighter role colors, like an editor theme. Not light mode inverted.",
+          "The deep teal-green ground with brighter role colors. Not light mode inverted.",
         ],
         [
           "Accessible by default",
-          "Text 4.5:1, marks 3:1, in both themes and on tinted panels. Grey, never faded.",
-        ],
-        [
-          "Apps bring their own color",
-          "Real app icons stay untinted. Without one, a letter tile takes the signature hue.",
+          "Text 4.5:1, marks 3:1, on the page and the panel, in both themes. Grey, never faded.",
         ],
       ];
 
-      const sites = [
-        ["jordan", "jordan.bayl.es", "pink → purple", "the name in EB Garamond, no prompt line"],
-        ["home", "home.bayl.es", "teal → green", "jordan@eopsin:~"],
-        ["my", "my.bayl.es", "purple → teal", "guest@eopsin:~/accounts"],
-        [
-          "id",
-          "id.bayl.es",
-          "purple",
-          "Pocket ID: only name, logo, accent, background and favicon are ours; its serif heading and pill button are built in",
-        ],
-        [
-          "audible",
-          "audible.bayl.es",
-          "amber → orange",
-          "drake@eopsin:~/audible · ink on amber buttons",
-        ],
-      ];
-
-      // [token, role, use, minimum ratio]
-      const colors = [
+      // [token, role, use, min] — min 0 means decorative
+      const colorRows = [
         ["--ink", "ink", "text, the header rule", 4.5],
-        ["--comment", "comment", "secondary text, labels", 4.5],
+        ["--comment", "comment", "secondary text, labels, field borders", 4.5],
         ["--soft", "soft", "secondary prose", 4.5],
-        ["--teal", "teal", "links, private routes", 4.5],
-        ["--green", "green", "public, OK, selected", 4.5],
+        ["--teal", "teal", "links, focus, private routes", 4.5],
+        ["--green", "green", "public, OK, the ok dot, key: the fine side", 4.5],
         ["--purple", "purple", "counts, section numbers", 4.5],
-        ["--amber-text", "amber text", "needs attention", 4.5],
-        ["--orange", "orange", "down, failed", 4.5],
-        ["--pink", "pink", "jordan signature (fill)", 3],
-        ["--amber", "amber", "audible strip and button fill (ink text on it)", 0],
-        ["--teal-bright", "teal bright", "fills only", 3],
-        ["--green-bright", "green bright", "fills only", 3],
-        ["--orange-bright", "orange bright", "fills only", 3],
-        ["--line", "line", "hairlines (decorative)", 0],
+        ["--amber-text", "amber text", "needs attention, key: the look side", 4.5],
+        ["--orange", "orange", "down, failed, the down dot", 4.5],
+        ["--pink-text", "pink text", "jordan and orbit text and button", 4.5],
+        [
+          "--sig-text",
+          "this site's text",
+          "prompt path, labels, step numbers, the selection bracket",
+          4.5,
+        ],
+        ["--green-bright", "green bright", "fills only: tints", 0],
+        ["--orange-bright", "orange bright", "fills only: the alert tint", 0],
+        ["--pink", "pink", "jordan tint (fill)", 0],
+        ["--amber", "amber", "audible fill, ink text on it", 0],
+        [
+          "--star",
+          "this site's star",
+          "the lit waypoint and the favicon star: the site's hue, mostly starlight; measured on the map, 3.2:1 or better on slate and night",
+          0,
+        ],
+        ["--slate", "slate", "the map by day, after the Guidestone (decorative)", 0],
+        [
+          "--bracket",
+          "bracket",
+          "selection and focus corners: the site's text hue in both themes",
+          3,
+        ],
+        ["--g-ring", "range rings", "the plane's rings (decorative)", 0],
+        ["--g-star3", "starlight", "the brightest stars, the same on every site (decorative)", 0],
+        ["--g-dim", "other waypoints", "the sites you are not on (decorative)", 0],
+        ["--line", "line", "hairlines", 0],
       ];
 
-      const el = (tag, props = {}, ...kids) => {
-        const node = Object.assign(document.createElement(tag), props);
-        node.append(...kids);
-        return node;
+      // ---------- color math ----------
+      const pctx = document.getElementById("probe").getContext("2d", { willReadFrequently: true });
+      const probeHost = el("div", { hidden: true });
+      document.body.append(probeHost);
+      function resolve(expr, site) {
+        const s = el("span");
+        if (site) s.dataset.site = site;
+        s.style.color = expr;
+        probeHost.append(s);
+        const c = getComputedStyle(s).color;
+        s.remove();
+        pctx.clearRect(0, 0, 1, 1);
+        pctx.fillStyle = "#000";
+        pctx.fillStyle = c;
+        pctx.fillRect(0, 0, 1, 1);
+        return [...pctx.getImageData(0, 0, 1, 1).data.slice(0, 3)];
+      }
+      const hex = (c) => "#" + c.map((v) => v.toString(16).padStart(2, "0")).join("");
+      const lum = (c) =>
+        c
+          .map((v) => v / 255)
+          .map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
+          .reduce((s, v, i) => s + v * [0.2126, 0.7152, 0.0722][i], 0);
+      const contrast = (a, b) => {
+        const [hi, lo] = [lum(a), lum(b)].sort((x, y) => y - x);
+        return (hi + 0.05) / (lo + 0.05);
       };
+      const ratioEl = (r, min) =>
+        min
+          ? el(
+              "span",
+              { className: `ratio ${r >= min ? "pass" : "fail"}` },
+              `${r.toFixed(2)}${r >= min ? "" : " ✕"}`,
+            )
+          : el("span", { className: "ratio na" }, r.toFixed(2));
 
+      // ---------- example data: the rows in 04 ----------
+      // orbit/zero/audible: step is an index into that site's key. ring is a range ring (1 = innermost).
+      const contacts = {
+        orbit: {
+          note: "people on their rings",
+          items: [
+            { name: "Person A", desc: "inner ring · every 2 weeks · 3 days ago", ring: 1, step: 0 },
+            { name: "Person B", desc: "near ring · monthly · 4 weeks ago", ring: 2, step: 2 },
+            {
+              name: "Person C",
+              desc: "outer ring · every 3 months · 5 months ago",
+              ring: 3,
+              step: 4,
+              read: true,
+            },
+            { name: "Person D", desc: "far ring · twice a year · 2 months ago", ring: 4, step: 1 },
+            {
+              name: "Person E",
+              desc: "near ring · monthly · 6 weeks ago",
+              ring: 2,
+              step: 3,
+              read: true,
+            },
+          ],
+        },
+        zero: {
+          note: "spending buckets this month",
+          items: [
+            { name: "Groceries", desc: "against its usual month", step: 2 },
+            { name: "Eating out", desc: "against its usual month", step: 3, read: true },
+            { name: "Transit", desc: "against its usual month", step: 1 },
+            { name: "Utilities", desc: "against its usual month", step: 2 },
+            { name: "Subscriptions", desc: "against its usual month", step: 4, read: true },
+          ],
+        },
+        audible: {
+          note: "linked accounts by last backup",
+          items: [
+            { name: "Account 1", desc: "last backup 2 hours ago", step: 0 },
+            { name: "Account 2", desc: "last backup 9 days ago", step: 2, read: true },
+            { name: "Account 3", desc: "last backup 5 weeks ago", step: 3, read: true },
+          ],
+        },
+        home: {
+          note: "the services you can reach",
+          items: [
+            { name: "Jellyfin", desc: "jellyfin.bayl.es", route: "public", read: true },
+            { name: "Home Assistant", desc: "lan", route: "lan" },
+            { name: "Kiwix", desc: "home only", route: "home only", read: true },
+            { name: "Immich", desc: "photos", route: "" },
+          ],
+        },
+      };
+      // diverging keys: past the mark rises, ahead of it sinks, at it sits on the plane
+      const HEIGHT = { orbit: [-0.26, -0.13, 0, 0.17, 0.34], zero: [-0.26, -0.13, 0, 0.17, 0.34] };
+      const ROUTE = { public: "--green", lan: "--teal", "home only": "--comment", "": "--soft" };
+      const hueVar = (h) =>
+        h === "green" ? "--green" : h === "amber" ? "--amber-text" : "--comment";
+
+      // ---------- sections ----------
       document
         .getElementById("principles")
         .append(
           ...principles.map(([t, d]) =>
             el(
               "div",
-              { className: "row", style: "grid-template-columns: minmax(0, 1fr)" },
+              { className: "row plain" },
               el(
                 "span",
                 { className: "txt" },
@@ -554,77 +1002,265 @@
           ),
         );
 
-      document
-        .getElementById("sites")
-        .append(
-          ...sites.map(([key, host, hue, note]) =>
+      function renderSites() {
+        const cur = document.body.dataset.site;
+        document
+          .getElementById("sites")
+          .replaceChildren(
+            ...Object.entries(sites).map(([k, s]) =>
+              el(
+                "div",
+                { className: "row" },
+                el("img", { src: `../icons/${k}.svg`, width: 28, height: 28, alt: "" }),
+                el(
+                  "span",
+                  { className: "txt" },
+                  el("span", { className: "name" }, s.host + (k === cur ? "  ← this page" : "")),
+                  el(
+                    "span",
+                    { className: "desc" },
+                    s.prompt
+                      ? el(
+                          "span",
+                          { className: "mono", style: "font-size:12px" },
+                          `${s.prompt[0]}@eopsin:${s.prompt[1]} · `,
+                        )
+                      : "",
+                    s.does,
+                  ),
+                ),
+                el("span", { className: "meta" }, s.key ? `${s.hue} · key` : `${s.hue} · no key`),
+              ),
+            ),
+          );
+      }
+
+      const stepEl = ([m, h, w]) =>
+        el(
+          "span",
+          { className: "step" },
+          el("span", { className: `sq ${m} ${h ? "h-" + h : ""}` }),
+          w,
+        );
+
+      function renderKeys() {
+        const cur = document.body.dataset.site;
+        const blocks = ["orbit", "zero", "audible"].map((k) => {
+          const K = keys[k];
+          return el(
+            "div",
+            { className: `keyblock${k === cur ? " this" : ""}` },
+            el("span", {}, `${sites[k].host}\n${K.dir}`),
             el(
               "div",
-              { className: "row" },
-              key === "jordan"
-                ? el("span", { className: "tile", style: "background: var(--pink)" }, "j")
-                : el("img", { src: `../icons/${key}.svg`, alt: "" }),
-              el(
-                "span",
-                { className: "txt" },
-                el("span", { className: "name" }, host),
-                el("span", { className: "desc" }, note),
-              ),
-              el("span", { className: "meta" }, hue),
+              { style: "display:flex;flex-direction:column;gap:8px;min-width:0" },
+              el("span", { className: "what" }, K.what),
+              el("div", { className: "keyrow" }, ...K.steps.map(stepEl)),
+              el("span", { className: "why" }, K.why),
+            ),
+          );
+        });
+        blocks.push(
+          el(
+            "div",
+            { className: `keyblock${["home", "my", "id", "jordan"].includes(cur) ? " this" : ""}` },
+            el("span", {}, "home · my · id · jordan"),
+            el(
+              "span",
+              { className: "why" },
+              "Nothing to measure, so no key. They use the role colors and the plane, nothing else.",
             ),
           ),
         );
+        document.getElementById("keys").replaceChildren(...blocks);
+      }
 
-      // Resolve a token to rgb() in the current theme/site, then compute WCAG contrast.
-      const probe = el("span", { hidden: true });
-      document.body.append(probe);
-      const rgb = (value) => {
-        probe.style.color = value;
-        return getComputedStyle(probe)
-          .color.match(/[\d.]+/g)
-          .slice(0, 3)
-          .map(Number);
-      };
-      const hex = ([r, g, b]) =>
-        "#" + [r, g, b].map((v) => Math.round(v).toString(16).padStart(2, "0")).join("");
-      const luminance = (c) =>
-        c
-          .map((v) => v / 255)
-          .map((v) => (v <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4))
-          .reduce((sum, v, i) => sum + v * [0.2126, 0.7152, 0.0722][i], 0);
-      const contrast = (a, b) => {
-        const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
-        return (hi + 0.05) / (lo + 0.05);
-      };
+      function renderExamples() {
+        const sec = (title, ...rows) =>
+          el(
+            "div",
+            { className: "eg", style: "margin-top:14px" },
+            el("h3", {}, title),
+            el("span", { className: "eglabel" }, "example data"),
+            el("div", {}, ...rows),
+          );
+        const erow = (name, desc, right) =>
+          el(
+            "div",
+            { className: "erow" },
+            el(
+              "span",
+              { className: "who" },
+              el("span", { className: "name" }, name),
+              el("span", { className: "desc" }, desc),
+            ),
+            right,
+          );
+        const st = (key, i) => el("span", { className: "keyrow" }, stepEl(keys[key].steps[i]));
+        const route = (rt) =>
+          el(
+            "span",
+            { className: "mono", style: `font-size:12px;color:var(${ROUTE[rt]})` },
+            rt || "—",
+          );
 
-      const grid = document.getElementById("colors");
+        document
+          .getElementById("examples")
+          .replaceChildren(
+            sec(
+              "home · your apps",
+              ...contacts.home.items.map((c) => erow(c.name, c.desc, route(c.route))),
+            ),
+            sec(
+              "orbit · who's due",
+              ...contacts.orbit.items.map((c) => erow(c.name, c.desc, st("orbit", c.step))),
+            ),
+            sec(
+              "zero · what moved this month",
+              ...contacts.zero.items.map((c) => erow(c.name, c.desc, st("zero", c.step))),
+            ),
+            sec(
+              "audible · linked accounts",
+              ...contacts.audible.items.map((c) => erow(c.name, c.desc, st("audible", c.step))),
+              el(
+                "div",
+                { className: "actions", style: "padding-top:10px" },
+                el("button", { type: "button", className: "go bk tight" }, "Back up now"),
+              ),
+            ),
+            el(
+              "p",
+              { className: "soft", style: "margin-top:14px" },
+              "my and id use the sign-in panel in 07; jordan.bayl.es is the name in 06.",
+            ),
+          );
+      }
+
       function renderColors() {
-        const ground = rgb("var(--ground)");
-        grid.replaceChildren(
-          ...colors.map(([token, role, use, min]) => {
-            const c = rgb(`var(${token})`);
-            const r = contrast(c, ground);
-            const ok = r >= min;
+        const ground = resolve("var(--ground)");
+        const panel = resolve("var(--panel)");
+        document.getElementById("colors").replaceChildren(
+          ...colorRows.map(([tok, role, use, min, only]) => {
+            const c = resolve(`var(${tok})`);
             return el(
-              "div",
-              { className: "swatch" },
-              el("div", { className: "chip", style: `background: var(${token})` }),
-              el("strong", {}, role),
-              el("span", { className: "mono" }, `${token} ${hex(c)}`),
-              el("span", { className: "soft", style: "font-size: 13px" }, use),
-              min
-                ? el(
-                    "span",
-                    { className: `ratio ${ok ? "pass" : "fail"}` },
-                    `${r.toFixed(2)}:1 ${ok ? "≥" : "<"} ${min}`,
-                  )
-                : el("span", { className: "ratio" }, "—"),
+              "tr",
+              {},
+              el("td", {}, el("span", { className: "chip", style: `background: var(${tok})` })),
+              el(
+                "td",
+                {},
+                el("div", {}, role),
+                el("div", { className: "tok" }, `${tok} ${hex(c)}`),
+              ),
+              el("td", { className: "use soft" }, use),
+              el("td", { className: "r" }, ratioEl(contrast(c, ground), min)),
+              el(
+                "td",
+                { className: "r" },
+                only === "page"
+                  ? el("span", { className: "ratio na" }, "not used")
+                  : ratioEl(contrast(c, panel), min),
+              ),
+              el("td", { className: "r tok" }, min ? `${min}:1` : "—"),
             );
           }),
         );
+        // button labels on every site's fill, and step marks on every surface
+        const cur = document.body.dataset.site;
+        document.getElementById("buttons").replaceChildren(
+          ...Object.keys(sites)
+            .filter((s) => s !== "id")
+            .map((s) => {
+              const r = contrast(resolve("var(--on-sig)", s), resolve("var(--sig)", s));
+              const t = Math.min(
+                contrast(resolve("var(--sig-text)", s), resolve("var(--ground)", s)),
+                contrast(resolve("var(--sig-text)", s), resolve("var(--panel)", s)),
+              );
+              return el(
+                "div",
+                { className: "row", style: "grid-template-columns: auto minmax(0,1fr) auto" },
+                (() => {
+                  const b = el(
+                    "span",
+                    { className: "btn", style: "min-height:28px;font-size:13px;padding:0 10px" },
+                    "Continue",
+                  );
+                  b.dataset.site = s;
+                  return b;
+                })(),
+                el(
+                  "span",
+                  { className: "txt" },
+                  el(
+                    "span",
+                    { className: "name" },
+                    sites[s].host + (s === cur ? " ← this page" : ""),
+                  ),
+                  el(
+                    "span",
+                    { className: "desc" },
+                    "label on the fill · the site's text on page and panel",
+                  ),
+                ),
+                el("span", { className: "meta" }, ratioEl(r, 4.5), " · ", ratioEl(t, 4.5)),
+              );
+            }),
+        );
       }
 
-      // Site and theme switches (remembered per visitor).
+      function renderIcons() {
+        document
+          .getElementById("icons")
+          .replaceChildren(
+            ...Object.keys(sites).map((k) =>
+              el(
+                "figure",
+                {},
+                el("img", { src: `../icons/${k}.svg`, width: 44, height: 44, alt: "" }),
+                el("figcaption", {}, k),
+              ),
+            ),
+            el(
+              "figure",
+              {},
+              el("img", { src: "../icons/ha.svg", width: 44, height: 44, alt: "" }),
+              el("figcaption", {}, "ha"),
+            ),
+          );
+      }
+
+      const EOPSIN =
+        "The server is named for 업신 (Eopsin), the Korean household goddess of storage and wealth";
+      function renderPrompt() {
+        const s = sites[document.body.dataset.site];
+        const p = document.getElementById("prompt");
+        if (s.prompt) {
+          p.replaceChildren(
+            el("span", { className: "u" }, s.prompt[0]),
+            "@",
+            el("abbr", { className: "eopsin", title: EOPSIN }, "eopsin"),
+            ":",
+            el("span", { className: "p" }, s.prompt[1]),
+          );
+        } else {
+          p.replaceChildren(
+            document.body.dataset.site === "jordan"
+              ? "jordan.bayl.es · no prompt line"
+              : "id.bayl.es · Pocket ID",
+          );
+        }
+      }
+
+      function renderAll() {
+        renderPrompt();
+        renderSites();
+        renderKeys();
+        renderExamples();
+        renderColors();
+        renderIcons();
+      }
+
+      // ---------- switches ----------
       const store = {
         get: (k) => {
           try {
@@ -636,28 +1272,26 @@
         set: (k, v) => {
           try {
             localStorage.setItem(k, v);
-          } catch {
-            /* private mode */
-          }
+          } catch {}
         },
       };
-      function setSite(v) {
+      const params = new URLSearchParams(location.search);
+      function setSite(v, save = true) {
+        if (!sites[v]) v = "home";
         document.body.dataset.site = v;
-        document.querySelector("link[rel=icon]").href =
-          `../icons/${v === "jordan" ? "home" : v}.svg`;
         document
           .querySelectorAll("#site button")
           .forEach((b) => b.classList.toggle("on", b.dataset.v === v));
-        store.set("site", v);
-        renderColors();
+        if (save) store.set("h2-site", v);
+        renderAll();
       }
-      function setTheme(v) {
+      function setTheme(v, save = true) {
         document.documentElement.dataset.theme = v;
         document
           .querySelectorAll("#theme button")
           .forEach((b) => b.classList.toggle("on", b.dataset.v === v));
-        store.set("theme", v);
-        renderColors();
+        if (save) store.set("h2-theme", v);
+        renderAll();
       }
       document
         .querySelectorAll("#site button")
@@ -666,16 +1300,36 @@
         .querySelectorAll("#theme button")
         .forEach((b) => (b.onclick = () => setTheme(b.dataset.v)));
 
-      const systemDark = matchMedia("(prefers-color-scheme: dark)").matches;
-      setTheme(store.get("theme") || (systemDark ? "dark" : "light"));
-      setSite(store.get("site") || "home");
+      const sysDark = matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.dataset.theme =
+        params.get("theme") || store.get("h2-theme") || (sysDark ? "dark" : "light");
+      document
+        .querySelectorAll("#theme button")
+        .forEach((b) =>
+          b.classList.toggle("on", b.dataset.v === document.documentElement.dataset.theme),
+        );
+      setSite(params.get("site") || store.get("h2-site") || "home", !params.get("site"));
 
-      document.getElementById("version").textContent = VERSION;
+      const VERSION = "v2.0.0"; // keep in step with package.json; CI checks it
+      const CDN = `https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@${VERSION}`;
       document.getElementById("snippet").textContent = [
-        `<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@${VERSION}/dist/eopsin.min.css">`,
-        `<link rel="icon" type="image/svg+xml" href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@${VERSION}/icons/home.svg">`,
-        `<body data-site="home">  <!-- jordan | home | my | id | audible | orbit | zero -->`,
+        `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap">`,
+        `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sunflower:wght@700&text=%EC%97%85%EC%8B%A0&display=swap">`,
+        `<link rel="stylesheet" href="${CDN}/dist/eopsin.min.css">`,
+        `<link rel="icon" type="image/svg+xml" href="${CDN}/icons/orbit.svg">`,
+        `<script src="${CDN}/js/galaxy.js" defer><\/script>`,
+        ``,
+        `<body data-site="orbit">   <!-- jordan | home | my | id | audible | orbit | zero -->`,
+        `<header class="scope">`,
+        `  <canvas></canvas>`,
+        `  <div class="wrap"><div class="head">`,
+        `    <span class="prompt"><span class="u">jordan</span>@<abbr class="eopsin" title="…">eopsin</abbr>:<span class="p">~/orbit</span></span>`,
+        `    <h1 class="mark">orbit</h1>`,
+        `  </div></div>`,
+        `  <span class="caption"></span>`,
+        `</header>`,
       ].join("\n");
+      document.getElementById("version").textContent = VERSION;
     </script>
   </body>
 </html>

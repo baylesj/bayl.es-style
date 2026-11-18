@@ -1,14 +1,12 @@
-// Loads the bayl.es fonts (Schibsted Grotesk, Fira Code) in Home Assistant, self-hosted from
+// Loads the bayl.es fonts (Atkinson Hyperlegible Next and Mono) in Home Assistant, self-hosted from
 // /config/www/bayles/fonts, gives markdown cards the bayl.es table style (src/base.css), and swaps HA's
-// favicon and home-screen icon for the eopsin "e." tile in Home Assistant blue (/config/www/bayles/icons).
+// favicon and home-screen icon for the eopsin tile in Home Assistant blue (업 in Sunflower) (/config/www/bayles/icons).
 // Register as a dashboard resource (module): /local/bayles/bayles-fonts.js
 const FACES = `
-@font-face { font-family: "Schibsted Grotesk"; font-style: normal; font-weight: 400 700; font-display: swap;
-  src: url("/local/bayles/fonts/schibsted-grotesk-latin-wght-normal.woff2") format("woff2"); }
-@font-face { font-family: "Fira Code"; font-style: normal; font-weight: 400; font-display: swap;
-  src: url("/local/bayles/fonts/fira-code-latin-400-normal.woff2") format("woff2"); }
-@font-face { font-family: "Fira Code"; font-style: normal; font-weight: 500; font-display: swap;
-  src: url("/local/bayles/fonts/fira-code-latin-500-normal.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible Next"; font-style: normal; font-weight: 200 800; font-display: swap;
+  src: url("/local/bayles/fonts/atkinson-hyperlegible-next-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible Mono"; font-style: normal; font-weight: 200 800; font-display: swap;
+  src: url("/local/bayles/fonts/atkinson-hyperlegible-mono-latin-wght-normal.woff2") format("woff2"); }
 `;
 if (!document.getElementById("bayles-fonts")) {
   const style = document.createElement("style");
@@ -21,13 +19,10 @@ if (!document.getElementById("bayles-fonts")) {
 // --markdown-table-* variables (no radius, header fill or column sizing), so this adds a stylesheet to
 // each <ha-markdown> shadow root, after HA's own styles so it wins at equal specificity.
 const TABLES = `
-table { width: 100%; border: 1px solid var(--divider-color); border-radius: 10px;
-  border-collapse: separate; border-spacing: 0; overflow: hidden; font-variant-numeric: tabular-nums; }
-th, td { padding: 8px 12px; border: 0; border-bottom: 1px solid var(--divider-color);
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { padding: 7px 12px 7px 0; border: 0; border-bottom: 1px solid var(--divider-color);
   text-align: start; vertical-align: baseline; }
-th { background: color-mix(in srgb, var(--primary-color) 9%, var(--card-background-color));
-  color: var(--secondary-text-color); font-size: 13px; font-weight: 600; }
-tr:last-child > td { border-bottom: 0; }
+th { color: var(--secondary-text-color); font: 400 12px var(--code-font-family, monospace); }
 :is(th, td):first-child { width: 100%; }
 :is(th, td):not(:first-child) { white-space: nowrap; }
 :is(th, td):is([align="right"], .num) { text-align: end; }

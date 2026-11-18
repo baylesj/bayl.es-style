@@ -9,8 +9,8 @@ home.bayl.es's signature: teal, with green for "on".
 1. Copy `bayles.yaml` to `/config/themes/bayles/` (needs `frontend: themes: !include_dir_merge_named themes`).
 2. Copy `bayles-fonts.js` to `/config/www/bayles/`, and these woff2 files from Fontsource to
    `/config/www/bayles/fonts/`:
-   - `schibsted-grotesk-latin-wght-normal.woff2` (`@fontsource-variable/schibsted-grotesk`)
-   - `fira-code-latin-400-normal.woff2` and `fira-code-latin-500-normal.woff2` (`@fontsource/fira-code`)
+   - `atkinson-hyperlegible-next-latin-wght-normal.woff2` (`@fontsource-variable/atkinson-hyperlegible-next`)
+   - `atkinson-hyperlegible-mono-latin-wght-normal.woff2` (`@fontsource-variable/atkinson-hyperlegible-mono`)
 3. Copy `icons/` to `/config/www/bayles/icons/`. `bayles-fonts.js` swaps HA's favicon and iOS home-screen icon
    for the eopsin tile in Home Assistant blue (rendered from `../icons/ha.svg` by `scripts/icon-png.py`).
 4. Add the dashboard resource `/local/bayles/bayles-fonts.js` (JavaScript module).

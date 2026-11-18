@@ -1,8 +1,9 @@
 /*
- * Tokens: color roles, type families and per-site signatures.
+ * Tokens: color roles, type families, per-site signatures and the galaxy.
  *
- * Text colors meet WCAG AA (4.5:1) in both themes, on the page and on tinted panels. The *-bright
- * variants are for fills that only need 3:1 (the signature strip, status dots, panel tints).
+ * The palette is muted: every hue keeps its angle, its chroma is cut to 60% in OKLCH, and its
+ * lightness moves only as far as contrast needs. Text colors meet WCAG AA (4.5:1) in both themes, on
+ * the page and on every panel tint. The *-bright variants are for fills that only need 3:1.
  *
  * Colors use light-dark(), so they follow the visitor's system theme. A page can force a theme
  * with <html data-theme="light|dark">.
@@ -13,7 +14,7 @@
     color-scheme: light dark;
 
     /* Neutrals */
-    --ink: light-dark(#14282b, #d9e9e8); /* text, the header rule */
+    --ink: light-dark(#14282b, #d9e9e8); /* text */
     --comment: light-dark(#576e71, #74999c); /* secondary text, labels */
     --soft: light-dark(#4e6b6e, #9dbab9); /* secondary prose */
     --line: light-dark(#e4ebec, #16353a); /* hairlines between rows */
@@ -21,32 +22,36 @@
     --field: light-dark(#fff, #0e282c); /* form fields */
 
     /* Roles, named for what they mean (like syntax highlighting) */
-    --pink: light-dark(#e0457b, #f07ea6); /* jordan.bayl.es signature */
-    --teal: light-dark(#00748a, #3dc5d6); /* links, focus, private routes */
-    --green: light-dark(#007b52, #55e0a6); /* public, OK, selected */
-    --purple: light-dark(#5b4be0, #9184f5); /* counts, section numbers */
-    --amber: light-dark(#d99a00, #e8c07a); /* needs attention */
-    --orange: light-dark(#b64914, #f2925c); /* down, failed, destructive */
-    --amber-text: light-dark(#916600, #e8c07a); /* amber at text contrast */
+    --pink: light-dark(#c16780, #d691a7); /* jordan and orbit signature (fills) */
+    --teal: light-dark(#40707c, #7bbec7); /* links, focus, private routes */
+    --green: light-dark(#41745b, #8dd5b2); /* public, OK, selected */
+    --purple: light-dark(#5d5eb2, #928ed0); /* counts, section numbers */
+    --amber: light-dark(#c6a163, #dbc39b); /* needs attention */
+    --orange: light-dark(#9c5c43, #d99f80); /* down, failed, destructive */
+    --amber-text: light-dark(#7d653d, #dbc39b); /* amber at text contrast, also on panel tints */
+    --pink-text: light-dark(#a65069, #d691a7); /* pink at text contrast, and behind white text */
 
     /* Fill-only variants (3:1 is enough for non-text) */
-    --teal-bright: light-dark(#0087a0, #3dc5d6); /* fills only */
-    --green-bright: light-dark(#00a36c, #55e0a6); /* fills only */
-    --orange-bright: light-dark(#e86a2c, #f2925c); /* fills only */
+    --teal-bright: light-dark(#4c8291, #7bbec7); /* fills only */
+    --green-bright: light-dark(#589a78, #8dd5b2); /* fills only */
+    --orange-bright: light-dark(#ca7f5f, #d99f80); /* fills only */
     --on-sig: light-dark(#fff, #0a1f22); /* text on a signature-colored fill */
 
     /* Type. Each page loads the fonts; see README. */
-    --sans: "Schibsted Grotesk", -apple-system, system-ui, sans-serif;
-    --mono: "Fira Code", ui-monospace, monospace;
-    --serif: "EB Garamond", garamond, georgia, serif; /* jordan.bayl.es name only */
+    --sans: "Atkinson Hyperlegible Next", -apple-system, system-ui, sans-serif;
+    --mono: "Atkinson Hyperlegible Mono", ui-monospace, monospace;
+    --name: "Geologica", var(--sans); /* jordan.bayl.es name only: 200, sharp, tracked +0.12em */
+    --eop: "Sunflower", var(--sans); /* 업신, the goddess the server is named for */
 
     /* Signature defaults; [data-site] below sets the real ones. --sig is safe behind white text and
-       as text; --sig-fill/--sig2-fill are the brighter strip and tint colors. */
+       as text; --sig-fill/--sig2-fill are the fill colors. --star is the site's lit star: its hue,
+       mostly starlight, the same in both themes. */
     --sig: var(--teal);
     --sig2: var(--green);
     --sig-text: var(--sig);
     --sig-fill: var(--teal-bright);
     --sig2-fill: var(--green-bright);
+    --star: color-mix(in srgb, #0087a0 40%, #eef3f5);
   }
 
   :root[data-theme="light"] {
@@ -57,14 +62,16 @@
     color-scheme: dark;
   }
 
-  /* One hue per site, fading into a neighbor. */
+  /* One hue per site, fading into a neighbor, and one star in the Big Dipper. */
   [data-site="jordan"],
   [data-site="orbit"] {
-    --sig: var(--pink);
+    --sig: var(--pink-text); /* white on plain pink is 3.8:1 */
     --sig2: var(--purple);
-    --sig-text: var(--pink);
+    --sig-text: var(--pink-text);
     --sig-fill: var(--pink);
     --sig2-fill: var(--purple);
+    --star: color-mix(in srgb, #e0457b 40%, #eef3f5);
+    --on-sig: light-dark(#fff, #0a1f22);
   }
 
   [data-site="zero"] {
@@ -73,6 +80,8 @@
     --sig-text: var(--green);
     --sig-fill: var(--green-bright);
     --sig2-fill: var(--teal-bright);
+    --star: color-mix(in srgb, #00a36c 40%, #eef3f5);
+    --on-sig: light-dark(#fff, #0a1f22);
   }
 
   [data-site="home"] {
@@ -81,6 +90,8 @@
     --sig-text: var(--teal);
     --sig-fill: var(--teal-bright);
     --sig2-fill: var(--green-bright);
+    --star: color-mix(in srgb, #0087a0 40%, #eef3f5);
+    --on-sig: light-dark(#fff, #0a1f22);
   }
 
   [data-site="my"],
@@ -90,6 +101,8 @@
     --sig-text: var(--purple);
     --sig-fill: var(--purple);
     --sig2-fill: var(--teal-bright);
+    --star: color-mix(in srgb, #5b4be0 40%, #eef3f5);
+    --on-sig: light-dark(#fff, #0a1f22);
   }
 
   [data-site="audible"] {
@@ -99,5 +112,44 @@
     --sig-fill: var(--amber);
     --sig2-fill: var(--orange-bright);
     --on-sig: #14282b; /* amber is too light for white text */
+    --star: color-mix(in srgb, #d99a00 40%, #eef3f5);
+  }
+
+  /* Derived tokens are declared on every [data-site] element too, so they mix that site's hues (a
+     var() inside a custom property resolves where it's declared). */
+  :root,
+  [data-site] {
+    --panel: color-mix(in srgb, var(--sig-fill) 9%, var(--ground)); /* the one tinted container */
+    --alert: color-mix(in srgb, var(--orange-bright) 10%, var(--ground));
+    --bracket: var(--sig-text); /* selection and focus corners */
+
+    /* The galaxy (js/galaxy.js): neutral starlight, the same on every site. At night it sits on the
+       page's own ground. By day the map is slate, after Homeworld's Guidestone: comment grey with a
+       little of the purple role, darkened toward ink, with the galaxy etched on it in pale lines. */
+    --slate: color-mix(
+      in srgb,
+      color-mix(in srgb, var(--comment) 80%, var(--purple)),
+      var(--ink) 18%
+    );
+    --g-field: light-dark(var(--slate), var(--ground));
+    --g-ring: light-dark(
+      color-mix(in srgb, var(--slate) 70%, var(--ground)),
+      color-mix(in srgb, var(--comment) 34%, var(--ground))
+    );
+    --g-spoke: color-mix(in srgb, var(--comment) 14%, var(--ground));
+    --g-star1: color-mix(in srgb, var(--ink) 24%, var(--ground));
+    --g-star2: color-mix(in srgb, var(--ink) 46%, var(--ground));
+    --g-star3: color-mix(in srgb, var(--ink) 82%, var(--ground));
+    --g-stalk: color-mix(in srgb, var(--comment) 52%, var(--ground));
+    --g-dim: color-mix(in srgb, var(--comment) 85%, var(--ground));
+
+    /* by day: the galaxy etched on the slate */
+    --e-ring: color-mix(in srgb, var(--ground) 34%, var(--slate));
+    --e-spoke: color-mix(in srgb, var(--ground) 14%, var(--slate));
+    --e-stalk: color-mix(in srgb, var(--ground) 55%, var(--slate));
+    --e-dim: color-mix(in srgb, var(--ground) 78%, var(--slate));
+    --e-star1: color-mix(in srgb, var(--ground) 32%, var(--slate));
+    --e-star2: color-mix(in srgb, var(--ground) 58%, var(--slate));
+    --e-star3: color-mix(in srgb, var(--ground) 92%, var(--slate));
   }
 }

@@ -3,7 +3,7 @@
 `bayles.css` themes [OpenSpeedTest](https://github.com/openspeedtest/Speed-Test) 2.5 (the self-hosted speed test)
 to match the sites. It's generated from `src/tokens.css` by `scripts/openspeedtest-theme.mjs` (run by
 `npm run build`): the gauge, graphs and start button in the home signature (teal into green), panels and text in
-the page colors for light and dark mode, numbers in Schibsted Grotesk and units in Fira Code. It hides the
+the page colors for light and dark mode, numbers in Atkinson Hyperlegible Next and units in Atkinson Hyperlegible Mono. It hides the
 OpenSpeedTest logo inside the gauge and its light/dark toggle (the page follows the system theme); the credit line
 under the app stays.
 

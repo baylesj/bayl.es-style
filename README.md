@@ -13,11 +13,16 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
   rel="stylesheet"
-  href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400..700&family=Fira+Code:wght@400;500&display=swap"
+  href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap"
+/>
+<!-- only the two characters of the goddess's name, for the footer credit -->
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Sunflower:wght@700&text=%EC%97%85%EC%8B%A0&display=swap"
 />
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.5.0/dist/eopsin.min.css"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v2.0.0/dist/eopsin.min.css"
 />
 
 <body data-site="home">
@@ -25,12 +30,14 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 </body>
 ```
 
+jordan.bayl.es also loads Geologica for the name (`family=Geologica:wght,SHRP@200,100`).
+
 **Always pin a tag** (`@v1.0.0`), never a branch. A pinned site only changes when you bump its tag.
 
 You can also install it as a dependency, pinned to a tag, and bundle it in a build:
 
 ```sh
-npm install github:baylesj/bayl.es-style#v1.5.0
+npm install github:baylesj/bayl.es-style#v2.0.0
 ```
 
 ```js
@@ -43,11 +50,31 @@ therefore always wins without specificity fights, so site-specific styles need n
 ## Pieces
 
 ```html
-<!-- Header: prompt line, wordmark (the signature dot is added in CSS) -->
+<!-- The galaxy header: the map (js/galaxy.js, below) behind a panel with the prompt line and the
+     wordmark. The wordmark ends without a period. -->
+<header class="scope">
+  <canvas></canvas>
+  <div class="wrap">
+    <div class="head">
+      <span class="prompt"
+        ><span class="u">jordan</span>@<abbr
+          class="eopsin"
+          title="The server is named for 업신 (Eopsin), the Korean household goddess of storage and wealth"
+          >eopsin</abbr
+        >:<span class="p">~</span></span
+      >
+      <h1 class="mark">home</h1>
+      <!-- optional: <div class="controls"><div class="seg">…</div></div> -->
+    </div>
+  </div>
+  <span class="caption"></span>
+</header>
+
+<!-- Without the galaxy: the plain header over a hairline -->
 <header class="top">
   <div>
-    <span class="prompt"><span class="u">jordan</span>@eopsin:<span class="p">~</span></span>
-    <h1 class="mark">eopsin</h1>
+    <span class="prompt"><span class="u">guest</span>@eopsin:<span class="p">~/wiki</span></span>
+    <h1 class="mark">kiwix</h1>
   </div>
 </header>
 
@@ -65,9 +92,14 @@ therefore always wins without specificity fights, so site-specific styles need n
   </a>
 </div>
 
-<!-- Shared footer: this site's links first, the style guide last -->
+<!-- Shared footer: this site's links first, then the credit to the goddess the server is named
+     for, the style guide last -->
 <footer>
   <span><a href="/">start</a> · <a href="https://home.bayl.es">your apps</a></span>
+  <span
+    title="The server is named for 업신 (Eopsin), the Korean household goddess of storage and wealth"
+    >served by eopsin, after <span class="eop" lang="ko">업신</span></span
+  >
   <a href="https://style.bayl.es">style.bayl.es</a>
 </footer>
 
@@ -82,24 +114,44 @@ Also available:
 
 - `.kv` key/value rows
 - `.dot.ok|warn|err` status dots
+- `.keyrow` of `.step`s with `.sq.full|line|mid` and `.h-green|amber`: a key for what a site's steps measure
 - `.panel` and `.panel.alert` tinted panels
 - `.steps` numbered lists
 - form fields, `.btn` and `.btn.quiet` buttons, `.actions` button rows
-- `.seg` mono toggle groups
+- `.seg` mono toggle groups (the current button is bracketed: `.on` or `aria-pressed="true"`), and `.bk` to
+  bracket any other control
+- `.name-mark`, jordan.bayl.es's name; `.eop`, the goddess's name in Sunflower; `.notes` footnotes
 - `.theme-toggle`, the light/dark switch (with `js/theme.js`, below)
 - role colors: `.public`, `.private`, `.num`, `.warn`, `.err`
 - type helpers: `.title`, `.lede`, `.soft`, `.muted`, `.mono`, `.stack`
 
-Each server site has a favicon in `icons/` (`home.svg`, `my.svg`, `id.svg`, `audible.svg`, `orbit.svg`, `zero.svg`, and `ha.svg` for Home
-Assistant): an "e." monogram on a tile in the site's signature color. `scripts/icon-png.py` renders one to PNG. Link it at the same pinned tag:
+Each site has a favicon in `icons/` (`jordan.svg`, `home.svg`, `my.svg`, `id.svg`, `audible.svg`,
+`orbit.svg`, `zero.svg`): the Big Dipper on a night tile, edged in the site's hue, with the site's own star
+lit. `ha.svg` is Home Assistant's: 업 in Sunflower on HA's blue. `scripts/icons.mjs` generates them from the
+tokens (part of `npm run build`), and `scripts/icon-png.py` renders `ha.svg` to PNG. Link one at the same
+pinned tag:
 
 ```html
 <link
   rel="icon"
   type="image/svg+xml"
-  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.5.0/icons/home.svg"
+  href="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v2.0.0/icons/home.svg"
 />
 ```
+
+### The galaxy
+
+`js/galaxy.js` draws the map behind a `.scope` header: one galaxy from a fixed seed, the same on every site,
+with the seven sites as the Big Dipper's stars and this site's star lit (DESIGN.md has the story). It redraws on
+resize, on a theme change and when `data-site` changes, and keeps everything clear of the panel and the caption.
+Load it once, `defer` is fine:
+
+```html
+<script src="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v2.0.0/js/galaxy.js" defer></script>
+```
+
+Like `js/theme.js`, it can be inlined (`import galaxy from "bayl.es-style/js/galaxy.js?raw"`). Without
+JavaScript the header shows the plain field color behind the panel.
 
 ### Theme switch
 
@@ -107,7 +159,7 @@ Every site can offer an auto/light/dark switch. Load the script in `<head>` (so 
 before the page draws) and put an empty button where it belongs, usually the header:
 
 ```html
-<script src="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v1.12.0/js/theme.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@v2.0.0/js/theme.js"></script>
 ...
 <button class="theme-toggle" type="button"></button>
 ```
@@ -122,8 +174,8 @@ is a cookie on `bayl.es`, so picking dark on one site makes them all dark; elsew
 Every token is a custom property on `:root`, so you can use them in site CSS:
 
 - colors: `--ink`, `--comment`, `--teal`, …
-- signature: `--sig`, `--sig2`, `--sig-text`
-- fonts: `--sans`, `--mono`, `--serif`
+- signature: `--sig`, `--sig2`, `--sig-text`, `--star`, `--bracket`
+- fonts: `--sans`, `--mono`, `--name` (jordan.bayl.es), `--eop` (the goddess's name)
 
 ## Home Assistant
 
@@ -160,7 +212,7 @@ Edit files in `src/`. `dist/` is built by Lightning CSS (bundled, with fallbacks
    they match).
 2. `npm run build`, then commit (`dist/` included).
 3. `npm run check`, which fails if `dist/` doesn't match the commit.
-4. Tag and push: `git tag v1.5.0 && git push && git push origin v1.5.0`.
+4. Tag and push: `git tag v2.0.0 && git push && git push origin v2.0.0`.
 5. Bump the tag in each site:
    - jordan.bayl.es: `package.json`
    - unraid-config: `stacks/shared/style-version`, then `bash scripts/ha/theme-sync.sh` on the server to update the

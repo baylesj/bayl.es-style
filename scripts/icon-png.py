@@ -1,4 +1,4 @@
-"""Render an "e." tile from icons/ (rounded rect + glyph paths using M/L/H/V/Q/Z) to PNGs, with no dependencies.
+"""Render a glyph tile (icons/ha.svg) from icons/ (rounded rect + glyph paths using M/L/H/V/Q/Z) to PNGs, with no dependencies.
 
     python3 scripts/icon-png.py icons/ha.svg home-assistant/icons/eopsin 192 512
     python3 scripts/icon-png.py --square icons/ha.svg home-assistant/icons/eopsin-apple 180

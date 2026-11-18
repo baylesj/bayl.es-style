@@ -1,5 +1,38 @@
 # Changelog
 
+## 2.0.0 (2026-11-17)
+
+A new look: an instrument, not a storefront. See DESIGN.md and the style guide.
+
+Breaking:
+
+- **Fonts:** Atkinson Hyperlegible Next for words and Atkinson Hyperlegible Mono for machine facts replace
+  Schibsted Grotesk and Fira Code. Sites load them from Google Fonts (README). `--serif` (EB Garamond) is
+  gone; jordan.bayl.es's name is `--name`, Geologica 200 with sharpness 100, in `.name-mark`.
+- **No period after the wordmark:** `.mark::after` is removed, and `.mark` is 22px/600 instead of 56px/700.
+- **Muted palette:** every role color keeps its hue with chroma cut to 60% in OKLCH, re-checked for AA on
+  the page, on panel tints and under button text. New `--pink-text` (jordan and orbit's text and button:
+  white on plain pink was 3.96:1) and a darker `--amber-text` (it was 4.38:1 on panel tints).
+- **Components restyled:** rows with 28px tiles, 3px corners on fields and buttons (40px tall), 4px panels,
+  hairline tables with a mono header and no frame, `.top` closed by a hairline, and `.seg` as plain mono
+  words with the current one bracketed (`.on` or `aria-pressed="true"`). Status dots are text strength.
+- **Favicons:** every site's icon is the Big Dipper on a night tile with its own star lit; Home Assistant's
+  is 업 in Sunflower on HA's blue (and the HA PNGs). New `icons/jordan.svg`.
+
+New:
+
+- **The galaxy header** (`.scope`, `.head`, `.caption`) and `js/galaxy.js`: one galaxy for every site, the
+  sites as the Big Dipper's stars, this site's lit. By day the map is slate (`--slate`) with the galaxy
+  etched on it. Pages with it hide the 4px signature strip.
+- **Selection brackets:** `.bk` (and every `.seg` button) draws four thin corners for hover, current and
+  focus, in `--bracket`.
+- **Keys:** `.keyrow`, `.step`, `.sq.full|line|mid`, `.h-green|amber`.
+- **Tokens:** `--star` per site, `--bracket`, `--panel`, `--alert`, `--slate` and the galaxy's `--g-*` and
+  `--e-*`; `--eop` and `.eop` for 업신 in Sunflower; `abbr.eopsin`; `.notes` footnotes.
+- `scripts/icons.mjs` generates the icons from the tokens as part of `npm run build`.
+- Home Assistant, Immich and OpenSpeedTest themes use the Atkinson fonts; HA's font loader and markdown
+  tables follow the new tables. HA needs the two new font files (home-assistant/README.md).
+
 ## 1.12.2 (2026-10-16)
 
 - `js/theme.js` works when inlined: its header comment had a usage example with a closing script tag, which

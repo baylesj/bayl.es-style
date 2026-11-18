@@ -2,7 +2,7 @@
 
 `bayles.css` is custom CSS for [Immich](https://immich.app) v3, generated from `src/tokens.css` by
 `scripts/immich-theme.mjs` (run by `npm run build`), so the photo library matches the sites: teal
-primary, teal-tinted grays, the sites' page and text colors in light and dark mode, and Schibsted Grotesk.
+primary, teal-tinted grays, the sites' page and text colors in light and dark mode, and Atkinson Hyperlegible Next.
 
 ## Install
 

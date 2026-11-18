@@ -1,21 +1,85 @@
 /* Components: the shared pieces of a bayl.es page. Markup examples are in README.md. */
 
 @layer components {
-  /* Header: prompt line and wordmark, closed by a full-ink rule. */
+  /* The galaxy header: the map drawn by js/galaxy.js behind a panel with the prompt line, the
+     wordmark and any controls. After the Sensors Manager in Homeworld. The map runs off both edges;
+     the panel covers it rather than cutting a hole in it.
+     <header class="scope"><canvas></canvas><div class="wrap"><div class="head">…</div></div></header> */
+  .scope {
+    position: relative;
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+    background: var(--g-field);
+  }
+
+  .scope > canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .scope .wrap {
+    position: relative;
+    max-width: 808px;
+    margin: 0 auto;
+    padding: 22px 24px 20px;
+  }
+
+  .head {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 100%;
+    padding: 12px 14px 8px;
+    border: 1px solid var(--g-ring);
+    border-radius: 3px;
+    background: var(--ground);
+  }
+
+  /* Controls under a rule inside the panel: rows of plain mono words, the current one bracketed. */
+  .head .controls {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin: 8px -14px 0;
+    padding: 6px 14px 0;
+    border-top: 1px solid var(--line);
+    font: 13px/1.4 var(--mono);
+  }
+
+  /* The small caption on the map ("galaxy · waypoint home.bayl.es"); js/galaxy.js fills it in. */
+  .scope .caption {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    padding: 1px 6px;
+    border: 1px solid var(--g-ring);
+    border-radius: 3px;
+    background: var(--ground);
+    color: var(--comment);
+    font: 12px var(--mono);
+  }
+
+  .scope .caption:empty {
+    display: none;
+  }
+
+  /* Without the galaxy: the plain header, prompt line and wordmark over a hairline. */
   .top {
     display: flex;
     flex-wrap: wrap;
     gap: 16px;
     align-items: flex-end;
     justify-content: space-between;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--ink);
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
   }
 
   .top > :first-child {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 6px;
   }
 
   .prompt {
@@ -31,17 +95,84 @@
     color: var(--sig-text);
   }
 
-  .mark {
-    margin: 0;
-    font-size: 56px;
-    font-weight: 700;
-    line-height: 0.9;
-    letter-spacing: -0.04em;
+  /* The server's name carries the goddess's on hover: <abbr class="eopsin" title="…">eopsin</abbr> */
+  abbr.eopsin {
+    text-decoration: underline dotted;
+    text-decoration-color: var(--comment);
+    text-underline-offset: 3px;
+    cursor: help;
   }
 
-  .mark::after {
-    content: ".";
-    color: var(--sig);
+  /* The wordmark: small, and it ends without a period. */
+  .mark {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
+  }
+
+  /* jordan.bayl.es's name: Geologica, thin, sharp and spaced. */
+  .name-mark {
+    margin: 0;
+    font: 200 clamp(34px, 8vw, 60px) / 1 var(--name);
+    font-variation-settings: "SHRP" 100;
+    letter-spacing: 0.12em;
+  }
+
+  /* 업신 in Sunflower, wherever the server's name is credited. Ink, never a signature color. */
+  .eop {
+    font-family: var(--eop);
+    font-weight: 700;
+  }
+
+  /* Selection is a bracket: four thin corners, as a selected contact looks on the sensors map.
+     Hover is 1px comment grey, selected is 1px --bracket, keyboard focus is 2px --bracket. Add .bk to
+     any control; .seg buttons get it on their own. */
+  .bk,
+  .seg button {
+    position: relative;
+  }
+
+  .bk::after,
+  .seg button::after {
+    --bc: transparent;
+    --bw: 1px;
+    --bl: 8px;
+
+    content: "";
+    position: absolute;
+    inset: 2px -2px;
+    pointer-events: none;
+    background:
+      linear-gradient(var(--bc) 0 0) top left / var(--bl) var(--bw),
+      linear-gradient(var(--bc) 0 0) top left / var(--bw) var(--bl),
+      linear-gradient(var(--bc) 0 0) top right / var(--bl) var(--bw),
+      linear-gradient(var(--bc) 0 0) top right / var(--bw) var(--bl),
+      linear-gradient(var(--bc) 0 0) bottom left / var(--bl) var(--bw),
+      linear-gradient(var(--bc) 0 0) bottom left / var(--bw) var(--bl),
+      linear-gradient(var(--bc) 0 0) bottom right / var(--bl) var(--bw),
+      linear-gradient(var(--bc) 0 0) bottom right / var(--bw) var(--bl);
+    background-repeat: no-repeat;
+  }
+
+  .bk:hover::after,
+  .seg button:hover::after {
+    --bc: var(--comment);
+  }
+
+  :is(.bk, .seg button):is(.on, [aria-pressed="true"], [aria-current])::after {
+    --bc: var(--bracket);
+  }
+
+  :is(.bk, .seg button):focus-visible {
+    outline: none;
+  }
+
+  :is(.bk, .seg button):focus-visible::after {
+    --bc: var(--bracket);
+    --bw: 2px;
+    --bl: 10px;
   }
 
   /* Section labels: lowercase mono, with an optional purple number. */
@@ -79,11 +210,11 @@
 
   .row {
     display: grid;
-    grid-template-columns: 32px minmax(0, 1fr) auto;
-    column-gap: 14px;
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    column-gap: 12px;
     align-items: center;
     min-height: 44px;
-    padding: 12px 0;
+    padding: 9px 0;
     border-top: 1px solid var(--line);
     color: inherit;
     text-decoration: none;
@@ -93,7 +224,7 @@
     color: var(--sig-text);
   }
 
-  /* Unavailable here: grey text and a muted icon, still readable (no opacity fade). */
+  /* Unavailable here: grey text and a muted icon, still readable (no opacity fade on text). */
   .row.off {
     pointer-events: none;
   }
@@ -104,14 +235,14 @@
   }
 
   .row.off img {
-    opacity: 0.5;
+    opacity: 0.55;
     filter: grayscale(1);
   }
 
   .row img,
   .row .tile {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     object-fit: contain;
   }
 
@@ -119,17 +250,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 8px;
+    border-radius: 5px;
     background: var(--sig);
     color: var(--on-sig);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
   }
 
   .row .txt {
     display: flex;
     flex-wrap: wrap;
-    gap: 4px 10px;
+    gap: 2px 10px;
     align-items: baseline;
     min-width: 0;
   }
@@ -154,7 +285,7 @@
     display: grid;
     grid-template-columns: 140px minmax(0, 1fr);
     gap: 4px 12px;
-    padding: 12px 0;
+    padding: 9px 0;
     border-top: 1px solid var(--line);
     font-size: 15px;
   }
@@ -164,7 +295,8 @@
     font: 12px/1.9 var(--mono);
   }
 
-  /* Status dots */
+  /* Service state: small and separate, a dot and a word. The dots are text strength, so they clear
+     3:1 on every panel tint. */
   .dot {
     display: inline-block;
     width: 8px;
@@ -176,25 +308,73 @@
   }
 
   .dot.ok {
-    background: var(--green-bright);
+    background: var(--green);
   }
 
   .dot.warn {
-    background: var(--amber-text); /* plain amber is about 2.4:1, under the 3:1 minimum for marks */
+    background: var(--amber-text);
   }
 
   .dot.err {
-    background: var(--orange-bright);
+    background: var(--orange);
+  }
+
+  /* Keys: what a site's steps measure. Hard steps, a word on every one; color is never the only
+     sign. <div class="keyrow"><span class="step"><span class="sq full h-green"></span>just talked</span>…</div>
+     .full is a filled square, .line an outlined one, .mid the grey middle; .h-green / .h-amber pick the
+     side. */
+  .keyrow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+    align-items: center;
+    font: 12px/1.4 var(--mono);
+  }
+
+  .step {
+    display: inline-flex;
+    gap: 7px;
+    align-items: center;
+    color: var(--soft);
+  }
+
+  .sq {
+    flex: none;
+    width: 12px;
+    height: 12px;
+  }
+
+  .sq.full {
+    background: var(--h, var(--comment));
+  }
+
+  .sq.line {
+    border: 2px solid var(--h, var(--comment));
+  }
+
+  .sq.mid {
+    width: 6px;
+    height: 6px;
+    margin: 3px;
+    background: var(--comment);
+  }
+
+  .h-green {
+    --h: var(--green);
+  }
+
+  .h-amber {
+    --h: var(--amber-text);
   }
 
   /* Panel: for the one thing that stands apart (a form, a first step), tinted with the signature. */
   .panel {
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    padding: 20px;
-    border-radius: 10px;
-    background: color-mix(in srgb, var(--sig-fill) 9%, var(--ground));
+    gap: 12px;
+    padding: 18px;
+    border-radius: 4px;
+    background: var(--panel);
   }
 
   .panel .label {
@@ -203,14 +383,18 @@
   }
 
   .panel.alert {
-    background: color-mix(in srgb, var(--orange-bright) 10%, var(--ground));
+    background: var(--alert);
+  }
+
+  .panel.alert .label {
+    color: var(--orange);
   }
 
   /* Numbered steps with mono counters */
   .steps {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 4px;
     margin: 0;
     padding: 0;
     color: var(--soft);
@@ -233,7 +417,7 @@
     font-family: var(--mono);
   }
 
-  /* Forms and buttons. Buttons are rectangles with 8px corners, never pills. */
+  /* Forms and buttons. Rectangles with 3px corners, never pills. */
   form {
     display: flex;
     flex-direction: column;
@@ -251,10 +435,10 @@
   input,
   select {
     width: 100%;
-    min-height: 44px;
-    padding: 0 12px;
+    min-height: 40px;
+    padding: 0 10px;
     border: 1px solid var(--comment); /* 3:1 or better against the field, for non-text contrast */
-    border-radius: 8px;
+    border-radius: 3px;
     background: var(--field);
     color: var(--ink);
     font: inherit;
@@ -276,14 +460,14 @@
     display: inline-flex;
     align-items: center;
     align-self: flex-start;
-    min-height: 44px;
-    padding: 0 20px;
+    min-height: 40px;
+    padding: 0 16px;
     border: 0;
-    border-radius: 8px;
+    border-radius: 3px;
     background: var(--sig);
     color: var(--on-sig);
     font: inherit;
-    font-weight: 600;
+    font-weight: 500;
     text-decoration: none;
     cursor: pointer;
   }
@@ -299,7 +483,6 @@
     border: 1px solid var(--line);
     background: none;
     color: var(--comment);
-    font-weight: 500;
   }
 
   .btn.quiet:hover,
@@ -325,7 +508,7 @@
     min-height: 36px;
     padding: 0 8px;
     border: 0;
-    border-radius: 6px;
+    border-radius: 3px;
     background: none;
     color: var(--comment);
   }
@@ -344,18 +527,26 @@
     height: 18px;
   }
 
-  /* Segmented mono toggle (home's network switch) */
+  /* Segmented toggle: plain mono words, the current one bracketed (.on or aria-pressed="true").
+     An optional <span class="k">label</span> leads the row. */
   .seg {
     display: flex;
-    gap: 6px;
+    flex-wrap: wrap;
+    gap: 0 6px;
+    align-items: baseline;
     font: 13px var(--mono);
   }
 
+  .seg .k {
+    width: 6ch;
+    color: var(--comment);
+  }
+
   .seg button {
-    min-height: 36px;
-    padding: 0 14px;
-    border: 1px solid var(--line);
-    border-radius: 6px;
+    align-self: auto;
+    min-height: 30px;
+    padding: 0 8px;
+    border: 0;
     background: none;
     color: var(--comment);
     font: inherit;
@@ -366,15 +557,42 @@
     filter: none;
   }
 
-  .seg button.on {
-    border-color: var(--green);
-    background: color-mix(in srgb, var(--green-bright) 10%, var(--ground));
-    color: var(--green);
+  .seg button:is(.on, [aria-pressed="true"]) {
+    color: var(--ink);
+  }
+
+  /* Footnotes, for a page that cites its sources */
+  .notes {
+    margin: 4px 0 0;
+    padding-left: 20px;
+    color: var(--comment);
+    font-size: 13px;
+  }
+
+  .notes li {
+    overflow-wrap: anywhere;
+  }
+
+  sup a {
+    text-decoration: none;
+  }
+
+  @media (width <= 700px) {
+    /* the map sits under the panel on narrow screens */
+    .scope .wrap {
+      padding-bottom: 104px;
+    }
+
+    .scope .caption {
+      top: auto;
+      bottom: 8px;
+    }
   }
 
   @media (width <= 480px) {
-    .mark {
-      font-size: 44px;
+    .scope .wrap {
+      padding-right: 16px;
+      padding-left: 16px;
     }
 
     .kv,

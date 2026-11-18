@@ -26,8 +26,8 @@ const mix = (a, b, t) =>
     .join("");
 const rgbList = (hex) => rgb(hex).join(", ");
 
-const SANS = '"Schibsted Grotesk", -apple-system, system-ui, sans-serif';
-const MONO = '"Fira Code", ui-monospace, monospace';
+const SANS = '"Atkinson Hyperlegible Next", -apple-system, system-ui, sans-serif';
+const MONO = '"Atkinson Hyperlegible Mono", ui-monospace, monospace';
 
 function mode(m) {
   const t = (name) => {

@@ -15,16 +15,21 @@
     margin: 0;
     background: var(--ground);
     color: var(--ink);
-    font: 17px/1.5 var(--sans);
+    font: 16px/1.55 var(--sans);
     -webkit-font-smoothing: antialiased;
   }
 
-  /* The signature strip across the top of every page. */
+  /* The signature strip across the top of a page. A page with the galaxy header (.scope) doesn't
+     need it: its lit star says which site it is. */
   body::before {
     content: "";
     display: block;
     height: 4px;
     background: linear-gradient(90deg, var(--sig-fill), var(--sig2-fill));
+  }
+
+  body:has(> .scope)::before {
+    display: none;
   }
 
   main {
@@ -121,37 +126,27 @@
     gap: 10px;
   }
 
-  /* Tables: a rounded hairline frame and a signature-tinted header. The first column takes the spare
-     width; the others hug their values, so names never squeeze next to numbers. Right-aligned
-     columns (align="right", or --: in Markdown) stay right-aligned. home-assistant/bayles-fonts.js
-     applies the same rules to Home Assistant's markdown cards. */
+  /* Tables: hairline rows, no frame, a mono header. The first column takes the spare width; the
+     others hug their values, so names never squeeze next to numbers. Right-aligned columns
+     (align="right", or --: in Markdown) stay right-aligned. home-assistant/bayles-fonts.js applies the
+     same rules to Home Assistant's markdown cards. */
   table {
     width: 100%;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    border-collapse: separate;
-    border-spacing: 0;
-    overflow: hidden;
+    border-collapse: collapse;
     font-variant-numeric: tabular-nums;
   }
 
   th,
   td {
-    padding: 8px 12px;
+    padding: 7px 12px 7px 0;
     border-bottom: 1px solid var(--line);
     text-align: start;
     vertical-align: baseline;
   }
 
   th {
-    background: color-mix(in srgb, var(--sig-fill) 9%, var(--ground));
     color: var(--comment);
-    font-size: 13px;
-    font-weight: 600;
-  }
-
-  tr:last-child > td {
-    border-bottom: 0;
+    font: 400 12px var(--mono);
   }
 
   :is(th, td):first-child {
