@@ -292,6 +292,7 @@
               <button type="button" class="bk" data-v="audible">audible</button>
               <button type="button" class="bk" data-v="orbit">orbit</button>
               <button type="button" class="bk" data-v="zero">zero</button>
+              <button type="button" class="bk" data-v="climb">climb</button>
             </div>
             <div class="seg" role="group" aria-label="Theme" id="theme">
               <span class="k">theme</span>
@@ -595,12 +596,13 @@
           wealth goddess is Chilseongsin, almost exactly the same as the mainland Eopsin,<sup
             ><a href="#n1">1</a></sup
           >
-          and chilseong (七星) means seven stars: the Big Dipper. There are seven bayl.es sites.
+          and chilseong (七星) means seven stars: the Big Dipper. The first seven bayl.es sites are
+          its stars.
         </p>
         <p class="soft">
           Dubhe is home, Merak my, Phecda id, Megrez audible, Alioth orbit, Mizar zero and Alkaid
-          jordan. Home Assistant keeps HA's own blue and carries the server's mark instead of a
-          star: 업 in Sunflower, in ink.
+          jordan; Alcor, beside Mizar, is climb. Home Assistant keeps HA's own blue and carries the
+          server's mark instead of a star: 업 in Sunflower, in ink.
         </p>
         <p class="soft">
           An eighth site takes Alcor, the faint companion beside Mizar in the Dipper's handle, long
@@ -765,6 +767,13 @@
           does: "tracks spending changes",
           key: "zero",
         },
+        climb: {
+          host: "climb.bayl.es",
+          hue: "green → amber",
+          prompt: ["jordan", "~/climb"],
+          does: "training, recovery and weight, day by day",
+          key: "climb",
+        },
       };
 
       // [mark, hue, word]; marks: full, line, mid
@@ -791,6 +800,18 @@
             ["mid", "", "usual"],
             ["line", "amber", "over ↑"],
             ["full", "amber", "well over ↑"],
+          ],
+        },
+        climb: {
+          what: "how recovered you are against your own baseline",
+          why: "A night's HRV, resting heart rate, sleep and training load against your usual. Better than usual is green, worse is amber, both in two steps.",
+          dir: "diverging",
+          steps: [
+            ["full", "green", "fresh ↑"],
+            ["line", "green", "rested"],
+            ["mid", "", "usual"],
+            ["line", "amber", "tired"],
+            ["full", "amber", "run down ↓"],
           ],
         },
         audible: {
@@ -825,7 +846,7 @@
         ],
         [
           "Keys measure what a site is for",
-          "orbit measures being in touch, zero spending, audible backups. home, my, id and jordan have nothing to measure and get no key.",
+          "orbit measures being in touch, zero spending, climb recovery, audible backups. home, my, id and jordan have nothing to measure and get no key.",
         ],
         [
           "Direction gets two hues",
@@ -960,6 +981,19 @@
             { name: "Subscriptions", desc: "against its usual month", step: 4, read: true },
           ],
         },
+        climb: {
+          note: "the last few days against your baseline",
+          items: [
+            { name: "Today", desc: "recovery 64 · HRV 31 ms · 7.6 h sleep", step: 1 },
+            {
+              name: "Yesterday",
+              desc: "recovery 47 · HRV 26 ms · 5.8 h sleep",
+              step: 3,
+              read: true,
+            },
+            { name: "Wednesday", desc: "recovery 55 · HRV 29 ms · 7.8 h sleep", step: 2 },
+          ],
+        },
         audible: {
           note: "linked accounts by last backup",
           items: [
@@ -979,7 +1013,11 @@
         },
       };
       // diverging keys: past the mark rises, ahead of it sinks, at it sits on the plane
-      const HEIGHT = { orbit: [-0.26, -0.13, 0, 0.17, 0.34], zero: [-0.26, -0.13, 0, 0.17, 0.34] };
+      const HEIGHT = {
+        orbit: [-0.26, -0.13, 0, 0.17, 0.34],
+        zero: [-0.26, -0.13, 0, 0.17, 0.34],
+        climb: [-0.26, -0.13, 0, 0.17, 0.34],
+      };
       const ROUTE = { public: "--green", lan: "--teal", "home only": "--comment", "": "--soft" };
       const hueVar = (h) =>
         h === "green" ? "--green" : h === "amber" ? "--amber-text" : "--comment";
@@ -1045,7 +1083,7 @@
 
       function renderKeys() {
         const cur = document.body.dataset.site;
-        const blocks = ["orbit", "zero", "audible"].map((k) => {
+        const blocks = ["orbit", "zero", "climb", "audible"].map((k) => {
           const K = keys[k];
           return el(
             "div",
@@ -1118,6 +1156,10 @@
             sec(
               "zero · what moved this month",
               ...contacts.zero.items.map((c) => erow(c.name, c.desc, st("zero", c.step))),
+            ),
+            sec(
+              "climb · recent days",
+              ...contacts.climb.items.map((c) => erow(c.name, c.desc, st("climb", c.step))),
             ),
             sec(
               "audible · linked accounts",
@@ -1310,7 +1352,7 @@
         );
       setSite(params.get("site") || store.get("h2-site") || "home", !params.get("site"));
 
-      const VERSION = "v2.0.0"; // keep in step with package.json; CI checks it
+      const VERSION = "v2.1.0"; // keep in step with package.json; CI checks it
       const CDN = `https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@${VERSION}`;
       document.getElementById("snippet").textContent = [
         `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap">`,
@@ -1319,7 +1361,7 @@
         `<link rel="icon" type="image/svg+xml" href="${CDN}/icons/orbit.svg">`,
         `<script src="${CDN}/js/galaxy.js" defer><\/script>`,
         ``,
-        `<body data-site="orbit">   <!-- jordan | home | my | id | audible | orbit | zero -->`,
+        `<body data-site="orbit">   <!-- jordan | home | my | id | audible | orbit | zero | climb -->`,
         `<header class="scope">`,
         `  <canvas></canvas>`,
         `  <div class="wrap"><div class="head">`,

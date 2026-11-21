@@ -1,5 +1,15 @@
 # Changelog
 
+## 2.1.0 (2026-11-20)
+
+New site, climb.bayl.es (Jordan's training, recovery and weight):
+
+- `[data-site="climb"]`: green → amber, its star a chartreuse mixed into starlight.
+- It is Alcor, Mizar's faint companion, as DESIGN.md planned for an eighth site: a waypoint beside Mizar in
+  `js/galaxy.js` (off the figure line) and `icons/climb.svg`. Alcor is in the sky either way, so every
+  favicon now shows it faint beside Mizar; only climb's lights it.
+- climb's key measures recovery against your own baseline: diverging, green better than usual, amber worse.
+
 ## 2.0.0 (2026-11-17)
 
 A new look: an instrument, not a storefront. See DESIGN.md and the style guide.

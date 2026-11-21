@@ -30,7 +30,8 @@
     id: [0.133, 0.12, -0.275], // Phecda
     audible: [0.085, 0.08, -0.046], // Megrez
     orbit: [-0.109, 0.02, 0.023], // Alioth
-    zero: [-0.279, -0.04, 0.115], // Mizar; an eighth site takes Alcor beside it
+    zero: [-0.279, -0.04, 0.115], // Mizar
+    climb: [-0.247, -0.005, 0.152], // Alcor, Mizar's faint companion: the eighth site, off the figure line
     jordan: [-0.4, -0.1, 0.275], // Alkaid
   };
   const FIGURE = ["jordan", "zero", "orbit", "audible", "home", "my", "id", "audible"];

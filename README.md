@@ -26,7 +26,7 @@ Load the fonts and the stylesheet, then set the site on `<body>`:
 />
 
 <body data-site="home">
-  <!-- jordan | home | my | id | audible | orbit | zero -->
+  <!-- jordan | home | my | id | audible | orbit | zero | climb -->
 </body>
 ```
 
@@ -126,7 +126,7 @@ Also available:
 - type helpers: `.title`, `.lede`, `.soft`, `.muted`, `.mono`, `.stack`
 
 Each site has a favicon in `icons/` (`jordan.svg`, `home.svg`, `my.svg`, `id.svg`, `audible.svg`,
-`orbit.svg`, `zero.svg`): the Big Dipper on a night tile, edged in the site's hue, with the site's own star
+`orbit.svg`, `zero.svg`, `climb.svg`): the Big Dipper on a night tile, edged in the site's hue, with the site's own star
 lit. `ha.svg` is Home Assistant's: 업 in Sunflower on HA's blue. `scripts/icons.mjs` generates them from the
 tokens (part of `npm run build`), and `scripts/icon-png.py` renders `ha.svg` to PNG. Link one at the same
 pinned tag:
@@ -142,7 +142,7 @@ pinned tag:
 ### The galaxy
 
 `js/galaxy.js` draws the map behind a `.scope` header: one galaxy from a fixed seed, the same on every site,
-with the seven sites as the Big Dipper's stars and this site's star lit (DESIGN.md has the story). It redraws on
+with the sites as the Big Dipper's stars (and Alcor) and this site's star lit (DESIGN.md has the story). It redraws on
 resize, on a theme change and when `data-site` changes, and keeps everything clear of the panel and the caption.
 Load it once, `defer` is fine:
 

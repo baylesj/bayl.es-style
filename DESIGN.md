@@ -2,12 +2,12 @@
 
 How the `*.bayl.es` pages should look. The [style guide](https://style.bayl.es) shows all of this live.
 This covers jordan.bayl.es, the server sites from the `unraid-config` repo (home, my, audible, orbit,
-zero) and the Pocket ID branding at id.bayl.es. The CSS lives in `src/`, the galaxy in `js/galaxy.js`,
+zero, climb) and the Pocket ID branding at id.bayl.es. The CSS lives in `src/`, the galaxy in `js/galaxy.js`,
 and how to use them is in README.md.
 
 The idea is an instrument, not a storefront: a page reads like a README for a server, with a map at the
 top. The map is after the Sensors Manager in Homeworld; the server, eopsin, is named for 업신, the Korean
-goddess of storage and wealth, and the seven sites are the seven stars of the Big Dipper. The palette is
+goddess of storage and wealth, and the sites are the stars of the Big Dipper. The palette is
 the editor-theme colors the sites already had, muted until nothing shouts.
 
 ## Principles
@@ -22,7 +22,7 @@ the editor-theme colors the sites already had, muted until nothing shouts.
   running off both edges of the page. The seven waypoints are the Big Dipper; the site you are on is
   lit in its star color and bracketed.
 - **Keys measure what a site is for.** These sites serve people, so a scale measures the site's own
-  subject (orbit: being in touch; zero: spending; audible: backups), never the server. A site with
+  subject (orbit: being in touch; zero: spending; climb: recovery; audible: backups), never the server. A site with
   nothing to measure has no scale.
 - **Selection is a bracket.** Hover, the current choice and keyboard focus draw four thin corners, the
   way a selected contact looks on the map.
@@ -49,6 +49,7 @@ the editor-theme colors the sites already had, muted until nothing shouts.
 | audible.bayl.es | amber → orange           | Megrez             | `drake@eopsin:~/audible`       |
 | orbit.bayl.es   | pink → purple (jordan's) | Alioth             | `jordan@eopsin:~/orbit`        |
 | zero.bayl.es    | green → teal             | Mizar              | `jordan@eopsin:~/zero`         |
+| climb.bayl.es   | green → amber            | Alcor              | `jordan@eopsin:~/climb`        |
 | jordan.bayl.es  | pink → purple            | Alkaid             | none; the name is in Geologica |
 
 The site's full hue marks the prompt path, labels, panel tints, the selection bracket and the primary
@@ -56,7 +57,7 @@ button. Its **star** (`--star`) is the hue mixed 40% into starlight, the same in
 waypoint and the favicon star. A page with the galaxy header doesn't show the 4px signature strip; one
 without it (kiwix, speedtest) still does.
 
-**An eighth site** takes Alcor, the faint companion beside Mizar in the Dipper's handle, long used as a
+**The eighth site**, climb, takes Alcor, the faint companion beside Mizar in the Dipper's handle, long used as a
 test of eyesight.² In Chinese astronomy Alcor is 輔, the Assistant.³ Taoist tradition counts the Dipper
 as nine: the seven stars and two not visible to the naked eye,⁴ so a ninth site takes the other unseen
 one. Past nine, a site is a field star in the galaxy, not part of the Dipper.
@@ -95,7 +96,8 @@ HA, and carries the server's mark: 업 in Sunflower, in ink (white on that blue 
 
 eopsin, the server, is named for 업신 (Eopsin), the Korean household goddess of storage and wealth,
 usually imagined as a rat snake.¹ On Jeju the wealth goddess is Chilseongsin, almost exactly the same as
-the mainland Eopsin,¹ and chilseong (七星) means seven stars: the Big Dipper. There are seven bayl.es sites.
+the mainland Eopsin,¹ and chilseong (七星) means seven stars: the Big Dipper. The first seven bayl.es sites
+are its stars; climb is Alcor, beside Mizar.
 
 She is credited wherever the server's name appears: the footer says "served by eopsin, after 업신", with
 업신 in Sunflower Bold, and "eopsin" in the prompt line names her on hover. Her name is ink, never a

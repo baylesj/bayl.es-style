@@ -45,6 +45,7 @@ const DIPPER = {
   audible: [26, 25],
   orbit: [18, 22],
   zero: [11, 18],
+  climb: [17, 11], // Alcor: faint on every tile (it's in the sky either way), lit on climb's
   jordan: [6, 11],
 };
 const NIGHT = "#0a1f22";
@@ -59,7 +60,7 @@ const starTile = (site, { edge, star }) =>
       k === site
         ? `<circle cx="${x}" cy="${y}" r="8" fill="none" stroke="${star}" stroke-width="1.2" opacity="0.6"/>` +
           `<circle cx="${x}" cy="${y}" r="5" fill="${star}"/>`
-        : `<circle cx="${x}" cy="${y}" r="3" fill="${DIM}"/>`,
+        : `<circle cx="${x}" cy="${y}" r="${k === "climb" ? 1.6 : 3}" fill="${DIM}"/>`,
     )
     .join("") +
   `</svg>\n`;

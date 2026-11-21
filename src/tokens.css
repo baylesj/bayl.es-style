@@ -84,6 +84,16 @@
     --on-sig: light-dark(#fff, #0a1f22);
   }
 
+  [data-site="climb"] {
+    --sig: var(--green);
+    --sig2: var(--amber);
+    --sig-text: var(--green);
+    --sig-fill: var(--green-bright);
+    --sig2-fill: var(--amber);
+    --star: color-mix(in srgb, #8fae1b 40%, #eef3f5);
+    --on-sig: light-dark(#fff, #0a1f22);
+  }
+
   [data-site="home"] {
     --sig: var(--teal);
     --sig2: var(--green);
