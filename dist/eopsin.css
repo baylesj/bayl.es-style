@@ -1,5 +1,5 @@
 /*
- * bayl.es-style 2.1.0: the shared look of the *.bayl.es sites.
+ * bayl.es-style 2.1.1: the shared look of the *.bayl.es sites.
  * https://style.bayl.es · https://github.com/baylesj/bayl.es-style
  *
  * This is the readable build: colors are written as light-dark(light, dark), which needs a 2024+
@@ -456,8 +456,10 @@
     inset: 2px -2px;
   }
 
-  .bk:hover:after, .seg button:hover:after {
-    --bc: var(--comment);
+  @media (hover: hover) {
+    .bk:hover:after, .seg button:hover:after {
+      --bc: var(--comment);
+    }
   }
 
   :is(.bk, .seg button):is(.on, [aria-pressed="true"], [aria-current]):after {

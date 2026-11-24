@@ -156,9 +156,13 @@
     background-repeat: no-repeat;
   }
 
-  .bk:hover::after,
-  .seg button:hover::after {
-    --bc: var(--comment);
+  /* Only where a pointer really hovers: a tapped button on a phone keeps :hover, which left grey corners on the
+     last-tapped choice beside the selected one. */
+  @media (hover: hover) {
+    .bk:hover::after,
+    .seg button:hover::after {
+      --bc: var(--comment);
+    }
   }
 
   :is(.bk, .seg button):is(.on, [aria-pressed="true"], [aria-current])::after {

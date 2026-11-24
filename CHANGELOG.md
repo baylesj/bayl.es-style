@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.1.1 (2026-11-24)
+
+- Hover corners on `.bk` and `.seg` buttons only where a pointer hovers (`@media (hover: hover)`). On phones a tapped
+  button keeps `:hover`, so the last-tapped choice kept grey corners beside the selected one and two looked chosen.
+
 ## 2.1.0 (2026-11-20)
 
 New site, climb.bayl.es (Jordan's training, recovery and weight):
