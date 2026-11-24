@@ -50,24 +50,40 @@ therefore always wins without specificity fights, so site-specific styles need n
 ## Pieces
 
 ```html
-<!-- The galaxy header: the map (js/galaxy.js, below) behind a panel with the prompt line and the
-     wordmark. The wordmark ends without a period. -->
+<!-- The galaxy header (2.2.0, the bar): the map (js/galaxy.js, below) carries the context. Its lit waypoint names
+     the site, .who in its corner holds the signed-in user and the theme switch, and the panel holds only the
+     site's own controls (or is left out). The <h1> is for screen readers. -->
+<header class="scope bar">
+  <canvas></canvas>
+  <div class="wrap">
+    <h1 class="vh">orbit</h1>
+    <div class="head">
+      <div class="controls">
+        <div class="seg fill" role="tablist">
+          <button aria-pressed="true">people</button><button>map</button>
+        </div>
+      </div>
+      <div class="who">
+        <span class="u">jordan</span>@<abbr
+          class="eopsin"
+          title="The server is named for 업신 (Eopsin), the Korean household goddess of storage and wealth"
+          >eopsin</abbr
+        ><button class="theme-toggle" type="button"></button>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- With nothing to put in a panel, leave .head out: <div class="wrap"><h1 class="vh">zero</h1><div class="who">…</div></div> -->
+
+<!-- Before 2.2.0: the prompt line and the wordmark in the panel (still styled, for pages not yet moved) -->
 <header class="scope">
   <canvas></canvas>
   <div class="wrap">
     <div class="head">
-      <span class="prompt"
-        ><span class="u">jordan</span>@<abbr
-          class="eopsin"
-          title="The server is named for 업신 (Eopsin), the Korean household goddess of storage and wealth"
-          >eopsin</abbr
-        >:<span class="p">~</span></span
-      >
+      <span class="prompt"><span class="u">jordan</span>@eopsin:<span class="p">~</span></span>
       <h1 class="mark">home</h1>
-      <!-- optional: <div class="controls"><div class="seg">…</div></div> -->
     </div>
   </div>
-  <span class="caption"></span>
 </header>
 
 <!-- Without the galaxy: the plain header over a hairline -->
@@ -143,7 +159,7 @@ pinned tag:
 
 `js/galaxy.js` draws the map behind a `.scope` header: one galaxy from a fixed seed, the same on every site,
 with the sites as the Big Dipper's stars (and Alcor) and this site's star lit (DESIGN.md has the story). It redraws on
-resize, on a theme change and when `data-site` changes, and keeps everything clear of the panel and the caption.
+resize, on a theme change and when `data-site` changes, and keeps everything clear of the panel, the caption and `.who`.
 Load it once, `defer` is fine:
 
 ```html

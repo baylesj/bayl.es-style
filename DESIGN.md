@@ -12,7 +12,7 @@ the editor-theme colors the sites already had, muted until nothing shouts.
 
 ## Principles
 
-- **An instrument, not a storefront.** A small wordmark, plain controls, one column. No hero, no
+- **An instrument, not a storefront.** A map, plain controls, one column. No hero, no
   paragraph selling the system, no card grids, no pill buttons.
 - **Color means something.** Each hue is a role (links, public, counts, warnings), the same on every
   site. If a color carries no meaning, it is ink or grey.
@@ -28,8 +28,14 @@ the editor-theme colors the sites already had, muted until nothing shouts.
   way a selected contact looks on the map.
 - **Words in Atkinson Hyperlegible Next, machine facts in its mono.** Hostnames, counts, states, labels,
   readouts and the prompt line are mono. Prose, names and buttons are the sans. No mono paragraphs.
-- **The prompt line says where you are.** `user@eopsin:~/place` in mono above the wordmark, with the
-  real signed-in user (`guest` before sign-in). "eopsin" carries the goddess's name on hover.
+- **The galaxy says where you are, once.** The lit waypoint and its label (`climb.bayl.es`) name the site; a small
+  chip in the map's corner says who you are (`jordan@eopsin`, the real signed-in user, `guest` before sign-in;
+  "eopsin" carries the goddess's name on hover) and holds the theme switch. The panel holds only the site's own
+  controls, or isn't there. No prompt line, no wordmark, no caption repeating the waypoint: on a phone, every line
+  said twice pushed the page down (2.2.0; before it, a prompt line and a wordmark sat in the panel).
+- **Each page opens with what it's for.** Lead with the answer the page exists to give (today's call, am I on
+  track, what to ride next); history, detail and stale sources go lower. The problem is never collecting data, it's
+  making it useful.
 - **No periods.** The wordmark, the name and the favicon end without a dot. A colored dot after a name
   reads as a brand mark.
 - **Dark is its own theme.** Deep teal-black with brighter role colors, not light mode inverted. By
@@ -41,7 +47,7 @@ the editor-theme colors the sites already had, muted until nothing shouts.
 
 ## Signatures and stars
 
-| site            | hue                      | star in the Dipper | prompt path                    |
+| site            | hue                      | star in the Dipper | prompt path (pre-2.2.0)        |
 | --------------- | ------------------------ | ------------------ | ------------------------------ |
 | home.bayl.es    | teal → green             | Dubhe              | `jordan@eopsin:~`              |
 | my.bayl.es      | purple → teal            | Merak              | `guest@eopsin:~/accounts`      |
@@ -129,15 +135,15 @@ Atkinson Hyperlegible Next (400–700) for words and Atkinson Hyperlegible Mono 
 facts, both from Google Fonts. Atkinson was drawn so letters that look alike stay apart (Il1, O0), which
 matters when most text is small. They replaced Schibsted Grotesk and Fira Code in v2.0.0.
 
-| use                  | setting                                                       |
-| -------------------- | ------------------------------------------------------------- |
-| wordmark             | sans 600, 22px; no period                                     |
-| jordan.bayl.es name  | Geologica 200, sharpness 100, tracked +0.12em (`.name-mark`)  |
-| title                | sans 600, 24px                                                |
-| body                 | sans 400, 16px                                                |
-| section label        | mono 12–13px, lowercase, purple number first (`01 shortcuts`) |
-| meta, labels, footer | mono 12–13px                                                  |
-| the goddess's name   | Sunflower 700, only 업 and 신 loaded                          |
+| use                  | setting                                                         |
+| -------------------- | --------------------------------------------------------------- |
+| wordmark (pre-2.2.0) | sans 600, 22px; no period; sites now name themselves on the map |
+| jordan.bayl.es name  | Geologica 200, sharpness 100, tracked +0.12em (`.name-mark`)    |
+| title                | sans 600, 24px                                                  |
+| body                 | sans 400, 16px                                                  |
+| section label        | mono 12–13px, lowercase, purple number first (`01 shortcuts`)   |
+| meta, labels, footer | mono 12–13px                                                    |
+| the goddess's name   | Sunflower 700, only 업 and 신 loaded                            |
 
 ## Home Assistant
 

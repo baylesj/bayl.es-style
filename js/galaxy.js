@@ -102,6 +102,7 @@
     const cv = scope.querySelector(":scope > canvas");
     const head = scope.querySelector(".head");
     const caption = scope.querySelector(".caption");
+    const who = scope.querySelector(".who");
     const W = cv.clientWidth,
       H = cv.clientHeight;
     if (!W || !H) return;
@@ -143,7 +144,7 @@
         };
     if (caption) caption.textContent = WAYPOINTS[site] ? `galaxy · waypoint ${site}.bayl.es` : "";
 
-    // the words keep clear ground: nothing is drawn under the panel or the caption
+    // the words keep clear ground: nothing is drawn under the panel, the caption or .who
     const cb = cv.getBoundingClientRect();
     const box = (el, m) => {
       const b = el.getBoundingClientRect();
@@ -154,9 +155,11 @@
         y1: b.bottom - cb.top + m,
       };
     };
-    const avoid = [head && box(head, 10), caption && caption.textContent && box(caption, 7)].filter(
-      Boolean,
-    );
+    const avoid = [
+      head && box(head, 10),
+      caption && caption.textContent && box(caption, 7),
+      who && box(who, 7),
+    ].filter(Boolean);
     const blocked = (x, y) => avoid.some((b) => x > b.x0 && x < b.x1 && y > b.y0 && y < b.y1);
 
     const narrow = W < 700;

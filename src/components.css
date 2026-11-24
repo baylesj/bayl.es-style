@@ -65,6 +65,112 @@
     display: none;
   }
 
+  /* The bar header (2.2.0): the galaxy carries the context, so nothing is said twice. The lit waypoint names the
+     site; .who in the map's corner holds the signed-in user and the theme switch; the panel holds only the site's
+     own controls (tabs, a mode switch), or is left out. The page's <h1> stays for screen readers (.vh).
+     <header class="scope bar"><canvas></canvas><div class="wrap"><h1 class="vh">zero</h1>
+       <div class="head"><div class="controls"><div class="seg fill">…</div></div><div class="who">…</div></div>
+     </div></header>
+     Without a panel, .who sits directly in .wrap. */
+  .scope.bar .wrap {
+    min-height: 88px;
+    padding-top: 14px;
+  }
+
+  .scope.bar .head {
+    padding: 2px 10px;
+  }
+
+  .scope.bar .head .controls {
+    margin: 0;
+    padding: 0;
+    border-top: 0;
+  }
+
+  .scope .who {
+    position: absolute;
+    right: 12px;
+    bottom: 8px;
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    padding: 0 0 0 7px;
+    border: 1px solid var(--g-ring);
+    border-radius: 3px;
+    background: var(--ground);
+    color: var(--comment);
+    font: 12px var(--mono);
+  }
+
+  .who .u {
+    color: var(--green);
+    text-decoration: none;
+  }
+
+  .who .theme-toggle {
+    min-width: 26px;
+    min-height: 22px;
+    margin: 0;
+    padding: 0 5px;
+  }
+
+  .who .theme-toggle svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  /* wide screens: with a panel, .who ends its row, where the map already keeps clear */
+  @media (width > 700px) {
+    .scope.bar .head:has(.who) {
+      flex-direction: row;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .scope.bar .head .who {
+      position: static;
+      padding: 0;
+      border: 0;
+      background: none;
+    }
+  }
+
+  /* .seg.fill: on phones the buttons spread across the panel, each as wide as its word, so a tab bar never scrolls */
+  @media (width <= 560px) {
+    .scope.bar .head {
+      width: 100%;
+    }
+
+    .seg.fill {
+      flex-wrap: nowrap;
+      gap: 0;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .seg.fill button {
+      flex: none;
+      padding: 0 3px;
+      font-size: 12px;
+    }
+  }
+
+  @media (width <= 360px) {
+    .seg.fill button {
+      padding: 0 2px;
+      font-size: 11px;
+    }
+  }
+
+  .vh {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    white-space: nowrap;
+    clip-path: inset(50%);
+  }
+
   /* Without the galaxy: the plain header, prompt line and wordmark over a hairline. */
   .top {
     display: flex;
@@ -590,6 +696,10 @@
     .scope .caption {
       top: auto;
       bottom: 8px;
+    }
+
+    .scope.bar .wrap {
+      padding-bottom: 64px;
     }
   }
 

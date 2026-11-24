@@ -1,5 +1,19 @@
 # Changelog
 
+## 2.2.0 (2026-11-24)
+
+The bar header: the galaxy carries the context, so nothing is said twice (climb.bayl.es first, then every site).
+
+- `.scope.bar`: the panel holds only the site's controls (or is left out); no prompt line or wordmark in it. The
+  site is named by its lit waypoint; the page's `<h1>` stays for screen readers with the new `.vh` utility.
+- `.who`: a chip in the map's corner with the signed-in user and the theme switch; on wide screens, inside a panel,
+  it ends the panel's row. `js/galaxy.js` keeps its stars and labels clear of it.
+- `.seg.fill`: on phones a segmented control spreads across the panel, each button as wide as its word, so a tab bar
+  never scrolls (12px, 11px under 360px).
+- Sites stop using `.caption` ("galaxy · waypoint …"), which repeated the waypoint's label. It still works.
+- DESIGN.md: "the galaxy says where you are, once" replaces the prompt-line principle, and pages open with what they
+  are for.
+
 ## 2.1.1 (2026-11-24)
 
 - Hover corners on `.bk` and `.seg` buttons only where a pointer hovers (`@media (hover: hover)`). On phones a tapped
