@@ -53,7 +53,7 @@ therefore always wins without specificity fights, so site-specific styles need n
 <!-- The galaxy header (2.2.0, the bar): the map (js/galaxy.js, below) carries the context. Its lit waypoint names
      the site, .who in its corner holds the signed-in user and the theme switch, and the panel holds only the
      site's own controls (or is left out). The <h1> is for screen readers. -->
-<header class="scope bar">
+<header class="scope thin">
   <canvas></canvas>
   <div class="wrap">
     <h1 class="vh">orbit</h1>

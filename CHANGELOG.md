@@ -1,5 +1,10 @@
 # Changelog
 
+## 2.2.2 (2026-11-24)
+
+- The bar header is `.scope.thin` (was `.scope.bar`): zero.bayl.es already had a `.bar` progress bar (8px tall), which
+  took the header with it. `.bar` stays free for pages.
+
 ## 2.2.1 (2026-11-24)
 
 - `.who` is the header's own child (`.scope > .who`), not part of the panel: on wide screens a card at the map's right,
@@ -9,7 +14,7 @@
 
 The bar header: the galaxy carries the context, so nothing is said twice (climb.bayl.es first, then every site).
 
-- `.scope.bar`: the panel holds only the site's controls (or is left out); no prompt line or wordmark in it. The
+- `.scope.thin` (named `.scope.bar` in 2.2.0 and 2.2.1): the panel holds only the site's controls (or is left out); no prompt line or wordmark in it. The
   site is named by its lit waypoint; the page's `<h1>` stays for screen readers with the new `.vh` utility.
 - `.who`: a chip in the map's corner with the signed-in user and the theme switch. `js/galaxy.js` keeps its stars and
   labels clear of it.
