@@ -1,5 +1,5 @@
 /*
- * bayl.es-style 2.2.0: the shared look of the *.bayl.es sites.
+ * bayl.es-style 2.2.1: the shared look of the *.bayl.es sites.
  * https://style.bayl.es · https://github.com/baylesj/bayl.es-style
  *
  * This is the readable build: colors are written as light-dark(light, dark), which needs a 2024+
@@ -390,7 +390,7 @@
     padding: 0;
   }
 
-  .scope .who {
+  .scope > .who {
     border: 1px solid var(--g-ring);
     background: var(--ground);
     color: var(--comment);
@@ -423,17 +423,12 @@
   }
 
   @media (width > 700px) {
-    .scope.bar .head:has(.who) {
-      flex-direction: row;
-      align-items: center;
-      gap: 20px;
-    }
-
-    .scope.bar .head .who {
-      background: none;
-      border: 0;
-      padding: 0;
-      position: static;
+    .scope > .who {
+      padding: 5px 4px 5px 12px;
+      font-size: 13px;
+      top: 14px;
+      bottom: auto;
+      right: 24px;
     }
   }
 

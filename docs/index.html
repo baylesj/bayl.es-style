@@ -1352,7 +1352,7 @@
         );
       setSite(params.get("site") || store.get("h2-site") || "home", !params.get("site"));
 
-      const VERSION = "v2.2.0"; // keep in step with package.json; CI checks it
+      const VERSION = "v2.2.1"; // keep in step with package.json; CI checks it
       const CDN = `https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@${VERSION}`;
       document.getElementById("snippet").textContent = [
         `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap">`,
@@ -1366,8 +1366,8 @@
         `  <canvas></canvas>`,
         `  <div class="wrap"><h1 class="vh">orbit</h1><div class="head">`,
         `    <div class="controls"><div class="seg fill" role="tablist"><button aria-pressed="true">people</button><button>map</button></div></div>`,
-        `    <div class="who"><span class="u">jordan</span>@<abbr class="eopsin" title="…">eopsin</abbr><button class="theme-toggle" type="button"></button></div>`,
         `  </div></div>`,
+        `  <div class="who"><span class="u">jordan</span>@<abbr class="eopsin" title="…">eopsin</abbr><button class="theme-toggle" type="button"></button></div>`,
         `</header>`,
       ].join("\n");
       document.getElementById("version").textContent = VERSION;

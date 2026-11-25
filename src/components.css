@@ -69,9 +69,10 @@
      site; .who in the map's corner holds the signed-in user and the theme switch; the panel holds only the site's
      own controls (tabs, a mode switch), or is left out. The page's <h1> stays for screen readers (.vh).
      <header class="scope bar"><canvas></canvas><div class="wrap"><h1 class="vh">zero</h1>
-       <div class="head"><div class="controls"><div class="seg fill">…</div></div><div class="who">…</div></div>
-     </div></header>
-     Without a panel, .who sits directly in .wrap. */
+       <div class="head"><div class="controls"><div class="seg fill">…</div></div></div></div>
+       <div class="who">…</div></header>
+     .who is the header's own child: a chip in the map's corner on phones, a card at its right, level with the
+     panel, on wide screens. Without anything for a panel, leave .head out. */
   .scope.bar .wrap {
     min-height: 88px;
     padding-top: 14px;
@@ -87,7 +88,7 @@
     border-top: 0;
   }
 
-  .scope .who {
+  .scope > .who {
     position: absolute;
     right: 12px;
     bottom: 8px;
@@ -119,19 +120,14 @@
     height: 14px;
   }
 
-  /* wide screens: with a panel, .who ends its row, where the map already keeps clear */
+  /* wide screens: a card of its own at the map's right, level with the panel */
   @media (width > 700px) {
-    .scope.bar .head:has(.who) {
-      flex-direction: row;
-      gap: 20px;
-      align-items: center;
-    }
-
-    .scope.bar .head .who {
-      position: static;
-      padding: 0;
-      border: 0;
-      background: none;
+    .scope > .who {
+      top: 14px;
+      right: 24px;
+      bottom: auto;
+      padding: 5px 4px 5px 12px;
+      font-size: 13px;
     }
   }
 

@@ -63,17 +63,17 @@ therefore always wins without specificity fights, so site-specific styles need n
           <button aria-pressed="true">people</button><button>map</button>
         </div>
       </div>
-      <div class="who">
-        <span class="u">jordan</span>@<abbr
-          class="eopsin"
-          title="The server is named for 업신 (Eopsin), the Korean household goddess of storage and wealth"
-          >eopsin</abbr
-        ><button class="theme-toggle" type="button"></button>
-      </div>
     </div>
   </div>
+  <div class="who">
+    <span class="u">jordan</span>@<abbr
+      class="eopsin"
+      title="The server is named for 업신 (Eopsin), the Korean household goddess of storage and wealth"
+      >eopsin</abbr
+    ><button class="theme-toggle" type="button"></button>
+  </div>
 </header>
-<!-- With nothing to put in a panel, leave .head out: <div class="wrap"><h1 class="vh">zero</h1><div class="who">…</div></div> -->
+<!-- With nothing to put in a panel, leave .head out: <div class="wrap"><h1 class="vh">zero</h1></div><div class="who">…</div> -->
 
 <!-- Before 2.2.0: the prompt line and the wordmark in the panel (still styled, for pages not yet moved) -->
 <header class="scope">
