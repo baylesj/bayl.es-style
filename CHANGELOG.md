@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.3.0 (2026-11-26)
+
+Field stars: side projects get a star of their own in the galaxy instead of a place in the Dipper.
+
+- `[data-site="binder"]`: purple into amber with a gold star (what binder.bayl.es set for itself until now).
+- `js/galaxy.js`: `FIELD` stars, drawn and lit only on their own site, with companion stars in a cluster and a list
+  of places to try so the star stays clear of the panel and `.who` at every width. binder is the Pleiades, in the
+  Delta Quadrant.
+- `icons/binder.svg`: the Dipper unlit and the Pleiades lit in the tile's top-right corner.
+- DESIGN.md: "Field stars".
+
 ## 2.2.2 (2026-11-24)
 
 - The bar header is `.scope.thin` (was `.scope.bar`): zero.bayl.es already had a `.bar` progress bar (8px tall), which

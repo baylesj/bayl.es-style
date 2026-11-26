@@ -1,5 +1,5 @@
 /*
- * bayl.es-style 2.2.2: the shared look of the *.bayl.es sites.
+ * bayl.es-style 2.3.0: the shared look of the *.bayl.es sites.
  * https://style.bayl.es · https://github.com/baylesj/bayl.es-style
  *
  * This is the readable build: colors are written as light-dark(light, dark), which needs a 2024+
@@ -24,6 +24,7 @@
  *   --green-bright   #589a78  #8dd5b2  fills only
  *   --orange-bright  #ca7f5f  #d99f80  fills only
  *   --on-sig         #fff     #0a1f22  text on a signature-colored fill
+ *   --on-sig         #fff     #0a1f22
  *   --on-sig         #fff     #0a1f22
  *   --on-sig         #fff     #0a1f22
  *   --on-sig         #fff     #0a1f22
@@ -122,6 +123,16 @@
     --sig-fill: var(--purple);
     --sig2-fill: var(--teal-bright);
     --star: #b3b0ed;
+    --on-sig: light-dark(#fff, #0a1f22);
+  }
+
+  [data-site="binder"] {
+    --sig: var(--purple);
+    --sig2: var(--amber);
+    --sig-text: var(--purple);
+    --sig-fill: var(--purple);
+    --sig2-fill: var(--amber);
+    --star: #e6d393;
     --on-sig: light-dark(#fff, #0a1f22);
   }
 

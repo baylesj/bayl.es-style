@@ -48,8 +48,30 @@ const DIPPER = {
   climb: [17, 11], // Alcor: faint on every tile (it's in the sky either way), lit on climb's
   jordan: [6, 11],
 };
+// Field stars (DESIGN.md): a site outside the Dipper lights its own star in the tile's open top-right corner,
+// with the Dipper unlit. No halo: the cluster is the mark, and a ring would swallow it. binder is the Pleiades: Alcyone and its sisters, as in js/galaxy.js.
+const FIELD = {
+  binder: {
+    at: [35, 11],
+    cluster: [
+      [-8.5, 1.3],
+      [-8.5, -2],
+      [2, 4.4],
+      [6.8, 1.7],
+      [8.5, -2.4],
+      [5.1, -4.4],
+      [6.8, -7.8],
+    ],
+  },
+};
 const NIGHT = "#0a1f22";
 const DIM = "#b7cfce";
+
+const fieldStar = ({ at: [x, y], cluster }, star) =>
+  `<circle cx="${x}" cy="${y}" r="3.4" fill="${star}"/>` +
+  cluster
+    .map(([dx, dy]) => `<circle cx="${x + dx}" cy="${y + dy}" r="1.5" fill="${star}"/>`)
+    .join("");
 
 const starTile = (site, { edge, star }) =>
   `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">` +
@@ -57,12 +79,13 @@ const starTile = (site, { edge, star }) =>
   `<rect x="1" y="1" width="46" height="46" rx="6" fill="none" stroke="${edge}" stroke-width="2"/>` +
   Object.entries(DIPPER)
     .map(([k, [x, y]]) =>
-      k === site
+      k === site && !FIELD[site]
         ? `<circle cx="${x}" cy="${y}" r="8" fill="none" stroke="${star}" stroke-width="1.2" opacity="0.6"/>` +
           `<circle cx="${x}" cy="${y}" r="5" fill="${star}"/>`
         : `<circle cx="${x}" cy="${y}" r="${k === "climb" ? 1.6 : 3}" fill="${DIM}"/>`,
     )
     .join("") +
+  (FIELD[site] ? fieldStar(FIELD[site], star) : "") +
   `</svg>\n`;
 
 for (const [site, colors] of Object.entries(sites)) {

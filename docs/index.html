@@ -609,8 +609,9 @@
           used as a test of eyesight.<sup><a href="#n2">2</a></sup> In Chinese astronomy Alcor is
           輔, the Assistant.<sup><a href="#n3">3</a></sup> Taoist tradition counts the Dipper as
           nine: the seven stars and two not visible to the naked eye,<sup><a href="#n4">4</a></sup>
-          so a ninth site takes the other unseen one. Past nine, a site is a field star in the
-          galaxy, not part of the Dipper.
+          so a ninth site takes the other unseen one. The Dipper is for the main sites: a side
+          project is a field star in the galaxy, lit only on its own pages. binder is the Pleiades,
+          昴 (Subaru), "gathered together", in the Delta Quadrant.
         </p>
         <ol class="notes">
           <li id="n1">
@@ -1352,7 +1353,7 @@
         );
       setSite(params.get("site") || store.get("h2-site") || "home", !params.get("site"));
 
-      const VERSION = "v2.2.2"; // keep in step with package.json; CI checks it
+      const VERSION = "v2.3.0"; // keep in step with package.json; CI checks it
       const CDN = `https://cdn.jsdelivr.net/gh/baylesj/bayl.es-style@${VERSION}`;
       document.getElementById("snippet").textContent = [
         `<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400..700&family=Atkinson+Hyperlegible+Mono:wght@400;500&display=swap">`,

@@ -3,7 +3,8 @@
  *
  * Every site draws the same galaxy from one fixed seed: a plane seen almost edge-on with range rings,
  * a star field, and seven waypoints on stalks that form the Big Dipper (Chilseong; see DESIGN.md). The
- * waypoint of the site you are on (<body data-site>) is lit in its star color and bracketed. At night
+ * waypoint of the site you are on (<body data-site>) is lit in its star color and bracketed. A site outside the
+ * Dipper is a field star (FIELD), drawn only on its own pages, so every other site's sky stays the Dipper. At night
  * the map sits on the page's ground; by day it is etched in pale lines on slate, after the Guidestone.
  *
  * Markup:
@@ -35,6 +36,30 @@
     jordan: [-0.4, -0.1, 0.275], // Alkaid
   };
   const FIGURE = ["jordan", "zero", "orbit", "audible", "home", "my", "id", "audible"];
+  // Field stars: sites that aren't in the Dipper (DESIGN.md, "Field stars"). `at` lists places in plane units like
+  // the waypoints, but in the galaxy itself rather than the Dipper's frame; the first one that's on the map and
+  // clear of the panel and .who is used (the header's shape changes with the width). `cluster` adds companion
+  // stars, in pixels around the lit one, the same at every size.
+  const FIELD = {
+    // the Pleiades: 昴 (Subaru), "gathered together", a cluster for the binder that gathers the cards. It sits
+    // in the Delta Quadrant: across the core from us and to the right, lifted clear of the Dipper. Alcyone is
+    // lit; Atlas and Pleione to its left, Merope, Electra, Celaeno, Maia and Taygeta to its right.
+    binder: {
+      at: [
+        [0.15, -0.01, 0.35],
+        [0.03, -0.01, 0.35],
+      ],
+      cluster: [
+        [-6, 1],
+        [-6, -1],
+        [1.5, 2.5],
+        [4.5, 1],
+        [5.5, -1.5],
+        [3.5, -2.5],
+        [4.5, -4.5],
+      ],
+    },
+  };
 
   function hash(str) {
     let h = 2166136261;
@@ -142,7 +167,9 @@
           bracket: v("--bracket"),
           readout: v("--soft"),
         };
-    if (caption) caption.textContent = WAYPOINTS[site] ? `galaxy · waypoint ${site}.bayl.es` : "";
+    if (caption)
+      caption.textContent =
+        WAYPOINTS[site] || FIELD[site] ? `galaxy · waypoint ${site}.bayl.es` : "";
 
     // the words keep clear ground: nothing is drawn under the panel, the caption or .who
     const cb = cv.getBoundingClientRect();
@@ -263,14 +290,46 @@
       ctx.lineTo(mx + 0.5 - s, my);
       ctx.closePath();
       ctx.fill();
-      if (cur) here = { x: mx, y: my };
+      if (cur) here = { x: mx, y: my, k: 9 };
+    }
+
+    // a field star: only on its own site, lit like a waypoint, with its cluster around it
+    const field = FIELD[site];
+    if (field) {
+      const clear = ([x, z, y]) => {
+        const [px, py] = proj(x, z, y);
+        return px > 14 && px < W - 14 && py > 10 && py < H - 10 && !blocked(px, py);
+      };
+      const [x, z, y] = field.at.find(clear) || field.at[field.at.length - 1];
+      const [fx, fy] = proj(x, z);
+      const [mx, my] = proj(x, z, y);
+      ctx.strokeStyle = c.lit;
+      ctx.fillStyle = c.lit;
+      ctx.beginPath();
+      ctx.moveTo(Math.round(fx) + 0.5, fy);
+      ctx.lineTo(Math.round(mx) + 0.5, my);
+      ctx.stroke();
+      ctx.fillRect(Math.round(fx) - 2, Math.round(fy), 5, 1);
+      const s = 4.5;
+      ctx.beginPath();
+      ctx.moveTo(mx + 0.5, my - s);
+      ctx.lineTo(mx + 0.5 + s, my);
+      ctx.lineTo(mx + 0.5, my + s);
+      ctx.lineTo(mx + 0.5 - s, my);
+      ctx.closePath();
+      ctx.fill();
+      for (const [dx, dy] of field.cluster || []) {
+        ctx.fillRect(Math.round(mx + dx), Math.round(my + dy), 1.5, 1.5);
+      }
+      const reach = Math.max(4.5, ...(field.cluster || []).flat().map(Math.abs));
+      here = { x: mx, y: my, k: Math.ceil(reach) + 4 };
     }
 
     // the current waypoint: corner brackets and a readout on its own patch of ground
     state.here = here;
     if (!here || blocked(here.x, here.y)) return;
     ctx.strokeStyle = c.bracket;
-    const k = 9,
+    const k = here.k,
       l = 4;
     for (const [sx, sy] of [
       [-1, -1],
@@ -303,9 +362,9 @@
         [b.x0, b.y1],
         [b.x1, b.y1],
       ].some(([x, y]) => blocked(x, y));
-    let lx = here.x + 16;
+    let lx = here.x + k + 7;
     let b = at(lx);
-    if (!fits(b)) b = at((lx = here.x - 16 - w));
+    if (!fits(b)) b = at((lx = here.x - k - 7 - w));
     if (!fits(b)) return;
     ctx.fillStyle = c.ground;
     ctx.fillRect(b.x0, b.y0, b.x1 - b.x0, b.y1 - b.y0);

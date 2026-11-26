@@ -47,16 +47,17 @@ the editor-theme colors the sites already had, muted until nothing shouts.
 
 ## Signatures and stars
 
-| site            | hue                      | star in the Dipper | prompt path (pre-2.2.0)        |
-| --------------- | ------------------------ | ------------------ | ------------------------------ |
-| home.bayl.es    | teal → green             | Dubhe              | `jordan@eopsin:~`              |
-| my.bayl.es      | purple → teal            | Merak              | `guest@eopsin:~/accounts`      |
-| id.bayl.es      | purple                   | Phecda             | n/a, third-party               |
-| audible.bayl.es | amber → orange           | Megrez             | `drake@eopsin:~/audible`       |
-| orbit.bayl.es   | pink → purple (jordan's) | Alioth             | `jordan@eopsin:~/orbit`        |
-| zero.bayl.es    | green → teal             | Mizar              | `jordan@eopsin:~/zero`         |
-| climb.bayl.es   | green → amber            | Alcor              | `jordan@eopsin:~/climb`        |
-| jordan.bayl.es  | pink → purple            | Alkaid             | none; the name is in Geologica |
+| site            | hue                      | star in the Dipper         | prompt path (pre-2.2.0)        |
+| --------------- | ------------------------ | -------------------------- | ------------------------------ |
+| home.bayl.es    | teal → green             | Dubhe                      | `jordan@eopsin:~`              |
+| my.bayl.es      | purple → teal            | Merak                      | `guest@eopsin:~/accounts`      |
+| id.bayl.es      | purple                   | Phecda                     | n/a, third-party               |
+| audible.bayl.es | amber → orange           | Megrez                     | `drake@eopsin:~/audible`       |
+| orbit.bayl.es   | pink → purple (jordan's) | Alioth                     | `jordan@eopsin:~/orbit`        |
+| zero.bayl.es    | green → teal             | Mizar                      | `jordan@eopsin:~/zero`         |
+| climb.bayl.es   | green → amber            | Alcor                      | `jordan@eopsin:~/climb`        |
+| jordan.bayl.es  | pink → purple            | Alkaid                     | none; the name is in Geologica |
+| binder.bayl.es  | purple → amber           | a field star: the Pleiades | none                           |
 
 The site's full hue marks the prompt path, labels, panel tints, the selection bracket and the primary
 button. Its **star** (`--star`) is the hue mixed 40% into starlight, the same in both themes: the lit
@@ -66,7 +67,16 @@ without it (kiwix, speedtest) still does.
 **The eighth site**, climb, takes Alcor, the faint companion beside Mizar in the Dipper's handle, long used as a
 test of eyesight.² In Chinese astronomy Alcor is 輔, the Assistant.³ Taoist tradition counts the Dipper
 as nine: the seven stars and two not visible to the naked eye,⁴ so a ninth site takes the other unseen
-one. Past nine, a site is a field star in the galaxy, not part of the Dipper.
+one. The Dipper is for the main sites; a side project is a field star, however many sites there are.
+
+**Field stars.** A side project (binder first) isn't one of the Dipper's stars. It is a star of its own in the
+galaxy, drawn only on its own pages, lit and bracketed like a waypoint, so every other site's sky stays the Dipper.
+Its favicon is the night tile with the Dipper unlit and its own star in the open top-right corner, without a halo.
+Give a field star some meaning. binder.bayl.es is the Pleiades, 昴 (Subaru) in Japanese, "gathered together": a
+cluster for the binder that gathers the cards, drawn as Alcyone lit with its sisters around it. It sits in the
+Delta Quadrant, across the core from us and to the right (the far right of the plane), lifted clear of the Dipper.
+`js/galaxy.js` takes a list of places for a field star and uses the first that is clear of the panel and `.who`,
+since the thin header's shape changes with the width.
 
 id.bayl.es is Pocket ID, which only lets us set the name, logo, accent color, background image and
 favicon. Its serif heading and pill button are built in, and accepted as the exception. Keep text out of

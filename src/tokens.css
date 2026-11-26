@@ -115,6 +115,18 @@
     --on-sig: light-dark(#fff, #0a1f22);
   }
 
+  /* binder is a field star, not one of the Dipper's (DESIGN.md, "Field stars"): purple for what the cards are
+     worth into the amber of a holo, and a gold star (the colors binder.bayl.es had on its own since 2026-11-25). */
+  [data-site="binder"] {
+    --sig: var(--purple);
+    --sig2: var(--amber);
+    --sig-text: var(--purple);
+    --sig-fill: var(--purple);
+    --sig2-fill: var(--amber);
+    --star: color-mix(in srgb, #d9a400 40%, #eef3f5);
+    --on-sig: light-dark(#fff, #0a1f22);
+  }
+
   [data-site="audible"] {
     --sig: var(--amber);
     --sig2: var(--orange);
